@@ -6,16 +6,16 @@
 # Front End
 ## <br> Account page
 ###### *(Basically like Instagram lol)*
-![FrontEndDesign1](vue\src\components\FrontEndDesign1.png)
+![FrontEndDesign1](vue\src\resources\FrontEndDesign1.png)
 
 ## <br> Home View - Wide Screen
 #### Static Nav Bar on top && bottom
-![FrontEndDesign2](vue\src\components\FrontEndDesign2.png)
+![FrontEndDesign2](vue\src\resources\FrontEndDesign2.png)
 
 ## <br> Mobile
 #### Static Nav Bar on top && bottom
 #### Heart = like / Triangle = favorite
-![FrontEndDesign3](vue\src\components\FrontEndDesign3.png)
+![FrontEndDesign3](vue\src\resources\FrontEndDesign3.png)
 
 # <br> Backend
 ## <br> Database
