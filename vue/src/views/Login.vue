@@ -12,7 +12,6 @@
       >
         Thank you for registering, please sign in.
       </div>
-      <div></div>
       <label for="username" class="sr-only"></label>
       <input
         type="text"
@@ -36,17 +35,16 @@
       <div class="login-buttons">
         <button
           id="login-button"
-          class="login-button"
+          class="button"
           type="submit"
           :to="{ name: 'register' }"
         >
           Sign in
         </button>
         <p id="or">__________ or ___________</p>
-        <br />
         <button
           id="need-an-account-button"
-          class="login-button"
+          class="button"
           type="routePlaceholder"
           v-on:click.prevent="pushToRegister"
         >
@@ -101,11 +99,13 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+
 #sign-in-display {
   font-family: "Passion One", cursive;
   font-size: 5rem !important;
   text-align: center;
   color: #fe9aa4;
+  margin: 20px;
 }
 
 #login {
@@ -123,45 +123,57 @@ export default {
   max-height: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid grey;
-  border-radius: 10px;
+  border: 16px solid #FE9AA4;
+  border-radius: 4px;
   padding: 20px;
+  border-end-end-radius: 48px;
+  border-start-start-radius: 48px;
   background-color: #f1fffa;
-}
-.form-control {
-  padding: 12px;
-  border: 1px solid grey;
-  border-radius: 5px;
+  box-shadow: 3px 3px 20px #F1FFFA,6px 6px 32px #F1FFFA;
 }
 
-.sr-only {
-  margin: 5px;
+.form-control {
+  padding: 8px 4px;
+  
+  margin: 4px 0px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  
   color: #2a2d34;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
+
 
 #sign-in-display {
   font-size: 2rem;
 }
+
 #or {
   text-align: center;
+  
+  flex-grow: 10000;
+  margin: 16px;
+  color: #FE9AA4;
 }
 
-.login-button {
-  padding: 5px;
-
-  margin: 5px;
+.button {
+  
 
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
   width: 100%;
   max-height: 32px;
+  margin: 0px;
+  
+  padding: 5px;
 }
 
 .login-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0px;
+  margin: 0px
 }
 
 button:hover {
@@ -175,9 +187,18 @@ button {
 }
 
 #login-button {
+  margin-top: 20px;
   background-color: #5096b9;
   border-radius: 5px;
   color: #f1fffa;
+  
+  margin: 4px
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
 #need-an-account-button {
@@ -185,5 +206,7 @@ button {
   color: #f1fffa;
   width: 60%;
   border-radius: 5px;
+  margin: 0px;
+  
 }
 </style>

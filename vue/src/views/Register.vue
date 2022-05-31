@@ -12,7 +12,7 @@
         <input
           type="text"
           id="username"
-          class="form-control"
+          class="form-control register-form"
           placeholder="Username"
           v-model="user.username"
           required
@@ -22,7 +22,7 @@
         <input
           type="password"
           id="password"
-          class="form-control"
+          class="form-control register-form"
           placeholder="Password"
           v-model="user.password"
           required
@@ -30,25 +30,27 @@
         <input
           type="password"
           id="confirmPassword"
-          class="form-control"
+          class="form-control register-form"
           placeholder="Confirm Password"
           v-model="user.confirmPassword"
           required
         />
+        </div>
         <div class="register-buttons">
-          <button id="create-button" class="register-button" type="submit">
+          <button id="create-button" class="button" type="submit">
             Create Account
           </button>
+          <p id="or">____________ or ____________</p>
           <button
             id="need-an-account-button"
-            class="register-button"
+            class="button"
             type="routePlaceholder"
             v-on:click.prevent="pushToLogin"
           >
             Have an account?
           </button>
         </div>
-      </div>
+      
     </form>
   </div>
 </template>
@@ -109,11 +111,14 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+
 #create-account-banner {
   font-family: "Passion One", cursive;
   font-size: 5rem !important;
   text-align: center;
   color: #fe9aa4;
+
+  margin: 20px;
 }
 
 #register {
@@ -128,6 +133,7 @@ export default {
 
 .form-register {
   width: 40%;
+  max-width: 380px;
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -140,25 +146,18 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.form-control {
-  padding: 12px;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-
-.sr-only {
+  
   margin: 5px;
   color: #2a2d34;
   font-size: 1.3rem;
 }
 
-#sign-in-display {
-  font-size: 2rem;
+.register-form {
+  width: 100%;
+  margin: 4px 0px;
+  padding: 8px 4px;
 }
-#or {
-  text-align: center;
-}
+
 
 .create-button {
   padding: 5px;
@@ -175,6 +174,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 button:hover {
@@ -183,12 +183,7 @@ button:hover {
   transition-duration: 0.2s;
 }
 
-button {
-  border: 0px;
-}
-.register-button {
-  width: 100%;
-}
+
 
 #create-button {
   background-color: #5096b9;
