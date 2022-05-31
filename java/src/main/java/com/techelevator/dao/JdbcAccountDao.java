@@ -16,7 +16,6 @@ public class JdbcAccountDao implements AccountDao{
     public void createAccount(int userId) {
         String sql = "INSERT INTO accounts (user_id) VALUES(?)";
         jdbcTemplate.update(sql, userId);
-
     }
 
     @Override
@@ -35,7 +34,6 @@ public class JdbcAccountDao implements AccountDao{
     public void updateAccount(Account account, int userId) {
         String sql = "UPDATE accounts SET biography = ?, profile_img = ?, display_name = ? WHERE user_id = ?";
         jdbcTemplate.update(sql, account.getBiography(), account.getProfileImg(), account.getDisplayName(), userId);
-
     }
 
     private Account MapRowToAccount(SqlRowSet results){

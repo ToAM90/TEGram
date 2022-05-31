@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Post {
     private boolean favorited;
     private int likesCount;
 
-    private Post(){}
+    public Post(){}
 
     public Post(int postId, int accountId, String img, String caption, LocalDateTime postDate, boolean privated, List<Comment> comments, boolean liked, boolean favorited, int likesCount) {
         this.postId = postId;
@@ -67,7 +69,7 @@ public class Post {
         return postDate;
     }
 
-    public void setPostDate(LocalDateTime postDate) {
+    public void setPostDate(Timestamp postDate) {
         this.postDate = postDate;
     }
 
