@@ -21,7 +21,9 @@ CREATE TABLE users (
 
 CREATE TABLE accounts (
 	account_id serial,
+	profile_img varchar(100),
 	user_id int NOT NULL,
+	display_name varchar(30),
 	biography varchar (300),
 	CONSTRAINT PK_account PRIMARY KEY (account_id),
 	CONSTRAINT FK_user FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -34,6 +36,7 @@ CREATE TABLE posts (
 	account_id int NOT NULL,
 	img varchar(100),
 	caption varchar(200),
+	post_date TIMESTAMP,
 	privated boolean,
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_account FOREIGN KEY (account_id) REFERENCES accounts(account_id)
