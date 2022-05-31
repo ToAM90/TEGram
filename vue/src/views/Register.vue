@@ -2,7 +2,7 @@
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
       <h1 id="create-account-banner" class="h3 mb-3 font-weight-normal">
-        .TE-GRAM
+        .TE GRAM
       </h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -35,22 +35,21 @@
           v-model="user.confirmPassword"
           required
         />
-        </div>
-        <div class="register-buttons">
-          <button id="create-button" class="button" type="submit">
-            Create Account
-          </button>
-          <p id="or">____________ or ____________</p>
-          <button
-            id="need-an-account-button"
-            class="button"
-            type="routePlaceholder"
-            v-on:click.prevent="pushToLogin"
-          >
-            Have an account?
-          </button>
-        </div>
-      
+      </div>
+      <div class="register-buttons">
+        <button id="create-button" class="button" type="submit">
+          Create Account
+        </button>
+        <p id="register-or">____________ or ____________</p>
+        <button
+          id="have-an-account-button"
+          class="button"
+          type="routePlaceholder"
+          v-on:click.prevent="pushToLogin"
+        >
+          Have an account?
+        </button>
+      </div>
     </form>
   </div>
 </template>
@@ -111,13 +110,13 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&family=Passion+One&display=swap");
 
 #create-account-banner {
-  font-family: "Passion One", cursive;
+  font-family: "Montserrat", sans-serif;
   font-size: 5rem !important;
   text-align: center;
-  color: #fe9aa4;
-
+  color: #5096b9;
   margin: 20px;
 }
 
@@ -141,12 +140,17 @@ export default {
   border-radius: 10px;
   padding: 20px;
   background-color: #f1fffa;
+  border: 16px solid #5096b9;
+  border-radius: 4px;
+  border-end-end-radius: 48px;
+  border-start-start-radius: 48px;
+  box-shadow: 3px 3px 20px #f1fffa, 6px 6px 32px #f1fffa;
 }
 .inputs {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   margin: 5px;
   color: #2a2d34;
   font-size: 1.3rem;
@@ -158,7 +162,6 @@ export default {
   padding: 8px 4px;
 }
 
-
 .create-button {
   padding: 5px;
 
@@ -168,6 +171,9 @@ export default {
   font-weight: 500;
   width: 100%;
   max-height: 32px;
+}
+#register-or {
+  color: #5096b9;
 }
 
 .register-buttons {
@@ -179,11 +185,9 @@ export default {
 
 button:hover {
   background-color: #f1fffa;
-  font-size: 0.9rem;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2), 3px 6px 5px rgba(0, 0, 0, 0.19);
   transition-duration: 0.2s;
 }
-
-
 
 #create-button {
   background-color: #5096b9;
@@ -191,8 +195,8 @@ button:hover {
   color: #f1fffa;
 }
 
-#need-an-account-button {
-  background-color: #ee5044;
+#have-an-account-button {
+  background-color: #fe9aa4;
   color: #f1fffa;
   width: 60%;
   border-radius: 5px;

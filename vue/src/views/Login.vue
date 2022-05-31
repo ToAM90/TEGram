@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <h1 id="sign-in-display" class="splash-logo">.TE-GRAM</h1>
+      <h1 id="sign-in-display" class="splash-logo">.TE GRAM</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -99,9 +99,11 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Passion+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&family=Passion+One&display=swap");
 
 #sign-in-display {
-  font-family: "Passion One", cursive;
+  font-family: "Montserrat", sans-serif;
   font-size: 5rem !important;
   text-align: center;
   color: #fe9aa4;
@@ -121,28 +123,28 @@ export default {
 .form-signin {
   width: 40%;
   max-height: 100%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
-  border: 16px solid #FE9AA4;
+  border: 16px solid #fe9aa4;
   border-radius: 4px;
   padding: 20px;
   border-end-end-radius: 48px;
   border-start-start-radius: 48px;
   background-color: #f1fffa;
-  box-shadow: 3px 3px 20px #F1FFFA,6px 6px 32px #F1FFFA;
+  box-shadow: 3px 3px 20px #f1fffa, 6px 6px 32px #f1fffa;
 }
 
 .form-control {
   padding: 8px 4px;
-  
+
   margin: 4px 0px;
   border: 1px solid grey;
   border-radius: 5px;
-  
+
   color: #2a2d34;
   font-size: 1.1rem;
 }
-
 
 #sign-in-display {
   font-size: 2rem;
@@ -150,21 +152,19 @@ export default {
 
 #or {
   text-align: center;
-  
+
   flex-grow: 10000;
   margin: 16px;
-  color: #FE9AA4;
+  color: #fe9aa4;
 }
 
 .button {
-  
-
   font-family: "Open Sans", sans-serif;
   font-weight: 500;
   width: 100%;
   max-height: 32px;
   margin: 0px;
-  
+
   padding: 5px;
 }
 
@@ -173,7 +173,7 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 0px;
-  margin: 0px
+  margin: 0px;
 }
 
 button:hover {
@@ -188,11 +188,11 @@ button {
 
 #login-button {
   margin-top: 20px;
-  background-color: #5096b9;
+  background-color: #fe9aa4;
   border-radius: 5px;
   color: #f1fffa;
-  
-  margin: 4px
+
+  margin: 4px;
 }
 
 .login-buttons {
@@ -202,11 +202,10 @@ button {
 }
 
 #need-an-account-button {
-  background-color: #ee5044;
+  background-color: #5096b9;
   color: #f1fffa;
   width: 60%;
   border-radius: 5px;
   margin: 0px;
-  
 }
 </style>
