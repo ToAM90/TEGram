@@ -1,19 +1,19 @@
 <template>
-
   <div id="login" class="text-center">
-    <h1 id="sign-in-display" class="h3 mb-3 font-weight-normal">Please Sign In</h1>
     <form class="form-signin" @submit.prevent="login">
-      <div
-        class="alert alert-danger"
-        role="alert"
-        v-if="invalidCredentials"
-      >Invalid username and password!</div>
+      <h1 id="sign-in-display" class="splash-logo">.TE-GRAM</h1>
+      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+        Invalid username and password!
+      </div>
       <div
         class="alert alert-success"
         role="alert"
         v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      >
+        Thank you for registering, please sign in.
+      </div>
+      <div></div>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -23,7 +23,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -32,10 +32,26 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <div class='login-buttons'>
-        <button id='need-an-account-button' class='login-button' type="routePlaceholder">Need an account?</button>
-        <button id='login-button' class='login-button' type="submit">Sign in</button>
+
+      <div class="login-buttons">
+        <button
+          id="login-button"
+          class="login-button"
+          type="submit"
+          :to="{ name: 'register' }"
+        >
+          Sign in
+        </button>
+        <p id="or">__________ or ___________</p>
+        <br />
+        <button
+          id="need-an-account-button"
+          class="login-button"
+          type="routePlaceholder"
+          v-on:click.prevent="pushToRegister"
+        >
+          Need an account?
+        </button>
       </div>
     </form>
   </div>
@@ -46,100 +62,128 @@ import authService from "../services/AuthService";
 
 export default {
   name: "login",
-  components: { },
+  components: {},
   data() {
     return {
       user: {
         username: "",
-        password: ""
+        password: "",
       },
-      invalidCredentials: false
+      invalidCredentials: false,
     };
   },
   methods: {
     login() {
       authService
         .login(this.user)
-        .then(response => {
+        .then((response) => {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
         })
-        .catch(error => {
+        .catch((error) => {
           const response = error.response;
 
           if (response.status === 401) {
             this.invalidCredentials = true;
           }
         });
-    }
-  }
+    },
+    pushToRegister() {
+      this.$router.push("/register");
+    },
+  },
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
+#sign-in-display {
+  font-family: "Passion One", cursive;
+  font-size: 5rem !important;
+  text-align: center;
+  color: #fe9aa4;
+}
+
 #login {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Open Sans', sans-serif;
+  justify-content: center;
+  margin-top: 10%;
+  max-height: 100%;
+  font-family: "Open Sans", sans-serif;
 }
 
 .form-signin {
-  width: 400px;
+  width: 40%;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   border: 1px solid grey;
   border-radius: 10px;
   padding: 20px;
-  background-color: #8A8E91;
+  background-color: #f1fffa;
+}
+.form-control {
+  padding: 12px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }
 
 .sr-only {
   margin: 5px;
+  color: #2a2d34;
+  font-size: 1.3rem;
 }
 
 #sign-in-display {
-  font-size: 2REM
+  font-size: 2rem;
+}
+#or {
+  text-align: center;
 }
 
 .login-button {
   padding: 5px;
-  
+
   margin: 5px;
-  
-  font-family: 'Open Sans', sans-serif;
+
+  font-family: "Open Sans", sans-serif;
   font-weight: 500;
-  width: 50%
+  width: 100%;
+  max-height: 32px;
 }
 
-.login-buttons { 
+.login-buttons {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #f1fffa;
+  font-size: 0.9rem;
+  transition-duration: 0.2s;
 }
 
 button {
-  border: 0px
+  border: 0px;
 }
 
-button :hover{
-  color: red;
-}
 #login-button {
-  
-  border: 2px solid green;
-  
-  border-radius: 10px;
+  background-color: #5096b9;
+  border-radius: 5px;
+  color: #f1fffa;
 }
 
 #need-an-account-button {
-  
-  border: 2px solid purple;
-  
-  border-radius: 10px;
+  background-color: #ee5044;
+  color: #f1fffa;
+  width: 60%;
+  border-radius: 5px;
 }
-
 </style>
