@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link id="home" v-bind:to="{ name: 'home' }">Home |</router-link>
       
       <router-link
@@ -8,14 +8,14 @@
         v-if="$store.state.token != ''"
         >Logout</router-link
       >
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
 
 <style>
 :root {
-  --top-color: #f1fffa; ;
+  --top-color: #38413e; ;
   --primary-background-color: #c8cfd6 ;
   --panel-background-color: #f1fffa ;
   --sign-up-blue: #5096b9 ;
