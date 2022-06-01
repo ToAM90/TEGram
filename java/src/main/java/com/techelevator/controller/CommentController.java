@@ -48,7 +48,7 @@ public class CommentController {
 
         Comment comment = commentDao.getComment(commentId);
 
-        if(accountId == comment.getAccountId() || user.getAuthorities().contains("admin")){
+        if(accountId == comment.getAccountId() || user.getAuthorities().contains("ADMIN")){
             commentDao.deleteComment(commentId);
         }
     }

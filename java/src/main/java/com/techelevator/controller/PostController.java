@@ -72,7 +72,7 @@ public class PostController {
 
         Post post = postDao.getPost(id);
 
-        if(accountId == post.getAccountId() || user.getAuthorities().contains("admin")){
+        if(accountId == post.getAccountId() || user.getAuthorities().contains("ADMIN")){
             postDao.deletePost(id);
         }
 
