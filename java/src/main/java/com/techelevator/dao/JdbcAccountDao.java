@@ -15,13 +15,13 @@ public class JdbcAccountDao implements AccountDao{
     }
 
     @Override
-    public void createAccount(int userId) {
+    public void createAccount(long userId) {
         String sql = "INSERT INTO accounts (user_id) VALUES(?)";
         jdbcTemplate.update(sql, userId);
     }
 
     @Override
-    public Account getAccount(int userId) {
+    public Account getAccount(long userId) {
         Account account = new Account();
         String sql = "SELECT account_id, user_id, profile_img, display_name, biography FROM accounts WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
@@ -33,7 +33,7 @@ public class JdbcAccountDao implements AccountDao{
     }
 
     @Override
-    public void updateAccount(Account account, int userId) {
+    public void updateAccount(Account account, long userId) {
         String sql = "UPDATE accounts SET biography = ?, profile_img = ?, display_name = ? WHERE user_id = ?";
         jdbcTemplate.update(sql, account.getBiography(), account.getProfileImg(), account.getDisplayName(), userId);
     }

@@ -28,7 +28,7 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
-    public Post getPostbyPostId(int postId) {
+    public Post getPost(int postId) {
         Post post = new Post();
         String sql = "SELECT img, caption, post_date, privated FROM posts WHERE post_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
@@ -39,7 +39,7 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
-    public List<Post> getPostsbyAccountId(int accountId) {
+    public List<Post> getPostsByAccountId(int accountId) {
         List<Post> postList = new ArrayList<>();
         String sql = "SELECT img, caption, post_date, privated FROM posts\n" +
                 "WHERE account_id = ?\n" +
@@ -58,15 +58,21 @@ public class JdbcPostDao implements PostDao{
     public List<Post> getAllPost() {
         List<Post> postList = new ArrayList<>();
         String sql = "SELECT img, caption, post_date, privated FROM posts\n" +
-                "WHERE privated IS TRUE ORDER BY post_date DESC";
+                "WHERE privated IS FALSE ORDER BY post_date DESC";
 
-        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
 
-        while(sqlRowSet.next()){
-            Post post = MapRowToPost(sqlRowSet);
+        while(results.next()){
+            Post post = MapRowToPost(results);
             postList.add(post);
         }
         return postList;
+    }
+
+    @Override
+    public void deletePost(int postId) {
+        String sql = "DELETE FROM posts WHERE post_id = ?";
+        jdbcTemplate.update(sql);
     }
 
     private Post MapRowToPost(SqlRowSet results){
@@ -76,7 +82,7 @@ public class JdbcPostDao implements PostDao{
         post.setImg(results.getString("img"));
         post.setCaption(results.getString("caption"));
 //        also commenting this out to run front end :)
-//        post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
+        post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
 
         return post;

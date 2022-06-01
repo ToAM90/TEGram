@@ -9,8 +9,11 @@
           type="text"
           placeholder="Enter caption"
           v-model="post.caption"/>
-
-        <button type="submit">Post</button>
+        <div id=privated>
+          <input id="checkbox" type="checkbox" v-model="post.privated" />
+          <label for="checkbox">Private {{privated}}</label> <br>
+        </div>
+        <button id="submit" type="submit">Post</button>
       </form>
       
   </div>
@@ -25,7 +28,8 @@ export default {
         return {
             post: {
                 caption: "",
-                img: ""
+                img: "",
+                privated: false
             },
             imageUrl: "",
             preview: true
@@ -36,7 +40,8 @@ export default {
         uploadPost(){
             postService.addPost(this.post)
             this.imageUrl = ""
-            this.caption = ""
+            this.post.caption = ""
+            this.privated = false
         },
 
         uploadPhoto(){
@@ -56,13 +61,7 @@ export default {
         .open();
 
         }
-
-    
     },
-
-
-
-   
 
 }
 </script>
@@ -82,6 +81,10 @@ export default {
     display: block;
     width: 20rem;
     margin: auto;
+}
+
+#privated{
+    display: block;
 }
 
 img{

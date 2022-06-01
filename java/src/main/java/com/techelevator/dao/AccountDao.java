@@ -4,11 +4,11 @@ import com.techelevator.model.Account;
 
 public interface AccountDao {
 
-    void createAccount(int userId);
+    void createAccount(long userId);
 
-    Account getAccount(int userId);
+    Account getAccount(long userId);
 
-    void updateAccount(Account account, int userId);
+    void updateAccount(Account account, long userId);
 
 
 }

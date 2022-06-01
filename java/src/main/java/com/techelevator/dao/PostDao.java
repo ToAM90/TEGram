@@ -8,9 +8,11 @@ public interface PostDao {
 
 void createPost(Post post);
 
-Post getPostbyPostId(int postId);
+Post getPost(int postId);
 
-List<Post> getPostsbyAccountId(int accountId);
+List<Post> getPostsByAccountId(int accountId);
 
 List<Post> getAllPost();
+
+void deletePost(int postId);
 }
