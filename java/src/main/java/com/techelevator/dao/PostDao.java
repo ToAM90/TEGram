@@ -10,7 +10,7 @@ void createPost(Post post);
 
 Post getPostbyPostId(int postId);
 
-List<Post> getPostbyAccountId(int accountId);
+List<Post> getPostsbyAccountId(int accountId);
 
 List<Post> getAllPost();
 }
