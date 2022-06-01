@@ -106,7 +106,7 @@ export default {
   font-family: "Montserrat", sans-serif;
   font-size: 5rem !important;
   text-align: center;
-  color: #fe9aa4;
+  color: var(--sign-in-salmon);
   margin: 20px;
 }
 
@@ -126,13 +126,13 @@ export default {
   max-width: 380px;
   display: flex;
   flex-direction: column;
-  border: 16px solid #fe9aa4;
+  border: 16px solid var(--sign-in-salmon);
   border-radius: 4px;
   padding: 20px;
   border-end-end-radius: 48px;
   border-start-start-radius: 48px;
-  background-color: #f1fffa;
-  box-shadow: 3px 3px 20px #f1fffa, 6px 6px 32px #f1fffa;
+  background-color: var(--panel-background-color);
+  box-shadow: 3px 3px 20px var(--panel-background-color), 6px 6px 32px var(--panel-background-color);
 }
 
 .form-control {
@@ -155,7 +155,7 @@ export default {
 
   flex-grow: 10000;
   margin: 16px;
-  color: #fe9aa4;
+  color: var(--sign-in-salmon);
 }
 
 .button {
@@ -177,7 +177,7 @@ export default {
 }
 
 button:hover {
-  background-color: #f1fffa;
+  background-color: var(--panel-background-color);
   font-size: 0.9rem;
   transition-duration: 0.2s;
 }
@@ -188,9 +188,9 @@ button {
 
 #login-button {
   margin-top: 20px;
-  background-color: #fe9aa4;
+  background-color: var(--sign-in-salmon) ;
   border-radius: 5px;
-  color: #f1fffa;
+  color: var(--panel-background-color);
 
   margin: 4px;
 }
@@ -202,8 +202,8 @@ button {
 }
 
 #need-an-account-button {
-  background-color: #5096b9;
-  color: #f1fffa;
+  background-color: var(--sign-up-blue);
+  color: var(--panel-background-color);
   width: 60%;
   border-radius: 5px;
   margin: 0px;

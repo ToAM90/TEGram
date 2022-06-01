@@ -116,7 +116,7 @@ export default {
   font-family: "Montserrat", sans-serif;
   font-size: 5rem !important;
   text-align: center;
-  color: #5096b9;
+  color: var(--sign-up-blue);
   margin: 20px;
 }
 
@@ -139,12 +139,12 @@ export default {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 20px;
-  background-color: #f1fffa;
-  border: 16px solid #5096b9;
+  background-color: var(--panel-background-color);
+  border: 16px solid var(--sign-up-blue);
   border-radius: 4px;
   border-end-end-radius: 48px;
   border-start-start-radius: 48px;
-  box-shadow: 3px 3px 20px #f1fffa, 6px 6px 32px #f1fffa;
+  box-shadow: 3px 3px 20px var(--panel-background-color), 6px 6px 32px var(--panel-background-color);
 }
 .inputs {
   display: flex;
@@ -173,7 +173,7 @@ export default {
   max-height: 32px;
 }
 #register-or {
-  color: #5096b9;
+  color: var(--sign-up-blue);
 }
 
 .register-buttons {
@@ -184,20 +184,20 @@ export default {
 }
 
 button:hover {
-  background-color: #f1fffa;
+  background-color: var(--panel-background-color);
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2), 3px 6px 5px rgba(0, 0, 0, 0.19);
   transition-duration: 0.2s;
 }
 
 #create-button {
-  background-color: #5096b9;
+  background-color: var(--sign-up-blue);
   border-radius: 5px;
-  color: #f1fffa;
+  color: var(--panel-background-color);
 }
 
 #have-an-account-button {
-  background-color: #fe9aa4;
-  color: #f1fffa;
+  background-color: var(--sign-in-salmon);
+  color: var(--panel-background-color);
   width: 60%;
   border-radius: 5px;
 }
