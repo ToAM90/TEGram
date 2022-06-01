@@ -88,12 +88,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 .side-bar {
-  width: 275px;
-  height: 100vh;
   display: flex;
+  width: 100%;
   flex-direction: column;
   background-color: white;
-  border-right: 4px black solid;
   align-items: center;
   font-family: "Open Sans", sans-serif;
 }
@@ -121,7 +119,7 @@ export default {
 }
 
 #user-stats {
-  width: 275px;
+  width: 100%;
   margin-left: -40px;
   padding: 0px;
 }
@@ -134,6 +132,7 @@ ul {
 }
 
 li {
+  color: black;
   list-style: none !important;
   text-align: center;
   font-size: 15px;

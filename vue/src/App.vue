@@ -9,7 +9,7 @@
         >Logout</router-link
       >
     </div> -->
-    <router-view />
+    <router-view id='view' />
   </div>
 </template>
 
@@ -31,10 +31,12 @@
   height: 40px;
   justify-content: center;
 }
-#home {
+#view {
   color: var(--panel-background-color);
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  width: 100vw;
 }
 #app {
   margin: -8px;

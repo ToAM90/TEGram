@@ -1,41 +1,43 @@
 <template>
-  <div class="home">
-    <SideBar></SideBar>
-    <div class="my-images" v-for="image in images" v-bind:key="image.id">
-      <img v-bind:src="image" alt="" />
-    </div>
+  <div id="home">
+    <SideBar id="side-bar"></SideBar>
+  
+    <ImageColumn class='image-column'></ImageColumn>
   </div>
 </template>
 
 <script>
 import SideBar from "@/components/SideBar.vue";
+import ImageColumn from "@/components/ImageColumn.vue";
 
 export default {
   name: "home",
-  computed: {
-    images() {
-      return this.$store.state.images;
-    },
-  },
+  
   components: {
     SideBar,
+    ImageColumn
   },
 };
 </script>
 
 <style>
-.home {
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
+
+#home {
+  max-width: 100vw
+  /* align-items: space-between; */
+  /* justify-content: space-between; */
 }
-img {
-  max-width: 30vw;
+
+#side-bar {
+  width: 275px;
+  margin: 0px 0px 0px 0px;
+  height: 100vh;
+  position: fixed;
 }
-.my-images {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  max-width: 100%;
+
+
+#image-column {
+  margin-left: 275px;
+  width: 100%
 }
 </style>
