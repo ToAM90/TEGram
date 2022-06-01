@@ -70,9 +70,9 @@ public class Post {
     }
 
 //    commenting this out for now to run front-end :)
-//    public void setPostDate(Timestamp postDate) {
-//        this.postDate = postDate;
-//    }
+    public void setPostDate(LocalDateTime postDate) {
+        this.postDate = postDate;
+    }
 
     public boolean isPrivated() {
         return privated;
