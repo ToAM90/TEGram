@@ -15,9 +15,9 @@ public class JdbcAccountDao implements AccountDao{
     }
 
     @Override
-    public void createAccount(long userId) {
-        String sql = "INSERT INTO accounts (user_id) VALUES(?)";
-        jdbcTemplate.update(sql, userId);
+    public void createAccount(long userId, String username) {
+        String sql = "INSERT INTO accounts (user_id, display_name) VALUES(?, ?)";
+        jdbcTemplate.update(sql, userId, username);
     }
 
     @Override

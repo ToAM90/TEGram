@@ -65,7 +65,7 @@ public class AuthenticationController {
             System.out.println(newUser.getUsername() + newUser.getRole());
             userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
             int userId = userDao.findIdByUsername(newUser.getUsername());
-            accountDao.createAccount(userId);
+            accountDao.createAccount(userId, newUser.getUsername());
         }
     }
 

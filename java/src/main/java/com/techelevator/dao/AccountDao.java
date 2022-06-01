@@ -4,7 +4,7 @@ import com.techelevator.model.Account;
 
 public interface AccountDao {
 
-    void createAccount(long userId);
+    void createAccount(long userId, String username);
 
     Account getAccount(long userId);
 
