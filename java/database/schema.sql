@@ -36,7 +36,7 @@ CREATE TABLE posts (
 	account_id int NOT NULL,
 	img varchar(100),
 	caption varchar(200),
-	post_date TIMESTAMP,
+--	post_date TIMESTAMP,
 	privated boolean,
 	CONSTRAINT PK_post PRIMARY KEY (post_id),
 	CONSTRAINT FK_account FOREIGN KEY (account_id) REFERENCES accounts(account_id)

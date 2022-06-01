@@ -5,10 +5,12 @@ import com.techelevator.model.Post;
 import com.techelevator.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcPostDao implements PostDao{
 
     private JdbcTemplate jdbcTemplate;
@@ -21,8 +23,8 @@ public class JdbcPostDao implements PostDao{
 
     @Override
     public void createPost(Post post) {
-        String sql = "INSERT INTO posts(account_id, img, caption, post_date, privated) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, post.getAccountId(), post.getImg(), post.getCaption(), post.getPostDate(), post.isPrivated());
+        String sql = "INSERT INTO posts(account_id, img, caption, privated) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sql, post.getAccountId(), post.getImg(), post.getCaption(), post.isPrivated());
     }
 
     @Override
@@ -74,7 +76,7 @@ public class JdbcPostDao implements PostDao{
         post.setImg(results.getString("img"));
         post.setCaption(results.getString("caption"));
 //        also commenting this out to run front end :)
-        post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
+//        post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
 
         return post;

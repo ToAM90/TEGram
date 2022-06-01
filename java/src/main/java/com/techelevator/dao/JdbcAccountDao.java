@@ -3,7 +3,9 @@ package com.techelevator.dao;
 import com.techelevator.model.Account;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JdbcAccountDao implements AccountDao{
 
     private JdbcTemplate jdbcTemplate;
@@ -21,7 +23,7 @@ public class JdbcAccountDao implements AccountDao{
     @Override
     public Account getAccount(int userId) {
         Account account = new Account();
-        String sql = "SELECT profile_img, display_name, biography FROM accounts WHERE user_id = ?";
+        String sql = "SELECT account_id, user_id, profile_img, display_name, biography FROM accounts WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
 
         if(results.next()){
@@ -39,6 +41,7 @@ public class JdbcAccountDao implements AccountDao{
     private Account MapRowToAccount(SqlRowSet results){
         Account account = new Account();
 
+        account.setAccountID(results.getInt("account_id"));
         account.setUserID(results.getInt("user_id"));
         account.setDisplayName(results.getString("display_name"));
         account.setBiography(results.getString("biography"));
