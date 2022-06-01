@@ -12,6 +12,12 @@
 #### Static Nav Bar on top && bottom
 ![FrontEndDesign2](vue\src\resources\FrontEndDesign2.png)
 
+## <br> Main Desktop View
+#### dark vs light mode + pref accent color (green in this case)
+#### set amount of columns, infinite rows (rows don't have to line up)
+#### click to view post
+![MainPageLayout](vue\src\resources\TeGramMainPageLayout.png)
+
 ## <br> Mobile
 #### Static Nav Bar on top && bottom
 #### Heart = like / Triangle = favorite
