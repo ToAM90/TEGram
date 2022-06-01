@@ -160,6 +160,7 @@ li {
 
 .nav-bar-icon {
   max-height: 20px;
+  max-width: 20px;
   margin-right: 5px;
   opacity: 0.8;
 }

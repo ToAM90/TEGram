@@ -23,24 +23,30 @@ export default {
 
 <style>
   .my-images {
-    margin-left: 275px;
+    margin-left: 295px;
     line-height: 0;
     
     -webkit-column-count: 3;
-    -webkit-column-gap:   10px;
+    -webkit-column-gap:   0px;
     -moz-column-count:    3;
-    -moz-column-gap:      10px;
+    -moz-column-gap:      0px;
     column-count:         3;
-    column-gap:           10px;  
+    column-gap:           0px;  
+    background: var(--primary-background-color);
   }
 
   .my-images .image {
     /* margin: 20px; */
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
     width: calc(100% - 40px)!important;
     height: auto !important;
-    border: 4px solid blue;
+    /* border: 0px solid grey; */
+    box-shadow: 0px 0px 5px rgb(172, 169, 169);
+    border-radius: 5%;
+    
+    margin-top: 5px;
+    margin-bottom: 5px;
     border-top: 0px
   }
 
