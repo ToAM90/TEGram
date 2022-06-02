@@ -2,7 +2,7 @@
   <div id="upload">
 
       
-       <button id="image-input" v-on:click="uploadPhoto">Upload Image</button>
+       <button id="upload_widget" class="cloudinary-button" v-on:click="uploadPhoto">Upload Image</button>
       <form id="upload-form" v-on:submit.prevent="uploadPost">
         
         <img id=image-preview v-bind:src='imageUrl'/>
@@ -75,7 +75,7 @@ export default {
     text-align: center;
 }
 
-#image-input{
+#upload-widget{
     display: block;
     margin: auto;
 }
