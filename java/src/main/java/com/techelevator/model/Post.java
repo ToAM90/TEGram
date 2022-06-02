@@ -33,6 +33,8 @@ public class Post {
         this.likesCount = likesCount;
     }
 
+    //overloaded constructor without comments/liked/favorited/likescount? to allow add post method to work
+
     public int getPostId() {
         return postId;
     }

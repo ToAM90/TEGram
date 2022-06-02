@@ -24,15 +24,53 @@
         </li>
       </ul>
     </div>
+
+    <div v-if="creatingPost === true" id="upload">
+      <button
+        id="upload_widget"
+        class="cloudinary-button"
+        v-on:click="uploadPhoto"
+      >
+        Upload Image
+      </button>
+      <form id="upload-form">
+        <!-- <form id="upload-form" v-on:submit.prevent="uploadPost"> -->
+        <textarea
+          name=""
+          id="upload-caption-input"
+          cols="30"
+          rows="4"
+          placeholder="Enter caption"
+          v-model="post.caption"
+        ></textarea>
+        <!-- <div id="privated">
+          <input
+            id="upload-checkbox-private"
+            type="checkbox"
+            v-model="post.privated"
+          /> -->
+        <!-- <label for="upload-checkbox-private">Private {{ privated }}</label> -->
+        <!-- </div> -->
+        <div id="form-submit-buttons">
+          <button id="cancel-upload" @click.prevent="toggleCreatingPost">
+            Cancel
+          </button>
+          <button id="submit-upload" @click.prevent="uploadPost" type="submit">
+            Post
+          </button>
+        </div>
+      </form>
+    </div>
     <div class="nav-list">
-      <div class="nav-link" id="make-a-post-link">
+      <div class="nav-link" id="make-a-post-link" v-if="creatingPost === false">
         <img
           class="nav-bar-icon"
           src="@/resources/add_photo_alternate_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p class="nav-text">create a post</p>
+        <p @click="toggleCreatingPost" class="nav-text">create a post</p>
       </div>
+
       <div class="nav-link" id="posts-link">
         <img
           class="nav-bar-icon"
@@ -86,13 +124,66 @@
 </template>
 
 <script>
+import postService from "../services/PostService";
+
 export default {
   name: "side-bar",
   components: {},
+  props: ["posts"],
+  computed: {
+    getProps() {
+      return this.$store.state.posts;
+    },
+  },
+  data() {
+    return {
+      post: {
+        caption: "",
+        img: "",
+        privated: false,
+      },
+      imageUrl: "",
+      preview: true,
+      creatingPost: false,
+    };
+  },
   methods: {
     logout() {
       this.$store.commit("LOGOUT");
       this.$router.push("/login");
+    },
+    toggleCreatingPost() {
+      this.creatingPost = !this.creatingPost;
+    },
+    uploadPost() {
+      postService.addPost(this.post);
+      this.$store.commit("ADD_POST", this.post);
+      this.imageUrl = "";
+      this.post.caption = "";
+      this.post.img = "";
+      this.privated = false;
+      this.toggleCreatingPost;
+    },
+    uploadPhoto() {
+      window.cloudinary
+        .openUploadWidget(
+          {
+            cloud_name: "dcipg5scy",
+            upload_preset: "TE-GRAM",
+            maxFiles: 1,
+            keep_widget_open: true,
+          },
+          (error, result) => {
+            if (!error && result && result.event === "success") {
+              console.log(result.info.url);
+              this.post.img = result.info.url;
+              this.imageUrl = result.info.url;
+            } else {
+              console.log(error);
+            }
+          }
+        )
+        .open();
     },
   },
 };
@@ -204,5 +295,78 @@ li {
 .nav-text:hover:after {
   transform: scaleX(1);
   transform-origin: bottom left;
+}
+
+#upload {
+  margin-top: 30px;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#upload-form {
+}
+
+#upload-widget {
+  width: 200px !important;
+}
+
+.cloudinary-button {
+  width: 200px !important;
+  padding: 0px !important;
+  height: 30px !important;
+}
+
+#form-submit-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 208px;
+  margin-right: 0px;
+
+  margin-left: 0px;
+}
+
+#form-submit-buttons button {
+  width: 45%;
+  height: 25px;
+  margin-top: 4px;
+}
+
+#cancel-upload {
+  background-color: rgb(212, 87, 87);
+  box-shadow: 0px 0px 5px rgb(177, 47, 47);
+  border-radius: 5px;
+  color: white;
+}
+
+#submit-upload {
+  background-color: rgba(168, 49, 197, 0.555);
+  box-shadow: 0px 0px 5px rgba(136, 47, 177, 0.568);
+  border-radius: 5px;
+  color: white;
+}
+
+#upload-caption-input {
+  display: block;
+
+  padding: 5px;
+
+  margin: 5px;
+  width: 186px;
+
+  height: 60px !important;
+  font-family: "Open Sans", sans-serif;
+}
+
+#privated {
+  display: block;
+  color: black;
+}
+
+#image-preview {
+  width: 400px;
 }
 </style>

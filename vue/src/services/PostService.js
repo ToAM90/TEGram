@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export default{
+export default {
 
-    addPost(post){
+    addPost(post) {
         return axios.post('/post', post)
     }
 }

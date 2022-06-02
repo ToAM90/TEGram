@@ -28,7 +28,8 @@ export default new Vuex.Store({
       "https://www.gstatic.com/webp/gallery3/1.png",
       "https://www.gstatic.com/webp/gallery3/1.png",
       "https://www.gstatic.com/webp/gallery3/1.png"
-    ]
+    ],
+    posts: []
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    ADD_POST(state, post) {
+      state.posts.unshift(post)
     }
   }
 })

@@ -1,26 +1,27 @@
 <template>
   <div id="upload">
-    <button id="image-input" v-on:click="uploadPhoto">Upload Image</button>
+    <button
+      id="upload_widget"
+      class="cloudinary-button"
+      v-on:click="uploadPhoto"
+    >
+      Upload Image
+    </button>
     <form id="upload-form" v-on:submit.prevent="uploadPost">
       <img id="image-preview" v-bind:src="imageUrl" />
 
-      
-       <button id="upload_widget" class="cloudinary-button" v-on:click="uploadPhoto">Upload Image</button>
-      <form id="upload-form" v-on:submit.prevent="uploadPost">
-        
-        <img id=image-preview v-bind:src='imageUrl'/>
-
-          <input id="caption"
-          type="text"
-          placeholder="Enter caption"
-          v-model="post.caption"/>
-        <div id=privated>
-          <input id="checkbox" type="checkbox" v-model="post.privated" />
-          <label for="checkbox">Private {{privated}}</label> <br>
-        </div>
-        <button id="submit" type="submit">Post</button>
-      </form>
-      
+      <input
+        id="caption"
+        type="text"
+        placeholder="Enter caption"
+        v-model="post.caption"
+      />
+      <div id="privated">
+        <input id="checkbox" type="checkbox" v-model="post.privated" />
+        <label for="checkbox">Private {{ privated }}</label> <br />
+      </div>
+      <button id="submit" type="submit">Post</button>
+    </form>
   </div>
 </template>
 
@@ -74,9 +75,9 @@ export default {
   text-align: center;
 }
 
-#upload-widget{
-    display: block;
-    margin: auto;
+#upload-widget {
+  display: block;
+  margin: auto;
 }
 
 #caption {
