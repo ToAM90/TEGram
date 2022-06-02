@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login" class="login">
     <form class="form-signin" @submit.prevent="login">
       <h1 id="sign-in-display" class="splash-logo">.TE GRAM</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
@@ -22,6 +22,7 @@
         required
         autofocus
       />
+      <password-meter :password="user.password" />
       <label for="password" class="sr-only"></label>
       <input
         type="password"
@@ -57,10 +58,11 @@
 
 <script>
 import authService from "../services/AuthService";
+import passwordMeter from "vue-simple-password-meter";
 
 export default {
   name: "login",
-  components: {},
+  components: { passwordMeter },
   data() {
     return {
       user: {
@@ -80,7 +82,7 @@ export default {
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
-       this.$router.push("/");
+          this.$router.push("/");
         })
         .catch((error) => {
           const response = error.response;
@@ -89,10 +91,15 @@ export default {
             this.invalidCredentials = true;
           }
         });
-    this.$router.push("/");
+      this.$router.push("/");
     },
     pushToRegister() {
       this.$router.push("/register");
+    },
+    onScore({ score, strength }) {
+      console.log(score); // from 0 to 4
+      console.log(strength); // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
+      this.score = score;
     },
   },
 };
@@ -112,12 +119,11 @@ export default {
   margin: 20px;
 }
 
-#login {
+.login {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10%;
   max-height: 100%;
   font-family: "Open Sans", sans-serif;
 }
@@ -134,7 +140,8 @@ export default {
   border-end-end-radius: 48px;
   border-start-start-radius: 48px;
   background-color: var(--panel-background-color);
-  box-shadow: 3px 3px 20px var(--panel-background-color), 6px 6px 32px var(--panel-background-color);
+  box-shadow: 3px 3px 20px var(--panel-background-color),
+    6px 6px 32px var(--panel-background-color);
 }
 
 .form-control {
@@ -190,7 +197,7 @@ button {
 
 #login-button {
   margin-top: 20px;
-  background-color: var(--sign-in-salmon) ;
+  background-color: var(--sign-in-salmon);
   border-radius: 5px;
   color: var(--panel-background-color);
 
@@ -209,5 +216,32 @@ button {
   width: 60%;
   border-radius: 5px;
   margin: 0px;
+}
+
+.po-password-strength-bar {
+  border-radius: 2px;
+  transition: all 0.2s linear;
+  height: 5px;
+  margin-top: 8px;
+}
+
+.po-password-strength-bar.risky {
+  background-color: #f95e68;
+}
+
+.po-password-strength-bar.guessable {
+  background-color: #fb964d;
+}
+
+.po-password-strength-bar.weak {
+  background-color: #fdd244;
+}
+
+.po-password-strength-bar.safe {
+  background-color: #b0dc53;
+}
+
+.po-password-strength-bar.secure {
+  background-color: #35cc62;
 }
 </style>

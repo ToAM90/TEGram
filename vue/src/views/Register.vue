@@ -1,10 +1,10 @@
 <template>
-  <div id="register" class="text-center">
+  <div id="register" class="register">
     <form class="form-register" @submit.prevent="register">
       <h1 id="create-account-banner" class="h3 mb-3 font-weight-normal">
         .TE GRAM
       </h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors" >
+      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
       <div class="inputs">
@@ -37,11 +37,11 @@
         />
       </div>
       <div class="register-buttons">
-        <button 
-        id="create-button" 
-        class="button" 
-        type="submit"
-        v-on:click.prevent="register"
+        <button
+          id="create-button"
+          class="button"
+          type="submit"
+          v-on:click.prevent="register"
         >
           Create Account
         </button>
@@ -96,7 +96,8 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = "There were problems registering this user.";
+              this.registrationErrorMsg =
+                "There were problems registering this user.";
             }
           });
       }
@@ -125,13 +126,12 @@ export default {
   margin: 20px;
 }
 
-#register {
+.register {
   align-items: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10%;
   max-height: 100%;
   font-family: "Open Sans", sans-serif;
 }
@@ -150,7 +150,8 @@ export default {
   border-radius: 4px;
   border-end-end-radius: 48px;
   border-start-start-radius: 48px;
-  box-shadow: 3px 3px 20px var(--panel-background-color), 6px 6px 32px var(--panel-background-color);
+  box-shadow: 3px 3px 20px var(--panel-background-color),
+    6px 6px 32px var(--panel-background-color);
 }
 
 .alert {
