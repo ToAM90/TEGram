@@ -73,6 +73,14 @@
         />
         <p class="nav-text">followers</p>
       </div>
+      <div class="nav-link" id="logout-link">
+        <img
+          class="nav-bar-icon"
+          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
+          alt=""
+        />
+        <p class="nav-text" @click="logout">logout</p>
+      </div>
     </div>
   </div>
 </template>
@@ -81,6 +89,12 @@
 export default {
   name: "side-bar",
   components: {},
+  methods: {
+    logout() {
+      this.$store.commit("LOGOUT");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
@@ -94,6 +108,7 @@ export default {
   background-color: white;
   align-items: center;
   font-family: "Open Sans", sans-serif;
+  box-shadow: 0px 2px 10px rgb(184, 184, 184);
 }
 
 #nav-user {
@@ -169,7 +184,7 @@ li {
   display: inline-block;
   position: relative;
   color: black;
-  padding-right: 10px;
+  padding-right: 0px;
 }
 
 .nav-text:after {
@@ -180,9 +195,10 @@ li {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: black;
+  background-color: rgb(138, 138, 138);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
+  box-shadow: 0px 5px 3px var(--sign-up-blue);
 }
 
 .nav-text:hover:after {
