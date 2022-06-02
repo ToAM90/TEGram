@@ -30,7 +30,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public Post getPost(int postId) {
         Post post = new Post();
-        String sql = "SELECT img, caption, post_date, privated FROM posts WHERE post_id = ?;";
+        String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts WHERE post_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
 
         if(results.next()){
@@ -41,7 +41,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public List<Post> getPostsByAccountId(int accountId) {
         List<Post> postList = new ArrayList<>();
-        String sql = "SELECT img, caption, post_date, privated FROM posts\n" +
+        String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts\n" +
                 "WHERE account_id = ?\n" +
                 "ORDER BY post_date DESC";
 
@@ -57,7 +57,7 @@ public class JdbcPostDao implements PostDao{
     @Override
     public List<Post> getAllPost() {
         List<Post> postList = new ArrayList<>();
-        String sql = "SELECT img, caption, post_date, privated FROM posts\n" +
+        String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts\n" +
                 "WHERE privated IS FALSE ORDER BY post_date DESC";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -78,6 +78,7 @@ public class JdbcPostDao implements PostDao{
     private Post MapRowToPost(SqlRowSet results){
         Post post = new Post();
 
+        post.setPostId(results.getInt("post_id"));
         post.setAccountId(results.getInt("account_id"));
         post.setImg(results.getString("img"));
         post.setCaption(results.getString("caption"));

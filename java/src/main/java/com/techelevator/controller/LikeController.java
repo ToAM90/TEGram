@@ -38,5 +38,5 @@ public class LikeController {
             likedDao.unlike(postId, accountId);
         }
     }
-    
+
 }

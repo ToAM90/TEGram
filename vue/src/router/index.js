@@ -6,6 +6,8 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import Upload from '../views/Upload.vue'
+import Post from '../views/Post.vue'
+import PostList from '../components/PostList.vue'
 
 Vue.use(Router)
 
@@ -61,7 +63,25 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
+    },
+    {
+      path: "/post/:id",
+      name: "post",
+      component: Post,
+      meta: {
+        requiresAuth: false
+      }
+    },
+
+    {
+      path: "/posts",
+      name: "posts",
+      component: PostList,
+      meta: {
+        requiresAuth: false
+      }
     }
+    
   ]
 })
 
