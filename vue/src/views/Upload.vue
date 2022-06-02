@@ -1,7 +1,9 @@
 <template>
   <div id="upload">
+
+      
+       <button id="image-input" v-on:click="uploadPhoto">Upload Image</button>
       <form id="upload-form" v-on:submit.prevent="uploadPost">
-          <button id="image-input" v-on:click="uploadPhoto">Upload Image</button>
         
         <img id=image-preview v-bind:src='imageUrl'/>
 
@@ -41,6 +43,7 @@ export default {
             postService.addPost(this.post)
             this.imageUrl = ""
             this.post.caption = ""
+            this.post.img = ""
             this.privated = false
         },
 

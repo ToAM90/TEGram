@@ -2,8 +2,9 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 public class LikeController {
 
@@ -22,10 +23,20 @@ public class LikeController {
             this.accountDao = accountDao;
             this.likedDao = likedDao;
         }
-    }
 
-    // check if liked
-    // add like
-    // remove like
-    // get num of likes
+        @RequestMapping(path="/like/{postId}")
+        public void like(@PathVariable int postId, Principal principal){
+            long userId = userDao.findIdByUsername(principal.getName());
+            int accountId = accountDao.getAccount(userId).getAccountID();
+            likedDao.like(postId, accountId);
+        }
+
+        @RequestMapping(path="/like/{postId}", method = RequestMethod.DELETE)
+        public void unlike(@PathVariable int postId, Principal principal){
+            long userId = userDao.findIdByUsername(principal.getName());
+            int accountId = accountDao.getAccount(userId).getAccountID();
+            likedDao.unlike(postId, accountId);
+        }
+    }
+    
 }

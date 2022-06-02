@@ -1,9 +1,6 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.AccountDao;
-import com.techelevator.dao.CommentDao;
-import com.techelevator.dao.PostDao;
-import com.techelevator.dao.UserDao;
+import com.techelevator.dao.*;
 import com.techelevator.model.Post;
 import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,31 +20,51 @@ public class PostController {
     private UserDao userDao;
     private AccountDao accountDao;
     private CommentDao commentDao;
+    private LikedDao likedDao;
 
     @Autowired
-    public PostController(PostDao postDao, UserDao userDao, AccountDao accountDao, CommentDao commentDao){
+    public PostController(PostDao postDao, UserDao userDao, AccountDao accountDao, CommentDao commentDao, LikedDao likedDao){
         this.postDao = postDao;
         this.userDao = userDao;
         this.accountDao = accountDao;
         this.commentDao = commentDao;
+        this.likedDao = likedDao;
     }
 
     @RequestMapping(path="/posts")
-    public List<Post> listPosts(){
+    public List<Post> listPosts(Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccount(userId).getAccountID();
         List<Post> postList = postDao.getAllPost();
+        for(Post post : postList){
+            post.setComments(commentDao.listComments(post.getPostId()));
+            post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
+            post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
+        }
         return postList;
     }
 
-    @RequestMapping(path="/posts/{id}")
-    public List<Post> listAccountPosts(@PathVariable int id){
-        List<Post> postList = postDao.getPostsByAccountId(id);
+    @RequestMapping(path="/posts/{otherId}")
+    public List<Post> listAccountPosts(@PathVariable int otherId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccount(userId).getAccountID();
+        List<Post> postList = postDao.getPostsByAccountId(otherId);
+        for(Post post : postList){
+            post.setComments(commentDao.listComments(post.getPostId()));
+            post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
+            post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
+        }
         return postList;
     }
 
-    @RequestMapping(path="/post/{id}")
-    public Post getPost(@PathVariable int id){
-        Post post = postDao.getPost(id);
+    @RequestMapping(path="/post/{postId}")
+    public Post getPost(@PathVariable int postId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccount(userId).getAccountID();
+        Post post = postDao.getPost(postId);
         post.setComments(commentDao.listComments(post.getPostId()));
+        post.setLiked(likedDao.isLiked(postId, accountId));
+        post.setLikesCount(likedDao.getNumLikes(postId));
         return post;
     }
 
