@@ -14,7 +14,7 @@ public class JdbcLikedDao implements LikedDao{
 
     @Override
     public boolean isLiked(int postId, int accountId) {
-        String sql = "SELECT COUNT(*) FROM likes WHERE post_id = ? AND account_id";
+        String sql = "SELECT COUNT(*) FROM likes WHERE post_id = ? AND account_id = ?";
         Integer liked = jdbcTemplate.queryForObject(sql, Integer.class, postId, accountId);
         return liked == 1;
     }

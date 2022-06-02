@@ -44,7 +44,7 @@ public class PostController {
         return postList;
     }
 
-    @RequestMapping(path="/posts/{otherId}")
+    @RequestMapping(path="/{otherId}/posts")
     public List<Post> listAccountPosts(@PathVariable int otherId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccount(userId).getAccountID();
