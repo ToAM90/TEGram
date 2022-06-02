@@ -23,8 +23,8 @@ public class JdbcPostDao implements PostDao{
 
     @Override
     public void createPost(Post post) {
-        String sql = "INSERT INTO posts(account_id, img, caption, privated) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, post.getAccountId(), post.getImg(), post.getCaption(), post.isPrivated());
+        String sql = "INSERT INTO posts(account_id, img, caption, privated, post_date) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, post.getAccountId(), post.getImg(), post.getCaption(), post.isPrivated(), post.getPostDate());
     }
 
     @Override
