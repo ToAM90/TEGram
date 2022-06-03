@@ -22,7 +22,7 @@
         required
         autofocus
       />
-      <password-meter :password="user.password" />
+    
       <label for="password" class="sr-only"></label>
       <input
         type="password"
@@ -58,11 +58,9 @@
 
 <script>
 import authService from "../services/AuthService";
-import passwordMeter from "vue-simple-password-meter";
 
 export default {
   name: "login",
-  components: { passwordMeter },
   data() {
     return {
       user: {
@@ -95,11 +93,6 @@ export default {
     },
     pushToRegister() {
       this.$router.push("/register");
-    },
-    onScore({ score, strength }) {
-      console.log(score); // from 0 to 4
-      console.log(strength); // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
-      this.score = score;
     },
   },
 };

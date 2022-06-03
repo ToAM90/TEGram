@@ -27,6 +27,7 @@
           v-model="user.password"
           required
         />
+        <password-meter :password="user.password" />
         <input
           type="password"
           id="confirmPassword"
@@ -61,9 +62,11 @@
 
 <script>
 import authService from "../services/AuthService";
+import passwordMeter from "vue-simple-password-meter";
 
 export default {
   name: "register",
+  components: { passwordMeter },
   data() {
     return {
       user: {
@@ -108,6 +111,11 @@ export default {
     },
     pushToLogin() {
       this.$router.push("/");
+    },
+    onScore({ score, strength }) {
+      console.log(score); // from 0 to 4
+      console.log(strength); // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
+      this.score = score;
     },
   },
 };
