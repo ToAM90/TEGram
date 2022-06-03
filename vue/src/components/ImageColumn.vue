@@ -4,10 +4,10 @@
       class="feed-post-container"
       v-for="post in posts"
       v-bind:key="post.postId"
-      v-bind:postId="post.postId"
-    >
+      v-bind:postId="post.postId">
       <img class="image" v-bind:src="post.img" alt="" />
       <post-interaction v-bind:post="post" />
+
     </div>
   </div>
 </template>
@@ -26,14 +26,14 @@ export default {
     },
   },
   created() {
-    // if(this.$store.accountId == -1){
+    if(this.$store.state.accountId == -1){
     postService.getAllPosts().then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
     });
-    // } else {postService.getAccountPosts(this.$store.accountId).then((response) => {
-    //   this.$store.commit("INITIALIZE_POSTS", response.data);
-    // })
-    // }
+    } else {postService.getAccountPosts(this.$store.state.accountId).then((response) => {
+      this.$store.commit("INITIALIZE_POSTS", response.data);
+    })
+    }
   },
 };
 </script>

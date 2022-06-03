@@ -17,7 +17,7 @@ export default {
     ImageColumn,
   },
   created() {
-    this.$store.state.accountId = this.$route.params.id;
+    this.$store.commit("SET_ACCOUNT_ID", (this.$route.params.id));
   },
 };
 </script>
