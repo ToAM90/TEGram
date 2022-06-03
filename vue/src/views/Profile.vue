@@ -1,17 +1,23 @@
 <template>
   <div id="home">
-    <ProfileHeader id="profile-header"></ProfileHeader>
+    <SideBar id="side-bar"></SideBar>
+    <image-column />
   </div>
 </template>
 
 <script>
-import ProfileHeader from "@/components/ProfileHeader.vue";
+import SideBar from "@/components/SideBar.vue";
+import ImageColumn from "../components/ImageColumn.vue";
 
 export default {
   name: "profile",
 
   components: {
-    ProfileHeader,
+    SideBar,
+    ImageColumn,
+  },
+  created() {
+    this.$store.state.accountId = this.$route.params.id;
   },
 };
 </script>

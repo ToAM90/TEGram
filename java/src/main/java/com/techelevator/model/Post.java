@@ -14,13 +14,11 @@ public class Post {
     private LocalDateTime postDate;
     private boolean privated;
     private List<Comment> comments;
-    private boolean liked;
-    private boolean favorited;
     private int likesCount;
 
     public Post(){}
 
-    public Post(int postId, int accountId, String img, String caption, LocalDateTime postDate, boolean privated, List<Comment> comments, boolean liked, boolean favorited, int likesCount) {
+    public Post(int postId, int accountId, String img, String caption, LocalDateTime postDate, boolean privated, List<Comment> comments, int likesCount) {
         this.postId = postId;
         this.accountId = accountId;
         this.img = img;
@@ -28,8 +26,6 @@ public class Post {
         this.postDate = postDate;
         this.privated = privated;
         this.comments = comments;
-        this.liked = liked;
-        this.favorited = favorited;
         this.likesCount = likesCount;
     }
 
@@ -90,22 +86,6 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    public boolean isLiked() {
-        return liked;
-    }
-
-    public void setLiked(boolean liked) {
-        this.liked = liked;
-    }
-
-    public boolean isFavorited() {
-        return favorited;
-    }
-
-    public void setFavorited(boolean favorited) {
-        this.favorited = favorited;
     }
 
     public int getLikesCount() {

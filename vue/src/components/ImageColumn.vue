@@ -1,44 +1,22 @@
 <template>
   <div class="my-images">
-    <div class="feed-post-container" v-for="post in posts" v-bind:key="post.id">
+    <div
+      class="feed-post-container"
+      v-for="post in posts"
+      v-bind:key="post.postId"
+      v-bind:postId="post.postId"
+    >
       <img class="image" v-bind:src="post.img" alt="" />
-
-      <div class="post-interaction-bar">
-        <img
-          class="like-icon interaction-icon"
-          @click="consoleLog()"
-          v-if="post.liked === true"
-          src="@/resources/icons8-heart-50 (outline).png"
-          alt=""
-        />
-
-        <img
-          class="like-icon interaction-icon"
-          v-else
-          src="@/resources/icons8-heart-50 (outline).png"
-          alt=""
-        />
-        <img
-          class="view-more interaction-icon"
-          src="@/resources/expand_more_FILL0_wght400_GRAD0_opsz48.png"
-          alt=""
-        />
-        <img
-          class="favorite-icon interaction-icon"
-          src="@/resources/icons8-star-50 (outline).png"
-          alt=""
-        />
-      </div>
+      <post-interaction v-bind:post="post" />
     </div>
   </div>
 </template>
 
 <script>
 import postService from "@/services/PostService.js";
-
-import likeService from "@/services/LikeService.js";
-
+import PostInteraction from "./PostInteraction.vue";
 export default {
+  components: { PostInteraction },
   name: "image-column",
   computed: {
     posts() {
@@ -47,25 +25,15 @@ export default {
       });
     },
   },
-  methods: {
-    toggleLike(postId, liked) {
-      console.log(liked);
-      if (liked === false) {
-        likeService.likePost(postId);
-        this.$store.commit("TOGGLE_LIKE", postId);
-      } else if (liked === true) {
-        likeService.unlikePost(postId);
-        this.$store.commit("TOGGLE_LIKE", postId);
-      }
-    },
-    consoleLog() {
-      console.log("test");
-    },
-  },
   created() {
+    // if(this.$store.accountId == -1){
     postService.getAllPosts().then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
     });
+    // } else {postService.getAccountPosts(this.$store.accountId).then((response) => {
+    //   this.$store.commit("INITIALIZE_POSTS", response.data);
+    // })
+    // }
   },
 };
 </script>

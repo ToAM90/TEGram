@@ -14,6 +14,7 @@
     "bootstrap": "^5.1.3",
     "cloudinary-vue": "^1.2.4",
     "core-js": "^3.9.1",
+    "save": "^2.5.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "vue-simple-password-meter": "^0.1.0",

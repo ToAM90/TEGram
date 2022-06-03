@@ -13,6 +13,10 @@ export default {
     getPost(postId) {
         return axios.get(`/post/${postId}`)
     },
+
+    getAccountPosts(accountId){
+        return axios.get(`/${accountId}/posts`)
+    }
     //remove + add to list of likes
     //ex call for a like:
     //postId, userId can be simplified by passing in entire like obj
