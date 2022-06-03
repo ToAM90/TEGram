@@ -50,6 +50,9 @@ export default new Vuex.Store({
       state.posts.forEach(post => {
         if (post.id === postId) post.isLiked = !post.isLiked
       })
+    },
+    SET_ACCOUNT_ID(state, accountId){
+      state.accountId = accountId;
     }
   }
 })
