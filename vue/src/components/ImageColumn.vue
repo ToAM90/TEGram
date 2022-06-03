@@ -6,7 +6,7 @@
       <div class="post-interaction-bar">
         <img
           class="like-icon interaction-icon"
-          @click="toggleLike(post.id, post.liked)"
+          @click="consoleLog()"
           v-if="post.liked === true"
           src="@/resources/icons8-heart-50 (outline).png"
           alt=""
@@ -57,6 +57,9 @@ export default {
         likeService.unlikePost(postId);
         this.$store.commit("TOGGLE_LIKE", postId);
       }
+    },
+    consoleLog() {
+      console.log("test");
     },
   },
   created() {

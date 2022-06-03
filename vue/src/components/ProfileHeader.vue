@@ -1,30 +1,5 @@
 <template>
-  <div class="side-bar" @click="routeToProfile">
-    <div id="nav-user">
-      <img
-        src="@/resources/icons8-settings-50.png"
-        alt=""
-        class="settings-icon"
-      />
-      <img src="@/resources/default-user-image.png" alt="" id="profile-icon" />
-    </div>
-    <div id="user-stats">
-      <ul>
-        <li>
-          10 <br />
-          posts
-        </li>
-        <li>
-          22 <br />
-          followers
-        </li>
-        <li>
-          25 <br />
-          likes
-        </li>
-      </ul>
-    </div>
-
+  <div class="profile-header">
     <div v-if="creatingPost === true" id="upload">
       <button
         id="upload_widget"
@@ -44,11 +19,11 @@
           v-model="post.caption"
         ></textarea>
         <!-- <div id="privated">
-          <input
-            id="upload-checkbox-private"
-            type="checkbox"
-            v-model="post.privated"
-          /> -->
+        <input
+        id="upload-checkbox-private"
+        type="checkbox"
+        v-model="post.privated"
+        /> -->
         <!-- <label for="upload-checkbox-private">Private {{ privated }}</label> -->
         <!-- </div> -->
         <div id="form-submit-buttons">
@@ -61,6 +36,7 @@
         </div>
       </form>
     </div>
+
     <div class="nav-list">
       <div class="nav-link" id="make-a-post-link" v-if="creatingPost === false">
         <img
@@ -71,14 +47,6 @@
         <p @click="toggleCreatingPost" class="nav-text">create a post</p>
       </div>
 
-      <div class="nav-link" id="posts-link">
-        <img
-          class="nav-bar-icon"
-          src="@/resources/photo_library_FILL0_wght400_GRAD0_opsz48.png"
-          alt=""
-        />
-        <p class="nav-text">posts</p>
-      </div>
       <div class="nav-link" id="favorited-link">
         <img
           class="nav-bar-icon"
@@ -87,6 +55,7 @@
         />
         <p class="nav-text">favorited</p>
       </div>
+
       <div class="nav-link" id="likes-link">
         <img
           class="nav-bar-icon"
@@ -95,6 +64,13 @@
         />
         <p class="nav-text">likes</p>
       </div>
+    </div>
+
+    <div id="nav-user">
+      <img src="@/resources/default-user-image.png" alt="" id="profile-icon" />
+    </div>
+
+    <div class="nav-list">
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
@@ -127,7 +103,7 @@
 import postService from "../services/PostService";
 
 export default {
-  name: "side-bar",
+  name: "profile-header",
   components: {},
   data() {
     return {
@@ -142,9 +118,6 @@ export default {
     };
   },
   methods: {
-    routeToProfile() {
-      this.$router.push("/profile");
-    },
     logout() {
       this.$store.commit("LOGOUT");
       this.$router.push("/login");
@@ -200,16 +173,17 @@ export default {
 <style lang="css" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-.side-bar {
+.profile-header {
   display: flex;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
   background-color: white;
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0px 2px 10px rgb(184, 184, 184);
+  justify-content: space-evenly;
+  height: 100px;
 }
-
 #nav-user {
   display: flex;
   flex-direction: row;
@@ -257,7 +231,7 @@ li {
 .nav-list {
   margin-right: 60px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
   flex-grow: 1;
 }
@@ -309,7 +283,7 @@ li {
   margin-top: 30px;
   width: 275px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }

@@ -84,6 +84,9 @@ export default {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
         this.registrationErrorMsg = "Password & Confirm Password do not match.";
+      } else if (this.score < 3) {
+        this.registrationErrors = true;
+        this.registrationErrorMsg = "Password is not strong enough.";
       } else {
         authService
           .register(this.user)

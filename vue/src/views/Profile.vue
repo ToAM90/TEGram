@@ -1,17 +1,17 @@
 <template>
   <div id="home">
-    <SideBar id="side-bar"></SideBar>
+    <ProfileHeader id="profile-header"></ProfileHeader>
   </div>
 </template>
 
 <script>
-import SideBar from "@/components/SideBar.vue";
+import ProfileHeader from "@/components/ProfileHeader.vue";
 
 export default {
-  name: "home",
+  name: "profile",
 
   components: {
-    SideBar,
+    ProfileHeader,
   },
 };
 </script>
