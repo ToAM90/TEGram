@@ -6,15 +6,14 @@
       <div class="post-interaction-bar">
         <img
           class="like-icon interaction-icon"
-          @click="toggleLike(post.id)"
-          v-if="isLiked(post.id)"
+          @click="toggleLike(post.id, post.liked)"
+          v-if="post.liked === true"
           src="@/resources/icons8-heart-50 (outline).png"
           alt=""
         />
 
         <img
           class="like-icon interaction-icon"
-          @click="like"
           v-else
           src="@/resources/icons8-heart-50 (outline).png"
           alt=""
@@ -26,7 +25,6 @@
         />
         <img
           class="favorite-icon interaction-icon"
-          @click="like"
           src="@/resources/icons8-star-50 (outline).png"
           alt=""
         />
@@ -50,17 +48,15 @@ export default {
     },
   },
   methods: {
-    toggleLike(postId) {
-      if (likeService.getLikedStatus(postId) === false) {
+    toggleLike(postId, liked) {
+      console.log(liked);
+      if (liked === false) {
         likeService.likePost(postId);
         this.$store.commit("TOGGLE_LIKE", postId);
-      } else if (likeService.getLikedStatus(postId) === true) {
+      } else if (liked === true) {
         likeService.unlikePost(postId);
         this.$store.commit("TOGGLE_LIKE", postId);
       }
-    },
-    isLiked(postId) {
-      return likeService.getLikedStatus(postId);
     },
   },
   created() {
@@ -72,6 +68,22 @@ export default {
 </script>
 
 <style>
+@media (max-width: 10000px) {
+  .my-images {
+    margin-left: 295px;
+    line-height: 0;
+    height: 100%;
+
+    -webkit-column-count: 3;
+    -webkit-column-gap: 0px;
+    -moz-column-count: 3;
+    -moz-column-gap: 0px;
+    column-count: 3;
+    column-gap: 0px;
+    background: var(--primary-background-color);
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .my-images {
     margin-left: 295px;
@@ -97,21 +109,6 @@ export default {
     background: var(--primary-background-color);
   }
 }
-/* @media (max-width: 10000px) {
-  .my-images {
-    margin-left: 295px;
-    line-height: 0;
-    height: 100%;
-
-    -webkit-column-count: 3;
-    -webkit-column-gap: 0px;
-    -moz-column-count: 3;
-    -moz-column-gap: 0px;
-    column-count: 3;
-    column-gap: 0px;
-    background: var(--primary-background-color);
-  }
-} */
 
 .my-images .feed-post-container {
   margin-left: 0px;
