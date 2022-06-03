@@ -26,19 +26,19 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: "/login",
-      name: "login",
-      component: Login,
-      meta: {
-        requiresAuth: false
-      }
-    },
-    {
       path: '/',
       name: 'home',
       component: Home,
       meta: {
         requiresAuth: true
+      }
+    },
+    {
+      path: "/login",
+      name: "login",
+      component: Login,
+      meta: {
+        requiresAuth: false
       }
     },
     {

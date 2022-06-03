@@ -29,7 +29,7 @@
       <button
         id="upload_widget"
         class="cloudinary-button"
-        v-on:click="uploadPhoto"
+        @click.prevent="uploadPhoto"
       >
         Upload Image
       </button>
@@ -55,7 +55,7 @@
           <button id="cancel-upload" @click.prevent="toggleCreatingPost">
             Cancel
           </button>
-          <button id="submit-upload" @click.prevent="uploadPost" type="submit">
+          <button id="submit-upload" @click="uploadPost" type="submit">
             Post
           </button>
         </div>
@@ -129,12 +129,6 @@ import postService from "../services/PostService";
 export default {
   name: "side-bar",
   components: {},
-  props: ["posts"],
-  computed: {
-    getProps() {
-      return this.$store.state.posts;
-    },
-  },
   data() {
     return {
       post: {
@@ -156,15 +150,19 @@ export default {
       this.creatingPost = !this.creatingPost;
     },
     uploadPost() {
-      this.$store.commit("ADD_POST", this.post);
+      // this.$store.commit("ADD_POST", this.post);
+      //if this post has no url >> cannot post
       postService.addPost(this.post).then((response) => {
         if (response.status == 201 || response.status == 200) {
           this.imageUrl = "";
           this.post.caption = "";
           this.post.img = "";
           this.privated = false;
-          this.toggleCreatingPost;
+        } else {
+          console.log("placeholder event");
+          //cannot make this post ^
         }
+        this.creatingPost = !this.creatingPost;
       });
     },
     uploadPhoto() {
@@ -174,7 +172,6 @@ export default {
             cloud_name: "dcipg5scy",
             upload_preset: "TE-GRAM",
             maxFiles: 1,
-            keep_widget_open: true,
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
@@ -183,11 +180,15 @@ export default {
               this.imageUrl = result.info.url;
             } else {
               console.log(error);
-              console.log("CLOUDINARY");
             }
           }
         )
         .open();
+    },
+  },
+  computed: {
+    getPosts() {
+      return this.$store.state.posts;
     },
   },
 };

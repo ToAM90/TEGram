@@ -1,17 +1,13 @@
 <template>
   <div class="my-images">
-    <div
-      class="feed-post-container"
-      v-for="image in this.$store.state.posts.img"
-      v-bind:key="image.id"
-    >
-      <img class="image" v-bind:src="image" alt="" />
+    <div class="feed-post-container" v-for="post in posts" v-bind:key="post.id">
+      <img class="image" v-bind:src="post.img" alt="" />
 
       <div class="post-interaction-bar">
         <img
           class="like-icon interaction-icon"
-          @click="like"
-          v-if="liked"
+          @click="toggleLike(post.id)"
+          v-if="isLiked(post.id)"
           src="@/resources/icons8-heart-50 (outline).png"
           alt=""
         />
@@ -42,21 +38,34 @@
 <script>
 import postService from "@/services/PostService.js";
 
+import likeService from "@/services/LikeService.js";
+
 export default {
   name: "image-column",
   computed: {
-    images() {
-      return this.$store.state.images;
+    posts() {
+      return this.$store.state.posts.filter((post) => {
+        if (post.img.includes("cloudinary")) return post;
+      });
     },
   },
   methods: {
-    like() {
-      this.image.id;
+    toggleLike(postId) {
+      if (likeService.getLikedStatus(postId) === false) {
+        likeService.likePost(postId);
+        this.$store.commit("TOGGLE_LIKE", postId);
+      } else if (likeService.getLikedStatus(postId) === true) {
+        likeService.unlikePost(postId);
+        this.$store.commit("TOGGLE_LIKE", postId);
+      }
+    },
+    isLiked(postId) {
+      return likeService.getLikedStatus(postId);
     },
   },
   created() {
     postService.getAllPosts().then((response) => {
-      this.$store.state.posts = response.data;
+      this.$store.commit("INITIALIZE_POSTS", response.data);
     });
   },
 };
@@ -88,7 +97,7 @@ export default {
     background: var(--primary-background-color);
   }
 }
-@media only screen and (min-width: 1400px) {
+/* @media (max-width: 10000px) {
   .my-images {
     margin-left: 295px;
     line-height: 0;
@@ -102,7 +111,7 @@ export default {
     column-gap: 0px;
     background: var(--primary-background-color);
   }
-}
+} */
 
 .my-images .feed-post-container {
   margin-left: 0px;

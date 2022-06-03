@@ -110,7 +110,7 @@ export default {
       this.registrationErrorMsg = "There were problems registering this user.";
     },
     pushToLogin() {
-      this.$router.push("/");
+      this.$router.push("/login");
     },
     onScore({ score, strength }) {
       console.log(score); // from 0 to 4

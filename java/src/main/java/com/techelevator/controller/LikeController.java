@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+@RestController
+@CrossOrigin
 public class LikeController {
 
-    @RestController
-    @CrossOrigin
+//
     public class PostController {
         private PostDao postDao;
         private UserDao userDao;
@@ -36,6 +37,13 @@ public class LikeController {
             long userId = userDao.findIdByUsername(principal.getName());
             int accountId = accountDao.getAccount(userId).getAccountID();
             likedDao.unlike(postId, accountId);
+        }
+
+        @RequestMapping(path="/like/{postId}")
+        public boolean likeStatus(@PathVariable int postId, Principal principal){
+            long userId = userDao.findIdByUsername(principal.getName());
+            int accountId = accountDao.getAccount(userId).getAccountID();
+            return(likedDao.isLiked(postId, accountId));
         }
     }
 

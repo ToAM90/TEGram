@@ -20,15 +20,6 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    images: [
-      "https://i.picsum.photos/id/397/200/300.jpg?hmac=9VBInLrifj_yyc2JuJSAVIfj9yQdt5Ovm2sHmvva-48",
-      "https://www.gstatic.com/webp/gallery3/1.png",
-      "https://www.gstatic.com/webp/gallery3/1.png",
-      "https://www.gstatic.com/webp/gallery3/1.png",
-      "https://www.gstatic.com/webp/gallery3/1.png",
-      "https://www.gstatic.com/webp/gallery3/1.png",
-      "https://www.gstatic.com/webp/gallery3/1.png"
-    ],
     posts: []
   },
   mutations: {
@@ -50,6 +41,14 @@ export default new Vuex.Store({
     },
     ADD_POST(state, post) {
       state.posts.unshift(post)
+    },
+    INITIALIZE_POSTS(state, posts) {
+      state.posts = posts
+    },
+    TOGGLE_LIKE(state, postId) {
+      state.posts.forEach(post => {
+        if (post.id === postId) post.isLiked = !post.isLiked
+      })
     }
   }
 })
