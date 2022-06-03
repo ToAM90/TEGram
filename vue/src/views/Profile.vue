@@ -1,18 +1,25 @@
 <template>
   <div id="home">
     <SideBar id="side-bar"></SideBar>
+    <image-column />
   </div>
 </template>
 
 <script>
 import SideBar from "@/components/SideBar.vue";
+import ImageColumn from '../components/ImageColumn.vue';
 
 export default {
   name: "home",
 
   components: {
     SideBar,
+    ImageColumn,
   },
+  created(){
+    this.$store.state.accountId = this.$route.params.id;
+    
+  }
 };
 </script>
 

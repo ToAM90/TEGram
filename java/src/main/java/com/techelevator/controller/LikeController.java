@@ -28,6 +28,7 @@ public class LikeController {
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccount(userId).getAccountID();
         likedDao.like(postId, accountId);
+        System.out.println("test");
     }
 
     @RequestMapping(path="/like/{postId}", method = RequestMethod.DELETE)
@@ -37,12 +38,13 @@ public class LikeController {
         likedDao.unlike(postId, accountId);
     }
 
-//    @RequestMapping(path="/like/{postId}")
-//    public boolean likeStatus(@PathVariable int postId, Principal principal){
-//        long userId = userDao.findIdByUsername(principal.getName());
-//        int accountId = accountDao.getAccount(userId).getAccountID();
-//        return(likedDao.isLiked(postId, accountId));
-//    }
+    @RequestMapping(path="/like/{postId}", method = RequestMethod.GET)
+    public boolean isLiked(@PathVariable int postId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccount(userId).getAccountID();
+        return likedDao.isLiked(postId, accountId);
+
+    }
 
 
 }

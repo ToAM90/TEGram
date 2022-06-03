@@ -47,14 +47,16 @@ CREATE TABLE likes(
 	account_id int NOT NULL,
 	post_id int NOT NULL,
 	CONSTRAINT FK_account FOREIGN KEY (account_id) REFERENCES accounts(account_id),
-	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id)
+	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id),
+	CONSTRAINT PK_like_post_account PRIMARY KEY (account_id, post_id)
 );
 
 CREATE TABLE favorites(
 	account_id int NOT NULL,
 	post_id int NOT NULL,
 	CONSTRAINT FK_account FOREIGN KEY (account_id) REFERENCES accounts(account_id),
-	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id)
+	CONSTRAINT FK_post FOREIGN KEY (post_id) REFERENCES posts(post_id),
+	CONSTRAINT PK_favorite_post_account PRIMARY KEY (account_id, post_id)
 );
 
 CREATE TABLE comments (
