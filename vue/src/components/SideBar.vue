@@ -156,13 +156,16 @@ export default {
       this.creatingPost = !this.creatingPost;
     },
     uploadPost() {
-      postService.addPost(this.post);
       this.$store.commit("ADD_POST", this.post);
-      this.imageUrl = "";
-      this.post.caption = "";
-      this.post.img = "";
-      this.privated = false;
-      this.toggleCreatingPost;
+      postService.addPost(this.post).then((response) => {
+        if (response.status == 201 || response.status == 200) {
+          this.imageUrl = "";
+          this.post.caption = "";
+          this.post.img = "";
+          this.privated = false;
+          this.toggleCreatingPost;
+        }
+      });
     },
     uploadPhoto() {
       window.cloudinary
@@ -180,6 +183,7 @@ export default {
               this.imageUrl = result.info.url;
             } else {
               console.log(error);
+              console.log("CLOUDINARY");
             }
           }
         )

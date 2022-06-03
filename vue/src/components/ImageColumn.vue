@@ -2,7 +2,7 @@
   <div class="my-images">
     <div
       class="feed-post-container"
-      v-for="image in images"
+      v-for="image in this.$store.state.posts.img"
       v-bind:key="image.id"
     >
       <img class="image" v-bind:src="image" alt="" />
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import postService from "@/services/PostService.js";
+
 export default {
   name: "image-column",
   computed: {
@@ -51,6 +53,11 @@ export default {
     like() {
       this.image.id;
     },
+  },
+  created() {
+    postService.getAllPosts().then((response) => {
+      this.$store.state.posts = response.data;
+    });
   },
 };
 </script>

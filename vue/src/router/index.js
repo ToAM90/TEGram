@@ -8,6 +8,7 @@ import store from '../store/index'
 import Upload from '../views/Upload.vue'
 import Post from '../views/Post.vue'
 import PostList from '../components/PostList.vue'
+import Profile from '@/views/Profile.vue'
 
 Vue.use(Router)
 
@@ -80,8 +81,17 @@ const router = new Router({
       meta: {
         requiresAuth: false
       }
-    }
-    
+    },
+
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {
+        requiresAuth: true
+      }
+    },
+
   ]
 })
 
