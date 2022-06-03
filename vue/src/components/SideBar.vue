@@ -33,8 +33,10 @@
       >
         Upload Image
       </button>
+      <div class="uploaded-photo-diplay">
+        <p :v-bind="imageUrl">{{ imageUrl }}</p>
+      </div>
       <form id="upload-form">
-        <!-- <form id="upload-form" v-on:submit.prevent="uploadPost"> -->
         <textarea
           name=""
           id="upload-caption-input"
@@ -314,7 +316,8 @@ li {
   justify-content: center;
 }
 
-#upload-form {
+.uploaded-photo-diplay {
+  color: black;
 }
 
 #upload-widget {

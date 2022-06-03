@@ -8,8 +8,10 @@
       >
         Upload Image
       </button>
+      <div class="uploaded-photo-diplay">
+        {{ imageUrl }}
+      </div>
       <form id="upload-form">
-        <!-- <form id="upload-form" v-on:submit.prevent="uploadPost"> -->
         <textarea
           name=""
           id="upload-caption-input"
@@ -18,14 +20,6 @@
           placeholder="Enter caption"
           v-model="post.caption"
         ></textarea>
-        <!-- <div id="privated">
-        <input
-        id="upload-checkbox-private"
-        type="checkbox"
-        v-model="post.privated"
-        /> -->
-        <!-- <label for="upload-checkbox-private">Private {{ privated }}</label> -->
-        <!-- </div> -->
         <div id="form-submit-buttons">
           <button id="cancel-upload" @click.prevent="toggleCreatingPost">
             Cancel
@@ -112,7 +106,7 @@ export default {
         img: "",
         privated: false,
       },
-      imageUrl: "",
+      imageUrl: "No image currently selected",
       preview: true,
       creatingPost: false,
     };
@@ -126,8 +120,6 @@ export default {
       this.creatingPost = !this.creatingPost;
     },
     uploadPost() {
-      // this.$store.commit("ADD_POST", this.post);
-      //if this post has no url >> cannot post
       postService.addPost(this.post).then((response) => {
         if (response.status == 201 || response.status == 200) {
           this.imageUrl = "";
@@ -136,7 +128,6 @@ export default {
           this.privated = false;
         } else {
           console.log("placeholder event");
-          //cannot make this post ^
         }
         this.creatingPost = !this.creatingPost;
       });
