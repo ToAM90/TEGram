@@ -50,7 +50,13 @@ export default new Vuex.Store({
     },
     TOGGLE_LIKE(state, postId) {
       state.posts.forEach(post => {
-        if (post.postId == postId) post.liked = !post.liked
+        if (post.postId == postId){
+           post.liked = !post.liked
+           if (post.liked){post.likesCount++
+          } else {
+          post.likesCount--
+        }
+        }
       })
 
     },

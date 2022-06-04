@@ -14,17 +14,17 @@
       v-if="this.$store.state.currentView == 'profile'"
       id="profile-add-new-post feed-post-container"
     >
-      <create-post />
     </div>
   </div>
 </template>
 
 <script>
-// import postService from "@/services/PostService.js";
 import PostInteraction from "./PostInteraction.vue";
-import CreatePost from "@/components/CreatePost.vue";
+import PostService from '../services/PostService';
+import AccountService from '../services/AccountService';
+
 export default {
-  components: { PostInteraction, CreatePost },
+  components: { PostInteraction },
   name: "image-column",
   methods: {
     filterPosts(posts) {
@@ -35,21 +35,23 @@ export default {
   },
   computed: {},
   created() {
-    // console.log(this.$store.state.posts);
-    // console.log(this.$store.state.currentAccount);
-    // if (this.$store.state.account.accountId == -1) {
-    //   postService.getAllPosts().then((response) => {
-    //     this.$store.commit("INITIALIZE_POSTS", response.data);
-    //   });
-    // } else if (this.$store.state.account.accountId > 0) {
-    //   postService
-    //     .getAccountPosts(this.$store.state.account.accountId)
-    //     .then((response) => {
-    //       this.$store.commit("INITIALIZE_POSTS", response.data);
-    //     });
-    // }
-  },
-};
+    if(this.$route.params.id != undefined){
+         PostService.getAccountPosts(this.$route.params.id).then((response) =>
+        this.$store.commit("INITIALIZE_POSTS", response.data))
+        AccountService.getAccountOther(this.$route.params.id).then((response) => 
+        this.$store.commit("SET_ACCOUNT", response.data))
+    } else {
+      PostService.getAllPosts().then((response) => {
+      this.$store.commit("INITIALIZE_POSTS", response.data)
+      AccountService.getAccountSelf().then((response) => {
+      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+ });
+    
+    });
+    }
+     
+}}
+
 </script>
 
 <style>

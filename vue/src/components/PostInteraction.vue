@@ -1,20 +1,24 @@
 <template>
   <div class="post-interaction-bar">
-    <div @click="toggleLike(post.postId, post.liked)">
-      <img
-        class="like-icon interaction-icon"
+    <div class="like-icon" @click="toggleLike(post.postId, post.liked)">
+      <div>
+         <img
+        class="interaction-icon"
         v-if="post.liked"
         src="@/assets/icons8-heart-50.png"
         alt=""
       />
-
       <img
-        class="like-icon interaction-icon"
+        class="interaction-icon"
         v-else
         src="@/assets/icons8-heart-50-outline.png"
         alt=""
-      />
+      /> 
+      </div>
+     
+      <div class="likes-count">{{post.likesCount}}</div>
     </div>
+    
     <router-link v-bind:to="{ name: 'post', params: { id: post.postId } }">
       <img
         class="view-more interaction-icon"
@@ -37,13 +41,16 @@ export default {
   name: "post-interaction",
   props: {
     post: {
-      postId: Number,
-      accountId: Number,
-      img: String,
-      postDate: Date,
-      privated: Boolean,
-      likeCount: Number,
-      liked: Boolean
+      postId: 0,
+      accountId: 0,
+      img: "",
+      caption: "",
+      postDate: "",
+      privated: false,
+      comments: [],
+      liked: false,
+      favorited: false,
+      likesCount: 0
     },
   },
   methods: {
@@ -61,9 +68,9 @@ export default {
 </script>
 
 <style>
+
 .post-interaction-bar {
   background: var(--panel-background-color);
-
   box-shadow: 0px 0px 5px rgb(172, 169, 169);
   display: flex;
   flex-direction: row;
@@ -79,6 +86,13 @@ export default {
 }
 
 .like-icon {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.likes-count{
+  margin: auto;
 }
 
 .image-info {
@@ -87,4 +101,5 @@ export default {
   color: black;
   padding-left: 5px;
 }
+
 </style>

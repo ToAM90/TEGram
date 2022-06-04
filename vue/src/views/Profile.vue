@@ -2,6 +2,8 @@
   <div id="home">
     <profile-header id="profile-header"></profile-header>
     <image-column class="profile-image-column" />
+    <create-post v-if="this.$store.state.currentAccount.accountId == this.$store.state.account.accountId"/>
+   
   </div>
 </template>
 
@@ -11,6 +13,7 @@ import ImageColumn from "../components/ImageColumn.vue";
 import postService from "@/services/PostService.js";
 
 import accountService from "@/services/AccountService.js";
+import CreatePost from '../components/CreatePost.vue';
 
 export default {
   name: "profile",
@@ -26,6 +29,7 @@ export default {
   components: {
     ProfileHeader,
     ImageColumn,
+    CreatePost,
   },
   created() {
     console.log(this.$store.state.posts);
