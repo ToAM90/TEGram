@@ -32,30 +32,39 @@ public class PostController {
     }
 
     @RequestMapping(path="/posts")
-    public List<Post> listPosts(){
+    public List<Post> listPosts(Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         List<Post> postList = postDao.getAllPost();
         for(Post post : postList){
             post.setComments(commentDao.listComments(post.getPostId()));
             post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
+            post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
         }
         return postList;
     }
 
     @RequestMapping(path="/{otherId}/posts")
-    public List<Post> listAccountPosts(@PathVariable int otherId){
+    public List<Post> listAccountPosts(@PathVariable int otherId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         List<Post> postList = postDao.getPostsByAccountId(otherId);
         for(Post post : postList){
             post.setComments(commentDao.listComments(post.getPostId()));
             post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
+            post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
         }
         return postList;
     }
 
     @RequestMapping(path="/post/{postId}")
-    public Post getPost(@PathVariable int postId){
+    public Post getPost(@PathVariable int postId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         Post post = postDao.getPost(postId);
         post.setComments(commentDao.listComments(post.getPostId()));
         post.setLikesCount(likedDao.getNumLikes(postId));
+        post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
         return post;
     }
 

@@ -3,8 +3,8 @@
     <div @click="toggleLike(post.postId, post.liked)">
       <img
         class="like-icon interaction-icon"
-        v-if="post.liked == true"
-        src="@/assets/icons8-heart-50-outline.png"
+        v-if="post.liked"
+        src="@/assets/icons8-heart-50.png"
         alt=""
       />
 
@@ -43,18 +43,17 @@ export default {
       postDate: Date,
       privated: Boolean,
       likeCount: Number,
+      liked: Boolean
     },
   },
   methods: {
     toggleLike(postId, liked) {
-      console.log(postId);
-      console.log(liked);
       if (liked == false) {
         likeService.likePost(postId);
-        // this.$store.commit("TOGGLE_LIKE", postId);
+        this.$store.commit("TOGGLE_LIKE", postId);
       } else if (liked == true) {
         likeService.unlikePost(postId);
-        // this.$store.commit("TOGGLE_LIKE", postId);
+        this.$store.commit("TOGGLE_LIKE", postId);
       }
     },
   },
