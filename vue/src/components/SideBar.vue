@@ -1,11 +1,7 @@
 <template>
   <div class="side-bar">
     <div id="nav-user" @click="routeToProfile">
-      <img
-        src="@/assets/icons8-settings-50.png"
-        alt=""
-        class="settings-icon"
-      />
+      <img src="@/assets/icons8-settings-50.png" alt="" class="settings-icon" />
       <img
         :src="this.$store.state.currentAccount.profileImg"
         alt="@/assets/default-user-image.png"
@@ -165,10 +161,50 @@ export default {
     toggleCreatingPost() {
       this.creatingPost = !this.creatingPost;
     },
+
+    createTempPost(post) {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, "0");
+      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      let hours = String(today.getHours()).padStart(2, "0");
+      let minutes = String(today.getMinutes()).padStart(2, "0");
+      let seconds = String(today.getSeconds()).padStart(2, "0");
+      let milliseconds = String(today.getMilliseconds()).padStart(6, "0");
+      let yyyy = today.getFullYear();
+
+      let currentDate =
+        yyyy +
+        "-" +
+        mm +
+        "-" +
+        dd +
+        "t" +
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds +
+        "." +
+        milliseconds;
+      console.log(this.$store.state.currentAccount);
+      return {
+        accountId: this.$store.state.currentAccount.accountId,
+        caption: post.caption,
+        comments: [],
+        img: post.img,
+        likesCount: 0,
+        postDate: currentDate,
+        postId: this.$store.state.posts.length + 1,
+        privated: "false",
+        liked: false,
+      };
+    },
+
     uploadPost() {
       postService.addPost(this.post).then((response) => {
         if (response.status == 201 || response.status == 200) {
-          this.imageUrl = "$$$$$$";
+          this.$store.commit("ADD_POST", this.createTempPost(this.post));
+          this.imageUrl = "";
           this.post.caption = "";
           this.post.img = "";
           this.privated = false;
@@ -178,6 +214,7 @@ export default {
         this.creatingPost = !this.creatingPost;
       });
     },
+
     uploadPhoto() {
       window.cloudinary
         .openUploadWidget(

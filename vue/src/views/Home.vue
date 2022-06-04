@@ -9,7 +9,7 @@
 <script>
 import SideBar from "@/components/SideBar.vue";
 import ImageColumn from "@/components/ImageColumn.vue";
-import accountService from "@/services/AccountService.js";
+import postService from "@/services/PostService.js";
 
 export default {
   name: "home",
@@ -23,15 +23,17 @@ export default {
     };
   },
 
+  created() {
+    console.log(this.$store.state.posts);
+    console.log(this.$store.state.currentAccount);
+    postService.getAllPosts().then((response) => {
+      this.$store.commit("INITIALIZE_POSTS", response.data);
+    });
+  },
+
   components: {
     SideBar,
     ImageColumn,
-  },
-  created() {
-    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
-    accountService.getAccountSelf().then((response) => {
-      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-    });
   },
 };
 </script>

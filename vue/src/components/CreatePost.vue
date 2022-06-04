@@ -24,7 +24,7 @@
         <button id="cancel-upload" @click.prevent="toggleCreatingPost">
           Cancel
         </button>
-        <button id="submit-upload" @click="uploadPost" type="submit">
+        <button id="submit-upload" @click.prevent="uploadPost" type="submit">
           Post
         </button>
       </div>
@@ -40,10 +40,11 @@ export default {
   data() {
     return {
       post: {
+        accountId: "",
         caption: "",
         img: "",
-        privated: false,
       },
+
       imageUrl: "$$$$$$",
       preview: true,
       creatingPost: false,
@@ -54,9 +55,48 @@ export default {
       this.creatingPost = !this.creatingPost;
     },
 
+    createTempPost(post) {
+      let today = new Date();
+      let dd = String(today.getDate()).padStart(2, "0");
+      let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      let hours = String(today.getHours()).padStart(2, "0");
+      let minutes = String(today.getMinutes()).padStart(2, "0");
+      let seconds = String(today.getSeconds()).padStart(2, "0");
+      let milliseconds = String(today.getMilliseconds()).padStart(6, "0");
+      let yyyy = today.getFullYear();
+
+      let currentDate =
+        yyyy +
+        "-" +
+        mm +
+        "-" +
+        dd +
+        "t" +
+        hours +
+        ":" +
+        minutes +
+        ":" +
+        seconds +
+        "." +
+        milliseconds;
+      console.log(this.$store.state.currentAccount);
+      return {
+        accountId: this.$store.state.currentAccount.accountId,
+        caption: post.caption,
+        comments: [],
+        img: post.img,
+        likesCount: 0,
+        postDate: currentDate,
+        postId: this.$store.state.posts.length + 1,
+        privated: "false",
+        liked: false,
+      };
+    },
+
     uploadPost() {
       postService.addPost(this.post).then((response) => {
         if (response.status == 201 || response.status == 200) {
+          this.$store.commit("ADD_POST", this.createTempPost(this.post));
           this.imageUrl = "";
           this.post.caption = "";
           this.post.img = "";

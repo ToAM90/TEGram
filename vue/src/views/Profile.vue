@@ -8,6 +8,7 @@
 <script>
 import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
+import postService from "@/services/PostService.js";
 
 export default {
   name: "profile",
@@ -17,7 +18,14 @@ export default {
     ImageColumn,
   },
   created() {
-    // this.$store.commit("SET_ACCOUNT", this.$route.params.id);
+    console.log(this.$store.state.posts);
+    console.log(this.$store.state.currentAccount);
+
+    postService
+      .getAccountPosts(this.$store.state.account.accountId)
+      .then((response) => {
+        this.$store.commit("INITIALIZE_POSTS", response.data);
+      });
   },
 };
 </script>

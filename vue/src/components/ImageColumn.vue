@@ -2,8 +2,8 @@
   <div class="my-images">
     <div
       class="feed-post-container"
-      v-for="post in posts"
-      v-bind:key="post.postId"
+      v-for="(post, index) in filterPosts(this.$store.state.posts)"
+      :key="index"
       v-bind:postId="post.postId"
     >
       <img class="image" v-bind:src="post.img" alt="" />
@@ -20,31 +20,34 @@
 </template>
 
 <script>
-import postService from "@/services/PostService.js";
+// import postService from "@/services/PostService.js";
 import PostInteraction from "./PostInteraction.vue";
 import CreatePost from "@/components/CreatePost.vue";
 export default {
   components: { PostInteraction, CreatePost },
   name: "image-column",
-  computed: {
-    posts() {
-      return this.$store.state.posts.filter((post) => {
+  methods: {
+    filterPosts(posts) {
+      return posts.filter((post) => {
         if (post.img.includes("cloudinary")) return post;
       });
     },
   },
+  computed: {},
   created() {
-    if (this.$store.state.account.accountId == -1) {
-      postService.getAllPosts().then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);
-      });
-    } else {
-      postService
-        .getAccountPosts(this.$store.state.account.accountId)
-        .then((response) => {
-          this.$store.commit("INITIALIZE_POSTS", response.data);
-        });
-    }
+    // console.log(this.$store.state.posts);
+    // console.log(this.$store.state.currentAccount);
+    // if (this.$store.state.account.accountId == -1) {
+    //   postService.getAllPosts().then((response) => {
+    //     this.$store.commit("INITIALIZE_POSTS", response.data);
+    //   });
+    // } else if (this.$store.state.account.accountId > 0) {
+    //   postService
+    //     .getAccountPosts(this.$store.state.account.accountId)
+    //     .then((response) => {
+    //       this.$store.commit("INITIALIZE_POSTS", response.data);
+    //     });
+    // }
   },
 };
 </script>

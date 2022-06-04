@@ -4,6 +4,29 @@
   </div>
 </template>
 
+<script>
+import accountService from "@/services/AccountService.js";
+
+export default {
+  name: "app",
+  data() {
+    return {
+      defaultAccount: {
+        accountId: -1,
+        userId: -1,
+        displayName: "",
+      },
+    };
+  },
+  created() {
+    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
+    accountService.getAccountSelf().then((response) => {
+      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+    });
+  },
+};
+</script>
+
 <style>
 :root {
   --top-color: #38413e;
