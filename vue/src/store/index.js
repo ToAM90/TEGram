@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: currentUser || {},
     posts: [],
     account: {},
-    currentAccount: {}
+    currentAccount: {},
+    currentView: ''
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -51,13 +52,16 @@ export default new Vuex.Store({
       state.posts.forEach(post => {
         if (post.postId == postId) post.liked = !post.liked
       })
-    
+
     },
     SET_ACCOUNT(state, newAccount) {
       state.account = newAccount;
     },
     SET_CURRENT_ACCOUNT(state, newCurrentAccount) {
       state.currentAccount = newCurrentAccount;
+    },
+    CHANGE_CURRENT_VIEW(state, view) {
+      state.currentView = view
     }
   }
 })

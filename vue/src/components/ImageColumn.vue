@@ -11,7 +11,7 @@
     </div>
 
     <div
-      v-if="this.$store.state.account.accountId != -1"
+      v-if="this.$store.state.currentView == 'profile'"
       id="profile-add-new-post feed-post-container"
     >
       <create-post />

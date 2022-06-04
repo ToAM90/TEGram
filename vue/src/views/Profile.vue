@@ -10,9 +10,19 @@ import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
 import postService from "@/services/PostService.js";
 
+import accountService from "@/services/AccountService.js";
+
 export default {
   name: "profile",
-
+  data() {
+    return {
+      defaultAccount: {
+        accountId: -1,
+        userId: -1,
+        displayName: "",
+      },
+    };
+  },
   components: {
     ProfileHeader,
     ImageColumn,
@@ -26,6 +36,13 @@ export default {
       .then((response) => {
         this.$store.commit("INITIALIZE_POSTS", response.data);
       });
+
+    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
+    accountService.getAccountSelf().then((response) => {
+      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+    });
+
+    this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
   },
 };
 </script>
