@@ -6,6 +6,7 @@
       :key="index"
       v-bind:postId="post.postId"
     >
+      <post-header v-bind:accountId="post.accountId"/>
       <img class="image" v-bind:src="post.img" alt="" />
       <post-interaction v-bind:post="post" />
     </div>
@@ -19,12 +20,13 @@
 </template>
 
 <script>
-import PostInteraction from "./PostInteraction.vue";
+import PostInteraction from './PostInteraction.vue';
+import PostHeader from './PostHeader.vue';
 import PostService from '../services/PostService';
 import AccountService from '../services/AccountService';
 
 export default {
-  components: { PostInteraction },
+  components: { PostInteraction, PostHeader },
   name: "image-column",
   methods: {
     filterPosts(posts) {

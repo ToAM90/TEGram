@@ -7,7 +7,8 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import Upload from '../views/Upload.vue'
 import Post from '../views/Post.vue'
-import Profile from '@/views/Profile.vue'
+import Profile from '../views/Profile.vue'
+import Favorites from '../views/Favorites.vue'
 
 Vue.use(Router)
 
@@ -61,7 +62,7 @@ const router = new Router({
       name: "upload",
       component: Upload,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
     {
@@ -69,7 +70,7 @@ const router = new Router({
       name: "post",
       component: Post,
       meta: {
-        requiresAuth: false
+        requiresAuth: true
       }
     },
 
@@ -81,6 +82,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/favorites",
+      name: "favorites",
+      component: Favorites,
+      meta: {
+        requiresAuth: true
+      }
+    }
 
   ]
 })

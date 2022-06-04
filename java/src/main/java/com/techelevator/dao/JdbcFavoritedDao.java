@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class JdbcFavoritedDao implements FavoritedDao{
+public class JdbcFavoritedDao implements FavoritedDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcFavoritedDao(JdbcTemplate jdbcTemplate){
+    public JdbcFavoritedDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -42,25 +42,24 @@ public class JdbcFavoritedDao implements FavoritedDao{
     @Override
     public List<Post> getFavorites(int accountId) {
         List<Post> favoritePosts = new ArrayList<>();
-        String sql = "SELECT img, caption, post_date, privated FROM posts p\n" +
-                "JOIN favorites f ON f.post_id = p.post_id" +
-                "JOIN accounts a ON a.account_id = p.account_id" +
-                "WHERE f.account_id = ? ORDER BY post_date DESC";
+        String sql = "SELECT p.img, p.caption, p.post_date, p.privated, p.account_id FROM posts p \n" +
+                "JOIN favorites f ON f.account_id = p.account_id" +
+                "WHERE p.account_id = ? ORDER BY p.post_date DESC";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
-        while(results.next()){
+        while (results.next()) {
             Post post = MapRowToPost(results);
             favoritePosts.add(post);
         }
         return favoritePosts;
     }
 
-    private Post MapRowToPost(SqlRowSet results){
+    private Post MapRowToPost(SqlRowSet results) {
         Post post = new Post();
 
+        post.setPostId(results.getInt("post_id"));
         post.setAccountId(results.getInt("account_id"));
         post.setImg(results.getString("img"));
-        post.setCaption(results.getString("caption"));
         post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
 

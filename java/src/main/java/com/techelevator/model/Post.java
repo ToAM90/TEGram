@@ -16,10 +16,12 @@ public class Post {
     private List<Comment> comments;
     private int likesCount;
     private boolean isLiked;
+    private boolean isFavorited;
 
-    public Post(){}
+    public Post() {
+    }
 
-    public Post(int postId, int accountId, String img, String caption, LocalDateTime postDate, boolean privated, List<Comment> comments, int likesCount, boolean isLiked) {
+    public Post(int postId, int accountId, String img, String caption, LocalDateTime postDate, boolean privated, List<Comment> comments, int likesCount, boolean isLiked, boolean isFavorited) {
         this.postId = postId;
         this.accountId = accountId;
         this.img = img;
@@ -29,6 +31,7 @@ public class Post {
         this.comments = comments;
         this.likesCount = likesCount;
         this.isLiked = isLiked;
+        this.isFavorited = isFavorited;
     }
 
 
@@ -70,7 +73,6 @@ public class Post {
         return postDate;
     }
 
-//    commenting this out for now to run front-end :)
     public void setPostDate(LocalDateTime postDate) {
         this.postDate = postDate;
     }
@@ -105,5 +107,13 @@ public class Post {
 
     public void setLiked(boolean liked) {
         isLiked = liked;
+    }
+
+    public boolean isFavorited() {
+        return isFavorited;
+    }
+
+    public void setFavorited(boolean favorited) {
+        isFavorited = favorited;
     }
 }

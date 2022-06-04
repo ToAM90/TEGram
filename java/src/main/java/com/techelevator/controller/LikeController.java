@@ -16,34 +16,25 @@ public class LikeController {
     private LikedDao likedDao;
 
     @Autowired
-    public LikeController(PostDao postDao, UserDao userDao, AccountDao accountDao, LikedDao likedDao){
+    public LikeController(PostDao postDao, UserDao userDao, AccountDao accountDao, LikedDao likedDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.accountDao = accountDao;
         this.likedDao = likedDao;
     }
 
-    @RequestMapping(path="/like/{postId}")
-    public void like(@PathVariable int postId, Principal principal){
+    @RequestMapping(path = "/like/{postId}")
+    public void like(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         likedDao.like(postId, accountId);
-        System.out.println("test");
     }
 
-    @RequestMapping(path="/like/{postId}", method = RequestMethod.DELETE)
-    public void unlike(@PathVariable int postId, Principal principal){
+    @RequestMapping(path = "/like/{postId}", method = RequestMethod.DELETE)
+    public void unlike(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         likedDao.unlike(postId, accountId);
-    }
-
-    @RequestMapping(path="/like/{postId}", method = RequestMethod.GET)
-    public boolean isLiked(@PathVariable int postId, Principal principal){
-        long userId = userDao.findIdByUsername(principal.getName());
-        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        return likedDao.isLiked(postId, accountId);
-
     }
 
 

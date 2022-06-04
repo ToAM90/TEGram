@@ -28,18 +28,29 @@
       />
     </router-link>
     </div>
-    <div>
+
+    <div class="favorite-icon" @click="toggleFavorite(post.postId, post.favorited)">
     <img
-      class="favorite-icon interaction-icon"
+      class="interaction-icon image_on"
+      v-if="post.favorited"
+      src="@/assets/icons8-star-50.png"
+      alt=""
+    />
+    <img
+      class="interaction-icon image_on"
+      v-else
       src="@/assets/icons8-star-50-outline.png"
       alt=""
     />
+    <img class="interaction-icon image_off" src="@/assets/icons8-star.gif" alt="logo" />
     </div>
+
   </div>
 </template>
 
 <script>
-import likeService from "@/services/LikeService.js";
+import LikeService from '../services/LikeService.js';
+import FavoriteService from '../services/FavoriteService.js'
 
 export default {
   name: "post-interaction",
@@ -60,11 +71,20 @@ export default {
   methods: {
     toggleLike(postId, liked) {
       if (liked == false) {
-        likeService.likePost(postId);
+        LikeService.likePost(postId);
         this.$store.commit("TOGGLE_LIKE", postId);
       } else if (liked == true) {
-        likeService.unlikePost(postId);
+        LikeService.unlikePost(postId);
         this.$store.commit("TOGGLE_LIKE", postId);
+      }
+    },
+    toggleFavorite(postId, favorited) {
+      if (favorited == false) {
+        FavoriteService.favoritePost(postId);
+        this.$store.commit("TOGGLE_FAVORITE", postId);
+      } else if (favorited == true) {
+        FavoriteService.unfavoritePost(postId);
+        this.$store.commit("TOGGLE_FAVORITE", postId);
       }
     },
   },
@@ -111,6 +131,13 @@ export default {
   display: none;
 }
 .image_on, .like-icon:hover .image_off{
+  display:block;
+}
+
+.image_off, .favorite-icon:hover .image_on{
+  display: none;
+}
+.image_on, .favorite-icon:hover .image_off{
   display:block;
 }
 

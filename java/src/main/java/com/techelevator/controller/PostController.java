@@ -21,14 +21,15 @@ public class PostController {
     private AccountDao accountDao;
     private CommentDao commentDao;
     private LikedDao likedDao;
-
+    private FavoritedDao favoritedDao;
     @Autowired
-    public PostController(PostDao postDao, UserDao userDao, AccountDao accountDao, CommentDao commentDao, LikedDao likedDao){
+    public PostController(PostDao postDao, UserDao userDao, AccountDao accountDao, CommentDao commentDao, LikedDao likedDao, FavoritedDao favoritedDao){
         this.postDao = postDao;
         this.userDao = userDao;
         this.accountDao = accountDao;
         this.commentDao = commentDao;
         this.likedDao = likedDao;
+        this.favoritedDao = favoritedDao;
     }
 
     @RequestMapping(path="/posts")
@@ -40,6 +41,7 @@ public class PostController {
             post.setComments(commentDao.listComments(post.getPostId()));
             post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
             post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
+            post.setFavorited(favoritedDao.isFavorited(post.getPostId(), accountId));
         }
         return postList;
     }
@@ -53,6 +55,7 @@ public class PostController {
             post.setComments(commentDao.listComments(post.getPostId()));
             post.setLikesCount(likedDao.getNumLikes(post.getPostId()));
             post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
+            post.setFavorited(favoritedDao.isFavorited(post.getPostId(), accountId));
         }
         return postList;
     }
@@ -65,6 +68,7 @@ public class PostController {
         post.setComments(commentDao.listComments(post.getPostId()));
         post.setLikesCount(likedDao.getNumLikes(postId));
         post.setLiked(likedDao.isLiked(post.getPostId(), accountId));
+        post.setFavorited(favoritedDao.isFavorited(post.getPostId(), accountId));
         return post;
     }
 

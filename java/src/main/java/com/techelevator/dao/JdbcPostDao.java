@@ -81,8 +81,6 @@ public class JdbcPostDao implements PostDao{
         post.setPostId(results.getInt("post_id"));
         post.setAccountId(results.getInt("account_id"));
         post.setImg(results.getString("img"));
-        post.setCaption(results.getString("caption"));
-//        also commenting this out to run front end :)
         post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
 

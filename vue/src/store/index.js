@@ -58,7 +58,13 @@ export default new Vuex.Store({
         }
         }
       })
-
+    },
+    TOGGLE_FAVORITE(state, postId) {
+      state.posts.forEach(post => {
+        if (post.postId == postId){
+           post.favorited = !post.favorited
+        }
+      })
     },
     SET_ACCOUNT(state, newAccount) {
       state.account = newAccount;
