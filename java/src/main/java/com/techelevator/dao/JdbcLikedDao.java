@@ -22,7 +22,7 @@ public class JdbcLikedDao implements LikedDao{
     @Override
     public void like(int postId, int accountId) {
         String sql = "INSERT INTO likes (account_id, post_id) VALUES (?, ?)";
-        jdbcTemplate.update(sql, postId, accountId);
+        jdbcTemplate.update(sql, accountId, postId);
 
     }
 

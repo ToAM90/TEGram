@@ -49,8 +49,9 @@ export default new Vuex.Store({
     },
     TOGGLE_LIKE(state, postId) {
       state.posts.forEach(post => {
-        if (post.id === postId) post.isLiked = !post.isLiked
+        if (post.postId == postId) post.liked = !post.liked
       })
+    
     },
     SET_ACCOUNT(state, newAccount) {
       state.account = newAccount;
