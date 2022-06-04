@@ -1,14 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link id="home" v-bind:to="{ name: 'home' }">Home |</router-link>
-      
-      <router-link
-        v-bind:to="{ name: 'logout' }"
-        v-if="$store.state.token != ''"
-        >Logout</router-link
-      >
-    </div> -->
     <router-view id="view" />
   </div>
 </template>
@@ -23,26 +14,27 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-#nav {
-  margin: 0px;
-  padding: 10px;
-  background-color: var(--top-color);
-  border-bottom: 4px solid var(--panel-background-color);
-  height: 40px;
-  justify-content: center;
-}
+
 #view {
   color: var(--panel-background-color);
   text-decoration: none;
   font-family: "Open Sans", sans-serif;
-  height: 100vh;
-  width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
 }
 #app {
+  /* background-color: var(--primary-background-color); */
+
+  /* height: 100vh; */
+  min-height: 100vh;
+  overflow: auto;
+  width: 100vw;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  background-repeat: repeat repeat;
+  background-size: 100%;
+
   margin: -8px;
   padding: 0px;
-  background-color: var(--primary-background-color);
-  height: 100vh;
-  width: 100vw;
 }
 </style>

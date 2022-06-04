@@ -1,5 +1,5 @@
 <template>
-  <div v-if="creatingPost === true" id="upload">
+  <div id="upload">
     <button
       id="upload_widget"
       class="cloudinary-button"
@@ -7,10 +7,11 @@
     >
       Upload Image
     </button>
-    <div class="uploaded-photo-diplay">
-      {{ imageUrl }}
-    </div>
+
     <form id="upload-form">
+      <div class="uploaded-photo-diplay">
+        <p v-if="!imageUrl.includes('$$$$$$')">Successfully Uploaded</p>
+      </div>
       <textarea
         name=""
         id="upload-caption-input"
@@ -43,7 +44,7 @@ export default {
         img: "",
         privated: false,
       },
-      imageUrl: "No image currently selected",
+      imageUrl: "$$$$$$",
       preview: true,
       creatingPost: false,
     };
@@ -93,16 +94,23 @@ export default {
 
 <style lang="css" scoped>
 #upload {
-  margin-top: 30px;
-  width: 275px;
+  width: calc(100% - 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: white;
+  border: 5px rgba(0, 0, 0, 0.308) solid;
+  padding: 5px;
+
+  border-radius: 10px;
 }
 
 .uploaded-photo-diplay {
-  color: black;
+  padding-top: 10px;
+
+  padding-bottom: 10px;
+  color: green;
 }
 
 #upload-widget {
@@ -110,16 +118,19 @@ export default {
 }
 
 .cloudinary-button {
-  width: 200px !important;
+  width: 100% !important;
   padding: 0px !important;
   height: 30px !important;
 }
 
+#upload-form {
+  width: 100%;
+}
 #form-submit-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 208px;
+  width: 100%;
   margin-right: 0px;
 
   margin-left: 0px;
@@ -150,10 +161,12 @@ export default {
 
   padding: 5px;
 
-  margin: 5px;
-  width: 186px;
+  margin-top: 5px;
 
-  height: 60px !important;
+  margin-bottom: 5px;
+  width: calc(100% - 10px);
+
+  height: 100% !important;
   font-family: "Open Sans", sans-serif;
 }
 

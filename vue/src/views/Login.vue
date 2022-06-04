@@ -105,6 +105,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Passion+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&family=Passion+One&display=swap");
+.login {
+  height: 100vh;
+  padding-top: auto;
+}
 
 #sign-in-display {
   font-family: "Montserrat", sans-serif;

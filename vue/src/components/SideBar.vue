@@ -14,7 +14,7 @@
     </div>
 
     <p class="display-name">{{ getDisplayName }}</p>
-    <div id="user-stats">
+    <!-- <div id="user-stats">
       <ul>
         <li>
           10 <br />
@@ -29,7 +29,7 @@
           likes
         </li>
       </ul>
-    </div>
+    </div> -->
 
     <div v-if="creatingPost === true" id="upload">
       <button
@@ -79,14 +79,14 @@
         <p @click="toggleCreatingPost" class="nav-text">create a post</p>
       </div>
 
-      <div class="nav-link" id="posts-link">
+      <!-- <div class="nav-link" id="posts-link">
         <img
           class="nav-bar-icon"
           src="@/assets/photo_library_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text">posts</p>
-      </div>
+      </div> -->
       <div class="nav-link" id="favorited-link">
         <img
           class="nav-bar-icon"
@@ -98,7 +98,7 @@
       <div class="nav-link" id="likes-link">
         <img
           class="nav-bar-icon"
-          src="@/assets/icons8-star-50 (outline).png"
+          src="@/assets/icons8-star-50-outline.png"
           alt=""
         />
         <p class="nav-text">likes</p>
@@ -122,7 +122,7 @@
       <div class="nav-link" id="logout-link">
         <img
           class="nav-bar-icon"
-          src="@/assets/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
+          src="@/assets/logout_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text" @click="logout">logout</p>
@@ -220,11 +220,15 @@ export default {
 <style lang="css" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
+.make-a-post-link p {
+  margin: 6px;
+}
+
 .side-bar {
   display: flex;
   width: 100%;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--panel-background-color);
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0px 2px 10px rgb(184, 184, 184);
@@ -245,7 +249,7 @@ export default {
 }
 
 #profile-icon {
-  margin-top: 45px;
+  margin-top: 35px;
   max-width: 150px;
   padding: 0px;
   box-shadow: 1px 1px 25px var(--primary-background-color);
@@ -263,7 +267,7 @@ export default {
 }
 
 ul {
-  margin-top: 20px;
+  /* margin-top: 10px; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -282,7 +286,7 @@ li {
   margin-right: 60px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-bet;
   flex-grow: 1;
 }
 

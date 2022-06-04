@@ -4,14 +4,14 @@
       <img
         class="like-icon interaction-icon"
         v-if="post.liked == true"
-        src="@/assets/icons8-heart-50 (outline).png"
+        src="@/assets/icons8-heart-50-outline.png"
         alt=""
       />
 
       <img
         class="like-icon interaction-icon"
         v-else
-        src="@/assets/icons8-heart-50 (outline).png"
+        src="@/assets/icons8-heart-50-outline.png"
         alt=""
       />
     </div>
@@ -24,7 +24,7 @@
     </router-link>
     <img
       class="favorite-icon interaction-icon"
-      src="@/assets/icons8-star-50 (outline).png"
+      src="@/assets/icons8-star-50-outline.png"
       alt=""
     />
   </div>
@@ -63,7 +63,7 @@ export default {
 
 <style>
 .post-interaction-bar {
-  background: white;
+  background: var(--panel-background-color);
 
   box-shadow: 0px 0px 5px rgb(172, 169, 169);
   display: flex;
