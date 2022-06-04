@@ -143,8 +143,9 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-height: 100%;
   font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  padding-top: auto;
 }
 
 .form-register {

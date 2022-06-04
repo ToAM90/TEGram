@@ -61,7 +61,7 @@ export default {
     -moz-column-gap: 0px;
     column-count: 3;
     column-gap: 10px;
-    background: var(--primary-background-color);
+    /* background: var(--primary-background-color);s */
   }
 }
 
@@ -76,7 +76,7 @@ export default {
     -moz-column-gap: 0px;
     column-count: 2;
     column-gap: 10px;
-    background: var(--primary-background-color);
+    /* background: var(--primary-background-color); */
 
     display: block;
 
@@ -89,7 +89,7 @@ export default {
     display: flex;
     flex-direction: column;
 
-    background: var(--primary-background-color);
+    /* background: var(--primary-background-color); */
   }
 }
 
@@ -103,6 +103,8 @@ export default {
 }
 
 .my-images .feed-post-container .image {
-  width: calc(100%) !important;
+  width: calc(100% - 10px) !important;
+  border: 5px var(--panel-background-color) solid;
+  border-radius: 5px 5px 0px 0px;
 }
 </style>

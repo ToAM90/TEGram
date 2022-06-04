@@ -63,7 +63,7 @@ export default {
 
 <style>
 .post-interaction-bar {
-  background: white;
+  background: var(--panel-background-color);
 
   box-shadow: 0px 0px 5px rgb(172, 169, 169);
   display: flex;

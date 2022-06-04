@@ -39,14 +39,12 @@ export default {
 <style>
 #home-page-display {
   width: (100vw);
-  /* align-items: space-between; */
-  /* justify-content: space-between; */
+  overflow-x: hidden;
 }
 
 #side-bar-home {
   width: 275px;
-  margin: 0px 0px 0px 0px;
-  height: 100vh;
+  height: calc(100vh);
   position: fixed;
 }
 
