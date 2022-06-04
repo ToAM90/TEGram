@@ -58,6 +58,7 @@
 
 <script>
 import authService from "../services/AuthService";
+// import accountService from "../services/AccountService";
 
 export default {
   name: "login",
@@ -80,7 +81,7 @@ export default {
             this.$store.commit("SET_USER", response.data.user);
             this.$router.push("/");
           }
-          this.$router.push("/");
+          // this.$router.push("/");
         })
         .catch((error) => {
           const response = error.response;
@@ -89,7 +90,8 @@ export default {
             this.invalidCredentials = true;
           }
         });
-      this.$router.push("/");
+
+      // this.$router.push("/");
     },
     pushToRegister() {
       this.$router.push("/register");

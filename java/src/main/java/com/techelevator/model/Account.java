@@ -2,8 +2,8 @@ package com.techelevator.model;
 
 public class Account {
 
-    private int accountID;
-    private int userID;
+    private int accountId;
+    private int userId;
     private String displayName;
     private String biography;
     private String profileImg;
@@ -13,28 +13,28 @@ public class Account {
 
     }
 
-    public Account(int accountID, int userID, String displayName, String biography, String profileImg) {
-        this.accountID = accountID;
-        this.userID = userID;
+    public Account(int accountId, int userId, String displayName, String biography, String profileImg) {
+        this.accountId = accountId;
+        this.userId = userId;
         this.displayName = displayName;
         this.biography = biography;
         this.profileImg = profileImg;
     }
 
-    public int getAccountID() {
-        return accountID;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public void setAccountID(int accountID) {
-        this.accountID = accountID;
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDisplayName() {

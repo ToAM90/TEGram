@@ -61,7 +61,7 @@
     </div>
 
     <div id="nav-user">
-      <img src="@/resources/default-user-image.png" alt="" id="profile-icon" />
+      <img :src="getProfilePic" alt="" id="profile-icon" />
     </div>
 
     <div class="nav-list">
@@ -156,6 +156,10 @@ export default {
   computed: {
     getPosts() {
       return this.$store.state.posts;
+    },
+    getProfilePic() {
+      console.log(this.$store.state.currentAccount.profileImg);
+      return this.$store.state.currentAccount.profileImg;
     },
   },
 };

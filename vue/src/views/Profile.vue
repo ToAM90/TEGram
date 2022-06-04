@@ -1,23 +1,26 @@
 <template>
   <div id="home">
-    <SideBar id="side-bar"></SideBar>
+    <profile-header id="profile-header"></profile-header>
+    <create-post></create-post>
     <image-column />
   </div>
 </template>
 
 <script>
-import SideBar from "@/components/SideBar.vue";
+import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
+import CreatePost from "@/components/CreatePost.vue";
 
 export default {
   name: "profile",
 
   components: {
-    SideBar,
+    ProfileHeader,
     ImageColumn,
+    CreatePost,
   },
   created() {
-    this.$store.commit("SET_ACCOUNT_ID", (this.$route.params.id));
+    // this.$store.commit("SET_ACCOUNT", this.$route.params.id);
   },
 };
 </script>
@@ -25,12 +28,12 @@ export default {
 <style>
 #home {
   max-width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 
-#side-bar {
-  width: 275px;
-  margin: 0px 0px 0px 0px;
-  height: 100vh;
+#profile-header {
+  width: 100vw;
   position: fixed;
 }
 </style>

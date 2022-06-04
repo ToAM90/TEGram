@@ -33,7 +33,7 @@ public class CommentController {
     @RequestMapping(path="/comments", method = RequestMethod.POST)
         public void submitComment(@RequestBody Comment comment, Principal principal, int postId){
         long userId = userDao.findIdByUsername(principal.getName());
-        int accountId = accountDao.getAccount(userId).getAccountID();
+        int accountId = accountDao.getAccount(userId).getAccountId();
         comment.setPostId(postId);
         comment.setAccountId(accountId);
         commentDao.submitComment(comment);
@@ -44,7 +44,7 @@ public class CommentController {
         public void deleteComment(@PathVariable int commentId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         User user = userDao.getUserById(userId);
-        int accountId = accountDao.getAccount(userId).getAccountID();
+        int accountId = accountDao.getAccount(userId).getAccountId();
 
         Comment comment = commentDao.getComment(commentId);
 

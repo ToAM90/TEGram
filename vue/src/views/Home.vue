@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home-page-display">
     <SideBar id="side-bar"></SideBar>
 
     <ImageColumn class="image-column"></ImageColumn>
@@ -9,20 +9,36 @@
 <script>
 import SideBar from "@/components/SideBar.vue";
 import ImageColumn from "@/components/ImageColumn.vue";
+import accountService from "@/services/AccountService.js";
 
 export default {
   name: "home",
+  data() {
+    return {
+      defaultAccount: {
+        accountId: -1,
+        userId: -1,
+        displayName: "",
+      },
+    };
+  },
 
   components: {
     SideBar,
     ImageColumn,
   },
+  created() {
+    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
+    accountService.getAccountSelf().then((response) => {
+      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+    });
+  },
 };
 </script>
 
 <style>
-#home {
-  max-width: 100vw;
+#home-page-display {
+  max-width: (100vw);
   /* align-items: space-between; */
   /* justify-content: space-between; */
 }
@@ -34,8 +50,10 @@ export default {
   position: fixed;
 }
 
-#image-column {
-  margin-left: 275px;
-  width: 100%;
+.image-column {
+  width: calc(100% - 315px);
+  margin-left: 295px;
+  margin-right: 20px;
+  padding-top: 20px;
 }
 </style>

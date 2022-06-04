@@ -21,7 +21,7 @@ CREATE TABLE users (
 
 CREATE TABLE accounts (
 	account_id serial,
-	profile_img varchar(100),
+	profile_img varchar(500),
 	user_id int NOT NULL,
 	display_name varchar(30),
 	biography varchar (300),

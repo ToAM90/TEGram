@@ -62,4 +62,30 @@ export default {
 </script>
 
 <style>
+.post-interaction-bar {
+  background: white;
+
+  box-shadow: 0px 0px 5px rgb(172, 169, 169);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 20px;
+  margin-bottom: 5px;
+  color: black;
+}
+
+.interaction-icon {
+  max-height: auto;
+  max-width: 20px;
+}
+
+.like-icon {
+}
+
+.image-info {
+  border-left: solid black 3px;
+  /* max-width: 20%; */
+  color: black;
+  padding-left: 5px;
+}
 </style>

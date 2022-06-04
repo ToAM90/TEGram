@@ -1,13 +1,19 @@
 <template>
-  <div class="side-bar" @click="routeToProfile">
-    <div id="nav-user">
+  <div class="side-bar">
+    <div id="nav-user" @click="routeToProfile">
       <img
         src="@/resources/icons8-settings-50.png"
         alt=""
         class="settings-icon"
       />
-      <img src="@/resources/default-user-image.png" alt="" id="profile-icon" />
+      <img
+        :src="this.$store.state.currentAccount.profileImg"
+        alt="@/resources/default-user-image.png"
+        id="profile-icon"
+      />
     </div>
+
+    <p class="display-name">{{ getDisplayName }}</p>
     <div id="user-stats">
       <ul>
         <li>
@@ -34,7 +40,7 @@
         Upload Image
       </button>
       <div class="uploaded-photo-diplay">
-        <p :v-bind="imageUrl">{{ imageUrl }}</p>
+        <p v-if="!imageUrl.includes('$$$$$$')">Successfully Uploaded</p>
       </div>
       <form id="upload-form">
         <textarea
@@ -127,6 +133,7 @@
 
 <script>
 import postService from "../services/PostService";
+import accountService from "../services/AccountService.js";
 
 export default {
   name: "side-bar",
@@ -138,14 +145,18 @@ export default {
         img: "",
         privated: false,
       },
-      imageUrl: "",
+      imageUrl: "$$$$$$",
       preview: true,
       creatingPost: false,
+      displayName: "",
     };
   },
   methods: {
     routeToProfile() {
-      this.$router.push("/profile");
+      accountService.getAccountSelf().then((response) => {
+        this.$store.commit("SET_ACCOUNT", response.data);
+        this.$router.push(`/profile/${this.$store.state.account.accountId}`);
+      });
     },
     logout() {
       this.$store.commit("LOGOUT");
@@ -155,17 +166,14 @@ export default {
       this.creatingPost = !this.creatingPost;
     },
     uploadPost() {
-      // this.$store.commit("ADD_POST", this.post);
-      //if this post has no url >> cannot post
       postService.addPost(this.post).then((response) => {
         if (response.status == 201 || response.status == 200) {
-          this.imageUrl = "";
+          this.imageUrl = "$$$$$$";
           this.post.caption = "";
           this.post.img = "";
           this.privated = false;
         } else {
           console.log("placeholder event");
-          //cannot make this post ^
         }
         this.creatingPost = !this.creatingPost;
       });
@@ -195,6 +203,16 @@ export default {
     getPosts() {
       return this.$store.state.posts;
     },
+    getProfilePic() {
+      console.log(this.$store.state.currentAccount.profileImg);
+      return this.$store.state.currentAccount.profileImg;
+    },
+    getDisplayName() {
+      return this.$store.state.currentAccount.displayName;
+    },
+  },
+  created() {
+    this.displayName = this.$store.state.currentAccount.displayName;
   },
 };
 </script>
@@ -232,6 +250,10 @@ export default {
   padding: 0px;
   box-shadow: 1px 1px 25px var(--primary-background-color);
   border-radius: 100%;
+}
+
+.display-name {
+  color: black;
 }
 
 #user-stats {
