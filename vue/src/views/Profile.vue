@@ -1,15 +1,13 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <create-post></create-post>
-    <image-column />
+    <image-column class="profile-image-column" />
   </div>
 </template>
 
 <script>
 import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
-import CreatePost from "@/components/CreatePost.vue";
 
 export default {
   name: "profile",
@@ -17,7 +15,6 @@ export default {
   components: {
     ProfileHeader,
     ImageColumn,
-    CreatePost,
   },
   created() {
     // this.$store.commit("SET_ACCOUNT", this.$route.params.id);
@@ -33,7 +30,14 @@ export default {
 }
 
 #profile-header {
-  width: 100vw;
+  /* width: 100vw; */
   position: fixed;
+}
+
+.profile-image-column {
+  padding-top: 150px;
+  margin-left: 20px;
+
+  margin-right: 20px;
 }
 </style>

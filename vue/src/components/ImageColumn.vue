@@ -9,14 +9,22 @@
       <img class="image" v-bind:src="post.img" alt="" />
       <post-interaction v-bind:post="post" />
     </div>
+
+    <div
+      v-if="this.$store.state.account.accountId != -1"
+      id="profile-add-new-post feed-post-container"
+    >
+      <create-post />
+    </div>
   </div>
 </template>
 
 <script>
 import postService from "@/services/PostService.js";
 import PostInteraction from "./PostInteraction.vue";
+import CreatePost from "@/components/CreatePost.vue";
 export default {
-  components: { PostInteraction },
+  components: { PostInteraction, CreatePost },
   name: "image-column",
   computed: {
     posts() {
@@ -52,16 +60,7 @@ export default {
     -moz-column-count: 3;
     -moz-column-gap: 0px;
     column-count: 3;
-    column-gap: 20px;
-    background: var(--primary-background-color);
-  }
-}
-
-@media only screen and (max-width: 800px) {
-  .my-images {
-    display: flex;
-    flex-direction: column;
-
+    column-gap: 10px;
     background: var(--primary-background-color);
   }
 }
@@ -76,12 +75,21 @@ export default {
     -moz-column-count: 2;
     -moz-column-gap: 0px;
     column-count: 2;
-    column-gap: 20px;
+    column-gap: 10px;
     background: var(--primary-background-color);
 
     display: block;
 
     break-inside: avoid;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .my-images {
+    display: flex;
+    flex-direction: column;
+
+    background: var(--primary-background-color);
   }
 }
 

@@ -4,14 +4,14 @@
       <img
         class="like-icon interaction-icon"
         v-if="post.liked == true"
-        src="@/resources/icons8-heart-50 (outline).png"
+        src="@/resources/icons8-heart-50-outline.png"
         alt=""
       />
 
       <img
         class="like-icon interaction-icon"
         v-else
-        src="@/resources/icons8-heart-50 (outline).png"
+        src="@/resources/icons8-heart-50-outline.png"
         alt=""
       />
     </div>
@@ -24,7 +24,7 @@
     </router-link>
     <img
       class="favorite-icon interaction-icon"
-      src="@/resources/icons8-star-50 (outline).png"
+      src="@/resources/icons8-star-50-outline.png"
       alt=""
     />
   </div>

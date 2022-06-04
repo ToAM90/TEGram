@@ -98,7 +98,7 @@
       <div class="nav-link" id="likes-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/icons8-star-50 (outline).png"
+          src="@/resources/icons8-star-50-outline.png"
           alt=""
         />
         <p class="nav-text">likes</p>
@@ -122,7 +122,7 @@
       <div class="nav-link" id="logout-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
+          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text" @click="logout">logout</p>

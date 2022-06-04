@@ -8,6 +8,11 @@ export default {
 
     getAccountOther(username) {
         return axios.get(`/profile/${username}`)
+    },
+
+    updateAccount(account) {
+        return axios.post('/profile', account)
     }
+
 
 }

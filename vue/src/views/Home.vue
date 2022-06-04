@@ -1,6 +1,6 @@
 <template>
   <div id="home-page-display">
-    <SideBar id="side-bar"></SideBar>
+    <SideBar id="side-bar-home"></SideBar>
 
     <ImageColumn class="image-column"></ImageColumn>
   </div>
@@ -38,12 +38,12 @@ export default {
 
 <style>
 #home-page-display {
-  max-width: (100vw);
+  width: (100vw);
   /* align-items: space-between; */
   /* justify-content: space-between; */
 }
 
-#side-bar {
+#side-bar-home {
   width: 275px;
   margin: 0px 0px 0px 0px;
   height: 100vh;
@@ -53,7 +53,7 @@ export default {
 .image-column {
   width: calc(100% - 315px);
   margin-left: 295px;
-  margin-right: 20px;
+  margin-right: auto;
   padding-top: 20px;
 }
 </style>

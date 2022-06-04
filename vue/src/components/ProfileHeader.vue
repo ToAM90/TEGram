@@ -1,44 +1,13 @@
 <template>
   <div class="profile-header">
-    <div v-if="creatingPost === true" id="upload">
-      <button
-        id="upload_widget"
-        class="cloudinary-button"
-        @click.prevent="uploadPhoto"
-      >
-        Upload Image
-      </button>
-      <div class="uploaded-photo-diplay">
-        {{ imageUrl }}
-      </div>
-      <form id="upload-form">
-        <textarea
-          name=""
-          id="upload-caption-input"
-          cols="30"
-          rows="4"
-          placeholder="Enter caption"
-          v-model="post.caption"
-        ></textarea>
-        <div id="form-submit-buttons">
-          <button id="cancel-upload" @click.prevent="toggleCreatingPost">
-            Cancel
-          </button>
-          <button id="submit-upload" @click="uploadPost" type="submit">
-            Post
-          </button>
-        </div>
-      </form>
-    </div>
-
     <div class="nav-list">
-      <div class="nav-link" id="make-a-post-link" v-if="creatingPost === false">
+      <div class="nav-link" id="home-link" @click="routeToHome">
         <img
           class="nav-bar-icon"
-          src="@/resources/add_photo_alternate_FILL0_wght400_GRAD0_opsz48.png"
+          src="@/resources/home_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p @click="toggleCreatingPost" class="nav-text">create a post</p>
+        <p class="nav-text">home</p>
       </div>
 
       <div class="nav-link" id="favorited-link">
@@ -53,14 +22,14 @@
       <div class="nav-link" id="likes-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/icons8-star-50 (outline).png"
+          src="@/resources/icons8-star-50-outline.png"
           alt=""
         />
         <p class="nav-text">likes</p>
       </div>
     </div>
 
-    <div id="nav-user">
+    <div id="nav-user" @click="uploadPFP">
       <img :src="getProfilePic" alt="" id="profile-icon" />
     </div>
 
@@ -84,7 +53,7 @@
       <div class="nav-link" id="logout-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
+          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text" @click="logout">logout</p>
@@ -95,6 +64,8 @@
 
 <script>
 import postService from "../services/PostService";
+
+import accountService from "../services/AccountService";
 
 export default {
   name: "profile-header",
@@ -115,6 +86,9 @@ export default {
     logout() {
       this.$store.commit("LOGOUT");
       this.$router.push("/login");
+    },
+    routeToHome() {
+      this.$router.push("/");
     },
     toggleCreatingPost() {
       this.creatingPost = !this.creatingPost;
@@ -145,6 +119,42 @@ export default {
               console.log(result.info.url);
               this.post.img = result.info.url;
               this.imageUrl = result.info.url;
+            } else {
+              console.log(error);
+            }
+          }
+        )
+        .open();
+    },
+    uploadPFP() {
+      window.cloudinary
+        .openUploadWidget(
+          {
+            cloud_name: "dcipg5scy",
+            upload_preset: "TE-GRAM",
+            maxFiles: 1,
+          },
+          (error, result) => {
+            //add verify clause for correct user
+            if (!error && result && result.event === "success") {
+              console.log(result.info.url);
+
+              accountService
+                .updateAccount({
+                  accountId: this.$store.state.currentAccount.accountId,
+                  userId: this.$store.state.currentAccount.userId,
+                  displayName: this.$store.state.currentAccount.displayName,
+                  profileImg: result.info.url,
+                })
+                .then((response) => {
+                  console.log(response.status);
+                  this.$store.commit("SET_CURRENT_ACCOUNT", {
+                    accountId: this.$store.state.currentAccount.accountId,
+                    userId: this.$store.state.currentAccount.userId,
+                    displayName: this.$store.state.currentAccount.displayName,
+                    profileImg: result.info.url,
+                  });
+                });
             } else {
               console.log(error);
             }
