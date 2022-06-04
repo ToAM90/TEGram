@@ -35,7 +35,7 @@
       <div class="nav-link" id="make-a-post-link" v-if="creatingPost === false">
         <img
           class="nav-bar-icon"
-          src="@/resources/add_photo_alternate_FILL0_wght400_GRAD0_opsz48.png"
+          src="@/assets/add_photo_alternate_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p @click="toggleCreatingPost" class="nav-text">create a post</p>
@@ -44,7 +44,7 @@
       <div class="nav-link" id="favorited-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/label_important_FILL0_wght400_GRAD0_opsz48.png"
+          src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text">favorited</p>
@@ -53,7 +53,7 @@
       <div class="nav-link" id="likes-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/icons8-star-50 (outline).png"
+          src="@/assets/icons8-star-50 (outline).png"
           alt=""
         />
         <p class="nav-text">likes</p>
@@ -68,7 +68,7 @@
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/groups_FILL0_wght400_GRAD0_opsz48.png"
+          src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text">following</p>
@@ -76,7 +76,7 @@
       <div class="nav-link" id="followers-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/groups_2_FILL0_wght400_GRAD0_opsz48.png"
+          src="@/assets/groups_2_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
         <p class="nav-text">followers</p>
@@ -84,7 +84,7 @@
       <div class="nav-link" id="logout-link">
         <img
           class="nav-bar-icon"
-          src="@/resources/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
+          src="@/assets/logout_FILL0_wght400_GRAD0_opsz48 (1).png"
           alt=""
         />
         <p class="nav-text" @click="logout">logout</p>

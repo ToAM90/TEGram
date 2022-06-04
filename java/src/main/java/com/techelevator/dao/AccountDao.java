@@ -6,7 +6,9 @@ public interface AccountDao {
 
     void createAccount(long userId, String username);
 
-    Account getAccount(long userId);
+    Account getAccountByUserId(long userId);
+
+    Account getAccountByAccountId(long accountId);
 
     void updateAccount(Account account, long userId);
 

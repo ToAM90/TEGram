@@ -5,7 +5,6 @@ import com.techelevator.dao.CommentDao;
 import com.techelevator.dao.PostDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Comment;
-import com.techelevator.model.Post;
 import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +32,7 @@ public class CommentController {
     @RequestMapping(path="/comments", method = RequestMethod.POST)
         public void submitComment(@RequestBody Comment comment, Principal principal, int postId){
         long userId = userDao.findIdByUsername(principal.getName());
-        int accountId = accountDao.getAccount(userId).getAccountId();
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         comment.setPostId(postId);
         comment.setAccountId(accountId);
         commentDao.submitComment(comment);
@@ -44,7 +43,7 @@ public class CommentController {
         public void deleteComment(@PathVariable int commentId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         User user = userDao.getUserById(userId);
-        int accountId = accountDao.getAccount(userId).getAccountId();
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
 
         Comment comment = commentDao.getComment(commentId);
 

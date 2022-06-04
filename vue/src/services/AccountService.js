@@ -6,8 +6,8 @@ export default {
         return axios.get('/profile')
     },
 
-    getAccountOther(username) {
-        return axios.get(`/profile/${username}`)
+    getAccountOther(accountId) {
+        return axios.get(`/profile/${accountId}`)
     }
 
 }

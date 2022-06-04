@@ -3,7 +3,6 @@ package com.techelevator.controller;
 import com.techelevator.dao.AccountDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.model.Account;
-import com.techelevator.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +25,12 @@ public class AccountController {
     public Account getAccountSelf(Principal principal){
         int userId = userDao.findIdByUsername(principal.getName());
 
-        return accountDao.getAccount(userId);
+        return accountDao.getAccountByUserId(userId);
     }
 
-    @RequestMapping("/profile/{username}")
-    public Account getAccountOther(@PathVariable String username){
-        int userId = userDao.findIdByUsername(username);
-
-        return accountDao.getAccount(userId);
+    @RequestMapping("/profile/{accountId}")
+    public Account getAccountByAccountId(@PathVariable int accountId){
+        return accountDao.getAccountByAccountId(accountId);
     }
 
     @PostMapping("/profile")

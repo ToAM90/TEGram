@@ -22,10 +22,22 @@ public class JdbcAccountDao implements AccountDao{
     }
 
     @Override
-    public Account getAccount(long userId) {
+    public Account getAccountByUserId(long userId) {
         Account account = new Account();
         String sql = "SELECT account_id, user_id, profile_img, display_name, biography FROM accounts WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+
+        if(results.next()){
+            account = MapRowToAccount(results);}
+
+        return account;
+    }
+
+    @Override
+    public Account getAccountByAccountId(long accountId) {
+        Account account = new Account();
+        String sql = "SELECT account_id, user_id, profile_img, display_name, biography FROM accounts WHERE account_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
         if(results.next()){
             account = MapRowToAccount(results);}

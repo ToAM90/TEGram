@@ -63,7 +63,7 @@ public class PostController {
     @PostMapping(path="/post")
     public void addPost(@Valid @RequestBody Post post, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
-        int accountId = accountDao.getAccount(userId).getAccountId();
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
 
         post.setAccountId(accountId);
         post.setPostDate(LocalDateTime.now());
@@ -76,7 +76,7 @@ public class PostController {
     public void deletePost(@PathVariable int id, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         User user = userDao.getUserById(userId);
-        int accountId = accountDao.getAccount(userId).getAccountId();
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
 
         Post post = postDao.getPost(id);
 

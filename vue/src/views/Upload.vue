@@ -8,6 +8,7 @@
       Upload Image
     </button>
     <form id="upload-form" v-on:submit.prevent="uploadPost">
+      
       <img id="image-preview" v-bind:src="imageUrl" />
 
       <input
@@ -53,12 +54,13 @@ export default {
     uploadPhoto() {
       window.cloudinary
         .openUploadWidget(
-          { cloud_name: "dcipg5scy", upload_preset: "TE-GRAM", maxFiles: 1 },
+          { cloud_name: "dcipg5scy", upload_preset: "TE-GRAM", maxFiles: 1, 
+          showCompletedButton: true,},
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result.info.url);
-              this.post.img = result.info.url;
-              this.imageUrl = result.info.url;
+              console.log(result);
+              this.post.img = result.info.public_id;
+              this.imageUrl = window.cloudinary.imageUrl("result.info.public_id", {resource_type:"raw"});
             } else {
               console.log(error);
             }
