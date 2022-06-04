@@ -3,22 +3,23 @@
     <div class="like-icon" @click="toggleLike(post.postId, post.liked)">
       <div>
          <img
-        class="interaction-icon"
+        class="interaction-icon image_on"
         v-if="post.liked"
         src="@/assets/icons8-heart-50.png"
         alt=""
       />
       <img
-        class="interaction-icon"
+        class="interaction-icon image_on"
         v-else
         src="@/assets/icons8-heart-50-outline.png"
         alt=""
       /> 
+      <img class="interaction-icon image_off" src="@/assets/icons8-heart.gif" alt="logo" />
       </div>
-     
       <div class="likes-count">{{post.likesCount}}</div>
     </div>
     
+    <div>
     <router-link v-bind:to="{ name: 'post', params: { id: post.postId } }">
       <img
         class="view-more interaction-icon"
@@ -26,11 +27,14 @@
         alt=""
       />
     </router-link>
+    </div>
+    <div>
     <img
       class="favorite-icon interaction-icon"
       src="@/assets/icons8-star-50-outline.png"
       alt=""
     />
+    </div>
   </div>
 </template>
 
@@ -88,11 +92,12 @@ export default {
 .like-icon {
   display: flex;
   justify-content: space-between;
-
+  cursor: pointer;
 }
 
 .likes-count{
   margin: auto;
+  padding-left: 2px;
 }
 
 .image-info {
@@ -100,6 +105,13 @@ export default {
   /* max-width: 20%; */
   color: black;
   padding-left: 5px;
+}
+
+.image_off, .like-icon:hover .image_on{
+  display: none;
+}
+.image_on, .like-icon:hover .image_off{
+  display:block;
 }
 
 </style>

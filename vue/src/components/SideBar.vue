@@ -349,6 +349,7 @@ li {
   position: relative;
   color: black;
   padding-right: 0px;
+  cursor: pointer;
 }
 
 .nav-text:after {
