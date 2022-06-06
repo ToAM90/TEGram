@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -48,9 +49,14 @@ public class PostController {
 
     @RequestMapping(path="/{otherId}/posts")
     public List<Post> listAccountPosts(@PathVariable int otherId, Principal principal){
+        List<Post> postList = new ArrayList<>();
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        List<Post> postList = postDao.getPostsByAccountId(otherId);
+        if(accountId != otherId){
+            postList = postDao.getPublicPostsByAccountId(otherId);
+        } else {
+            postList = postDao.getPublicAndPrivatePostsByAccountId(accountId);
+        }
         for(Post post : postList){
             post.setComments(commentDao.listComments(post.getPostId()));
             post.setLikesCount(likedDao.getNumLikes(post.getPostId()));

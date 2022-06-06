@@ -10,7 +10,9 @@ void createPost(Post post);
 
 Post getPost(int postId);
 
-List<Post> getPostsByAccountId(int accountId);
+List<Post> getPublicPostsByAccountId(int accountId);
+
+List<Post> getPublicAndPrivatePostsByAccountId(int accountId);
 
 List<Post> getAllPost();
 

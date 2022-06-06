@@ -39,10 +39,26 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
-    public List<Post> getPostsByAccountId(int accountId) {
+    public List<Post> getPublicPostsByAccountId(int accountId) {
         List<Post> postList = new ArrayList<>();
         String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts\n" +
                 "WHERE account_id = ? AND privated IS FALSE\n" +
+                "ORDER BY post_date DESC";
+
+        SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, accountId);
+
+        while(sqlRowSet.next()){
+            Post post = MapRowToPost(sqlRowSet);
+            postList.add(post);
+        }
+        return postList;
+    }
+
+    @Override
+    public List<Post> getPublicAndPrivatePostsByAccountId(int accountId) {
+        List<Post> postList = new ArrayList<>();
+        String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts\n" +
+                "WHERE account_id = ?\n" +
                 "ORDER BY post_date DESC";
 
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, accountId);
