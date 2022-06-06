@@ -6,13 +6,13 @@
       :key="index"
       v-bind:postId="post.postId"
     >
-      <div @click="selectCurrentPost(post)">
+      <div class="post-card" @click="selectCurrentPost(post)">
         <post-header id="username-header" v-bind:accountId="post.accountId" />
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
-        <div v-if="$store.state.currentPost.postId == post.postId">
-          <post-details />
-        </div>
+      </div>
+      <div v-if="$store.state.currentPost.postId == post.postId">
+        <post-details />
       </div>
     </div>
 
@@ -24,16 +24,9 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
-import PostService from "../services/PostService";
-import AccountService from "../services/AccountService";
 import PostDetails from "./PostDetails.vue";
-=======
-import PostInteraction from './PostInteraction.vue';
-import PostHeader from './PostHeader.vue';
->>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 
 export default {
   components: { PostInteraction, PostHeader, PostDetails },
@@ -50,8 +43,13 @@ export default {
     selectCurrentPost(post) {
       if (this.$store.state.currentPost.postId === 0) {
         this.$store.commit("SET_CURRENT_POST", post);
-      } else {
+      } else if (
+        this.$store.state.currentPost.postId !== 0 &&
+        post.postId === this.$store.state.currentPost.postId
+      ) {
         this.$store.commit("SET_CURRENT_POST", this.defaultPost);
+      } else {
+        this.$store.commit("SET_CURRENT_POST", post);
       }
     },
   },
@@ -73,30 +71,7 @@ export default {
     };
   },
   computed: {},
-<<<<<<< HEAD
-  created() {
-    if (this.$route.params.id != undefined) {
-      PostService.getAccountPosts(this.$route.params.id).then((response) =>
-        this.$store.commit("INITIALIZE_POSTS", response.data)
-      );
-      AccountService.getAccountOther(this.$route.params.id).then((response) =>
-        this.$store.commit("SET_ACCOUNT", response.data)
-      );
-    } else {
-      PostService.getAllPosts().then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);
-        AccountService.getAccountSelf().then((response) => {
-          this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-        });
-      });
-    }
-  },
 };
-=======
-
-     }
-
->>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 </script>
 
 <style>
@@ -150,6 +125,12 @@ export default {
   display: block;
 
   break-inside: avoid;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .my-images .feed-post-container .image {
