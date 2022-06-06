@@ -43,6 +43,7 @@ CREATE TABLE posts (
 
 );
 
+
 CREATE TABLE likes(
 	account_id int NOT NULL,
 	post_id int NOT NULL,

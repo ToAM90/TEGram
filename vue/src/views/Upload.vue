@@ -17,12 +17,13 @@
         placeholder="Enter caption"
         v-model="post.caption"
       />
-      <div id="privated">
+      <!-- <div id="privated">
         <input id="checkbox" type="checkbox" v-model="post.privated" />
         <label for="checkbox">Private {{ privated }}</label> <br />
-      </div>
+      </div> -->
       <button id="submit" type="submit">Post</button>
     </form>
+    <button v-on:click="deletePhoto">Cancel</button>
   </div>
 </template>
 
@@ -60,7 +61,9 @@ export default {
             if (!error && result && result.event === "success") {
               console.log(result);
               this.post.img = result.info.public_id;
-              this.imageUrl = window.cloudinary.imageUrl("result.info.public_id", {resource_type:"raw"});
+              console.log(this.post.img);
+              // this.viewPhoto();
+              
             } else {
               console.log(error);
             }
@@ -68,6 +71,12 @@ export default {
         )
         .open();
     },
+    viewPhoto(){
+      this.imageUrl = window.cloudinary.url(this.post.img)
+    },
+    deletePhoto(){
+      window.cloudinary.v2.uploader.destroy(this.post.img)
+    }
   },
 };
 </script>

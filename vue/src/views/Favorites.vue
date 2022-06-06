@@ -1,17 +1,20 @@
 <template>
   <div>
-      <image-column />
-      <side-bar />
+    
+    <profile-header id="profile-header"></profile-header>
+    <div class="favorite-title">Favorite Posts</div>
+    <image-column class="profile-image-column" />
+      
   </div>
 </template>
 
 <script>
+import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from '../components/ImageColumn.vue';
-import SideBar from '../components/SideBar.vue';
 import FavoriteService from '../services/FavoriteService';
 
 export default {
-    components: {ImageColumn, SideBar },
+    components: {ImageColumn, ProfileHeader },
     name: "favorites",
     created(){
         FavoriteService.getFavoritePosts().then((response) => {
@@ -23,5 +26,9 @@ export default {
 </script>
 
 <style>
+.favorite-title{
+     text-align:center;
+     color: black;
+}
 
 </style>

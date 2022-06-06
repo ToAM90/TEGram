@@ -10,41 +10,23 @@
 <script>
 import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
-import postService from "@/services/PostService.js";
-
-import accountService from "@/services/AccountService.js";
+import PostService from "@/services/PostService.js";
+import AccountService from "@/services/AccountService.js";
 import CreatePost from '../components/CreatePost.vue';
 
 export default {
   name: "profile",
-  // data() {
-  //   return {
-  //     defaultAccount: {
-  //       accountId: -1,
-  //       userId: -1,
-  //       displayName: "",
-  //     },
-  //   };
-  // },
   components: {
     ProfileHeader,
     ImageColumn,
     CreatePost,
   },
   created() {
-    // console.log(this.$store.state.posts);
-    // console.log(this.$store.state.);
- accountService.getAccountOther(this.$route.params.id).then((response) => 
-        this.$store.commit("SET_ACCOUNT", response.data))
-    ;
-
-    postService.getAccountPosts(this.$route.params.id)
+    AccountService.getAccountOther(this.$route.params.id).then((response) => 
+        {this.$store.commit("SET_ACCOUNT", response.data)});
+    PostService.getAccountPosts(this.$route.params.id)
       .then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);
-      });
-
-   
-    // this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
+        this.$store.commit("INITIALIZE_POSTS", response.data);});
   },
 };
 </script>

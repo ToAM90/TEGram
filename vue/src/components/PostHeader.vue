@@ -24,12 +24,11 @@ export default {
         }
     },
     created(){
-        
         AccountService.getAccountOther(this.accountId).then((response) => {
-              this.account = response.data;
-              console.log(response.data)
-               console.log("the display name is: " + this.account.displayName)
-        console.log("the account id is: " + this.account.accountId)
+            this.account = response.data;
+            console.log(response.data)
+            console.log("the display name is: " + this.account.displayName)
+            console.log("the account id is: " + this.account.accountId)
         } )
       
        
