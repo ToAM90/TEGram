@@ -17,36 +17,34 @@ import CreatePost from '../components/CreatePost.vue';
 
 export default {
   name: "profile",
-  data() {
-    return {
-      defaultAccount: {
-        accountId: -1,
-        userId: -1,
-        displayName: "",
-      },
-    };
-  },
+  // data() {
+  //   return {
+  //     defaultAccount: {
+  //       accountId: -1,
+  //       userId: -1,
+  //       displayName: "",
+  //     },
+  //   };
+  // },
   components: {
     ProfileHeader,
     ImageColumn,
     CreatePost,
   },
   created() {
-    console.log(this.$store.state.posts);
-    console.log(this.$store.state.currentAccount);
+    // console.log(this.$store.state.posts);
+    // console.log(this.$store.state.);
+ accountService.getAccountOther(this.$route.params.id).then((response) => 
+        this.$store.commit("SET_ACCOUNT", response.data))
+    ;
 
-    postService
-      .getAccountPosts(this.$store.state.account.accountId)
+    postService.getAccountPosts(this.$route.params.id)
       .then((response) => {
         this.$store.commit("INITIALIZE_POSTS", response.data);
       });
 
-    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
-    accountService.getAccountSelf().then((response) => {
-      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-    });
-
-    this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
+   
+    // this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
   },
 };
 </script>

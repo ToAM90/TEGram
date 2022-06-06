@@ -22,8 +22,6 @@
 <script>
 import PostInteraction from './PostInteraction.vue';
 import PostHeader from './PostHeader.vue';
-import PostService from '../services/PostService';
-import AccountService from '../services/AccountService';
 
 export default {
   components: { PostInteraction, PostHeader },
@@ -36,23 +34,8 @@ export default {
     },
   },
   computed: {},
-  created() {
-    if(this.$route.params.id != undefined){
-         PostService.getAccountPosts(this.$route.params.id).then((response) =>
-        this.$store.commit("INITIALIZE_POSTS", response.data))
-        AccountService.getAccountOther(this.$route.params.id).then((response) => 
-        this.$store.commit("SET_ACCOUNT", response.data))
-    } else {
-      PostService.getAllPosts().then((response) => {
-      this.$store.commit("INITIALIZE_POSTS", response.data)
-      AccountService.getAccountSelf().then((response) => {
-      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
- });
-    
-    });
-    }
-     
-}}
+
+     }
 
 </script>
 

@@ -1,7 +1,10 @@
 <template>
+
   <div class="post-header-bar">
       <router-link class="display-name" v-bind:to="{name: 'profile', params: {id: accountId}}">
-      {{account.displayName}}
+      this is displayName: {{account.displayName}}
+      <!-- this is account id: {{account.accountId}} --> 
+      <!-- {{account}} -->
       </router-link>
   </div>
 </template>
@@ -21,8 +24,15 @@ export default {
         }
     },
     created(){
-        AccountService.getAccountOther(this.accountId).then((response) => 
-        this.account = response.data)
+        
+        AccountService.getAccountOther(this.accountId).then((response) => {
+              this.account = response.data;
+              console.log(response.data)
+               console.log("the display name is: " + this.account.displayName)
+        console.log("the account id is: " + this.account.accountId)
+        } )
+      
+       
     }    
     }
 </script>
