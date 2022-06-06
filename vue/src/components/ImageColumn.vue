@@ -26,10 +26,9 @@
 <script>
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
-import PostDetails from "./PostDetails.vue";
 
 export default {
-  components: { PostInteraction, PostHeader, PostDetails },
+  components: { PostInteraction, PostHeader },
   name: "image-column",
   methods: {
     filterPosts(posts) {

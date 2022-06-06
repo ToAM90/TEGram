@@ -1,25 +1,16 @@
 <template>
-  <div id="comments">
-    <div
-      class="user-comment"
-      v-for="comment in commentList"
-      v-bind:key="comment.commentId"
-    >
-      <p>{{ comment.username }}</p>
-      <p>{{ comment.commentText }}</p>
-      <i
-        id="delete-comment-btn"
-        v-on:click="comment.commentId"
-        v-if="comment.accountId == this.$store.currentAccount.accountId"
-      >
-      </i>
-    </div>
+  <div id=comments>
+      <div v-for="comment in commentList" v-bind:key="comment.commentId">
+        <p>{{comment.username}}</p>
+        <p>{{comment.commentText}}</p>
+        <i id="delete-comment-btn" v-on:click="comment.commentId" v-if="comment.accountId == this.$store.currentAccount.accountId">
+      </div>
 
     <form v-on:submit.prevent="addComment">
       <textarea
         id="comment-input"
         type="text"
-        placeholder="Make A Comment :)"
+        placeholder="Make A Comment :"
         v-model="comment"
       />
     </form>
