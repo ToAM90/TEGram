@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
+    <div class="page-title">{{this.$store.state.account.displayName}}</div>
     <image-column class="profile-image-column" />
     <create-post v-if="this.$store.state.currentAccount.accountId == this.$store.state.account.accountId"/>
    
@@ -10,43 +11,23 @@
 <script>
 import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
-import postService from "@/services/PostService.js";
-
-import accountService from "@/services/AccountService.js";
+import PostService from "@/services/PostService.js";
+import AccountService from "@/services/AccountService.js";
 import CreatePost from '../components/CreatePost.vue';
 
 export default {
   name: "profile",
-  data() {
-    return {
-      defaultAccount: {
-        accountId: -1,
-        userId: -1,
-        displayName: "",
-      },
-    };
-  },
   components: {
     ProfileHeader,
     ImageColumn,
     CreatePost,
   },
   created() {
-    console.log(this.$store.state.posts);
-    console.log(this.$store.state.currentAccount);
-
-    postService
-      .getAccountPosts(this.$store.state.account.accountId)
+    AccountService.getAccountOther(this.$route.params.id).then((response) => 
+        {this.$store.commit("SET_ACCOUNT", response.data)});
+    PostService.getAccountPosts(this.$route.params.id)
       .then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);
-      });
-
-    this.$store.commit("SET_ACCOUNT", this.defaultAccount);
-    accountService.getAccountSelf().then((response) => {
-      this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-    });
-
-    this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
+        this.$store.commit("INITIALIZE_POSTS", response.data);});
   },
 };
 </script>
@@ -63,10 +44,15 @@ export default {
   position: fixed;
 }
 
-.profile-image-column {
-  padding-top: 150px;
-  margin-left: 20px;
+.page-title{
+    padding-top: 200px;
+     text-align:center;
+     color: black;
+}
 
+.profile-image-column {
+  padding-top: 50px;
+  margin-left: 20px;
   margin-right: 20px;
 }
 </style>

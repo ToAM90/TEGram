@@ -8,6 +8,7 @@
 <script>
 import SideBar from "@/components/SideBar.vue";
 import ImageColumn from "@/components/ImageColumn.vue";
+import PostService from '../services/PostService';
 
 export default {
   name: "home",
@@ -24,7 +25,10 @@ export default {
     SideBar,
     ImageColumn,
   },
-};
+  created(){
+    PostService.getAllPosts().then((response) => 
+    this.$store.commit("INITIALIZE_POSTS", response.data))
+}}
 </script>
 
 <style>

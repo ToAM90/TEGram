@@ -24,11 +24,16 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
 import PostService from "../services/PostService";
 import AccountService from "../services/AccountService";
 import PostDetails from "./PostDetails.vue";
+=======
+import PostInteraction from './PostInteraction.vue';
+import PostHeader from './PostHeader.vue';
+>>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 
 export default {
   components: { PostInteraction, PostHeader, PostDetails },
@@ -68,6 +73,7 @@ export default {
     };
   },
   computed: {},
+<<<<<<< HEAD
   created() {
     if (this.$route.params.id != undefined) {
       PostService.getAccountPosts(this.$route.params.id).then((response) =>
@@ -86,6 +92,11 @@ export default {
     }
   },
 };
+=======
+
+     }
+
+>>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 </script>
 
 <style>

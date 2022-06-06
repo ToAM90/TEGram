@@ -20,6 +20,10 @@
         placeholder="Enter caption"
         v-model="createPost.caption"
       ></textarea>
+       <div id="privated">
+        <input id="checkbox" type="checkbox" v-model="post.privated" />
+        <label for="checkbox">Private {{ privated }}</label> <br />
+      </div>
       <div id="form-submit-buttons">
         <button id="cancel-upload" @click.prevent="toggleCreatingPost">
           Cancel
@@ -28,7 +32,7 @@
           Post
         </button>
       </div>
-    </form>
+    </form> 
   </div>
 </template>
 
@@ -43,6 +47,7 @@ export default {
         accountId: "",
         caption: " ",
         img: "",
+        privated: false,
       },
 
       imageUrl: "$$$$$$",

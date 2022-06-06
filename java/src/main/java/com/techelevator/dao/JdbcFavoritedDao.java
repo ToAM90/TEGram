@@ -42,9 +42,11 @@ public class JdbcFavoritedDao implements FavoritedDao {
     @Override
     public List<Post> getFavorites(int accountId) {
         List<Post> favoritePosts = new ArrayList<>();
-        String sql = "SELECT p.img, p.caption, p.post_date, p.privated, p.account_id FROM posts p \n" +
-                "JOIN favorites f ON f.account_id = p.account_id" +
-                "WHERE p.account_id = ? ORDER BY p.post_date DESC";
+        String sql = "SELECT posts.img, posts.caption, posts.post_date, posts.privated, posts.account_id, posts.post_id from accounts\n" +
+                "INNER JOIN posts ON accounts.account_id = posts.account_id\n" +
+                "INNER JOIN favorites ON favorites.post_id = posts.post_id\n" +
+                "WHERE favorites.account_id = ?\n" +
+                "ORDER BY posts.post_date DESC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
         while (results.next()) {
@@ -62,6 +64,7 @@ public class JdbcFavoritedDao implements FavoritedDao {
         post.setImg(results.getString("img"));
         post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
+        post.setCaption(results.getString("caption"));
 
         return post;
     }

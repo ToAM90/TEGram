@@ -16,7 +16,9 @@
           src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
+        <router-link v-bind:to="{name:'favorites'}">
         <p class="nav-text">favorited</p>
+        </router-link>
       </div>
 
       <div class="nav-link" id="likes-link">

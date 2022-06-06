@@ -58,7 +58,7 @@
 
 <script>
 import authService from "../services/AuthService";
-// import accountService from "../services/AccountService";
+import accountService from '../services/AccountService';
 
 export default {
   name: "login",
@@ -79,6 +79,8 @@ export default {
           if (response.status == 200) {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
+            accountService.getAccountSelf().then((response) => {
+              this.$store.commit("SET_CURRENT_ACCOUNT", response.data)});
             this.$router.push("/");
           }
           // this.$router.push("/");
