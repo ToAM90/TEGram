@@ -24,19 +24,11 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import PostInteraction from "./PostInteraction.vue";
-import PostHeader from "./PostHeader.vue";
-import PostService from "../services/PostService";
-import AccountService from "../services/AccountService";
-import PostDetails from "./PostDetails.vue";
-=======
 import PostInteraction from './PostInteraction.vue';
 import PostHeader from './PostHeader.vue';
->>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 
 export default {
-  components: { PostInteraction, PostHeader, PostDetails },
+  components: { PostInteraction, PostHeader },
   name: "image-column",
   methods: {
     filterPosts(posts) {
@@ -73,30 +65,9 @@ export default {
     };
   },
   computed: {},
-<<<<<<< HEAD
-  created() {
-    if (this.$route.params.id != undefined) {
-      PostService.getAccountPosts(this.$route.params.id).then((response) =>
-        this.$store.commit("INITIALIZE_POSTS", response.data)
-      );
-      AccountService.getAccountOther(this.$route.params.id).then((response) =>
-        this.$store.commit("SET_ACCOUNT", response.data)
-      );
-    } else {
-      PostService.getAllPosts().then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);
-        AccountService.getAccountSelf().then((response) => {
-          this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-        });
-      });
-    }
-  },
-};
-=======
 
      }
 
->>>>>>> 999ad3e59b4c8e9b7a2c67fa86e04759d5241e3b
 </script>
 
 <style>

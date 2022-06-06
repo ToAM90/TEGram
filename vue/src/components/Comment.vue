@@ -2,7 +2,7 @@
   <div id=comments>
       <div v-for="comment in commentList" v-bind:key="comment.commentId">
         <p>{{comment.username}}</p>
-        <p>{{comment.commentText}}
+        <p>{{comment.commentText}}</p>
         <i id="delete-comment-btn" v-on:click="comment.commentId" v-if="comment.accountId == this.$store.currentAccount.accountId">
       </div>
 
