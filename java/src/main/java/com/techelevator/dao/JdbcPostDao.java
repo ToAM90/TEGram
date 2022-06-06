@@ -83,6 +83,7 @@ public class JdbcPostDao implements PostDao{
         post.setImg(results.getString("img"));
         post.setPostDate(results.getTimestamp("post_date").toLocalDateTime());
         post.setPrivated(results.getBoolean("privated"));
+        post.setCaption(results.getString("caption"));
 
         return post;
     }

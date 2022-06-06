@@ -186,13 +186,13 @@ export default {
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0px 2px 10px rgb(184, 184, 184);
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 100px;
 }
 #nav-user {
-  display: flex;
-  flex-direction: row;
-  margin-left: -40px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* margin-left: 40px; */
 }
 
 .settings-icon {
