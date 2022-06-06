@@ -18,7 +18,7 @@
         cols="30"
         rows="4"
         placeholder="Enter caption"
-        v-model="post.caption"
+        v-model="createPost.caption"
       ></textarea>
        <div id="privated">
         <input id="checkbox" type="checkbox" v-model="post.privated" />
@@ -43,9 +43,9 @@ export default {
   name: "create-post",
   data() {
     return {
-      post: {
+      createPost: {
         accountId: "",
-        caption: "",
+        caption: " ",
         img: "",
         privated: false,
       },
@@ -53,6 +53,7 @@ export default {
       imageUrl: "$$$$$$",
       preview: true,
       creatingPost: false,
+      privated: false,
     };
   },
   methods: {
@@ -99,12 +100,12 @@ export default {
     },
 
     uploadPost() {
-      postService.addPost(this.post).then((response) => {
+      postService.addPost(this.createPost).then((response) => {
         if (response.status == 201 || response.status == 200) {
-          this.$store.commit("ADD_POST", this.createTempPost(this.post));
+          this.$store.commit("ADD_POST", this.createTempPost(this.createPost));
           this.imageUrl = "";
-          this.post.caption = "";
-          this.post.img = "";
+          this.createPost.caption = " ";
+          this.createPost.img = "";
           this.privated = false;
         } else {
           console.log("placeholder event");
@@ -124,7 +125,7 @@ export default {
           (error, result) => {
             if (!error && result && result.event === "success") {
               console.log(result.info.url);
-              this.post.img = result.info.url;
+              this.createPost.img = result.info.url;
               this.imageUrl = result.info.url;
             } else {
               console.log(error);

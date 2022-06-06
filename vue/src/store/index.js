@@ -23,7 +23,19 @@ export default new Vuex.Store({
     posts: [],
     account: {},
     currentAccount: {},
-    currentView: ''
+    currentView: '',
+    currentPost: {
+      postId: 0,
+      accountId: 0,
+      img: "",
+      caption: "",
+      postDate: "",
+      privated: false,
+      comments: [],
+      liked: false,
+      favorited: false,
+      likesCount: 0,
+    }
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -50,19 +62,20 @@ export default new Vuex.Store({
     },
     TOGGLE_LIKE(state, postId) {
       state.posts.forEach(post => {
-        if (post.postId == postId){
-           post.liked = !post.liked
-           if (post.liked){post.likesCount++
+        if (post.postId == postId) {
+          post.liked = !post.liked
+          if (post.liked) {
+            post.likesCount++
           } else {
-          post.likesCount--
-        }
+            post.likesCount--
+          }
         }
       })
     },
     TOGGLE_FAVORITE(state, postId) {
       state.posts.forEach(post => {
-        if (post.postId == postId){
-           post.favorited = !post.favorited
+        if (post.postId == postId) {
+          post.favorited = !post.favorited
         }
       })
     },
@@ -74,6 +87,9 @@ export default new Vuex.Store({
     },
     CHANGE_CURRENT_VIEW(state, view) {
       state.currentView = view
+    },
+    SET_CURRENT_POST(state, post) {
+      state.currentPost = post
     }
   }
 })
