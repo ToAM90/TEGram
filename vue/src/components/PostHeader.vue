@@ -3,8 +3,6 @@
   <div class="post-header-bar">
       <router-link class="display-name" v-bind:to="{name: 'profile', params: {id: accountId}}">
       this is displayName: {{account.displayName}}
-      <!-- this is account id: {{account.accountId}} --> 
-      <!-- {{account}} -->
       </router-link>
   </div>
 </template>

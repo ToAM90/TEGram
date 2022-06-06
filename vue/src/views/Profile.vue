@@ -1,6 +1,7 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
+    <div class="page-title">{{this.$store.state.account.displayName}}</div>
     <image-column class="profile-image-column" />
     <create-post v-if="this.$store.state.currentAccount.accountId == this.$store.state.account.accountId"/>
    
@@ -43,10 +44,15 @@ export default {
   position: fixed;
 }
 
-.profile-image-column {
-  padding-top: 150px;
-  margin-left: 20px;
+.page-title{
+    padding-top: 200px;
+     text-align:center;
+     color: black;
+}
 
+.profile-image-column {
+  padding-top: 50px;
+  margin-left: 20px;
   margin-right: 20px;
 }
 </style>

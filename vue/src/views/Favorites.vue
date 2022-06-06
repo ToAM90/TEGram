@@ -2,7 +2,7 @@
   <div>
     
     <profile-header id="profile-header"></profile-header>
-    <div class="favorite-title">Favorite Posts</div>
+    <div class="page-title">Favorite Posts</div>
     <image-column class="profile-image-column" />
       
   </div>
@@ -26,9 +26,5 @@ export default {
 </script>
 
 <style>
-.favorite-title{
-     text-align:center;
-     color: black;
-}
 
 </style>

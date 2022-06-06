@@ -17,10 +17,4 @@ export default {
     getAccountPosts(accountId){
         return axios.get(`/${accountId}/posts`)
     }
-    //remove + add to list of likes
-    //ex call for a like:
-    //postId, userId can be simplified by passing in entire like obj
-    //LikeService.likePost(postId)
-    //PostService.addLike(postId, userId)
-    //this.$state.commit('ADD_LIKE', postId, userId)
 }

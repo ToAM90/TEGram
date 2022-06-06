@@ -42,7 +42,7 @@ public class JdbcPostDao implements PostDao{
     public List<Post> getPostsByAccountId(int accountId) {
         List<Post> postList = new ArrayList<>();
         String sql = "SELECT post_id, account_id, img, caption, post_date, privated FROM posts\n" +
-                "WHERE account_id = ?\n" +
+                "WHERE account_id = ? AND privated IS FALSE\n" +
                 "ORDER BY post_date DESC";
 
         SqlRowSet sqlRowSet = jdbcTemplate.queryForRowSet(sql, accountId);
