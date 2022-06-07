@@ -29,14 +29,12 @@ export default {
   created() {
     PostService.getAllPosts().then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
-      if (this.$store.state.accounts.length === 0) {
-        this.$store.state.posts.forEach((post) => {
-          AccountService.getAccountOther(post.accountId).then((response) => {
-            this.$store.commit("ADD_ACCOUNT", response.data);
-            console.log(this.$store.state.accounts);
-          });
+      this.$store.commit("CLEAR_ACCOUNTS");
+      this.$store.state.posts.forEach((post) => {
+        AccountService.getAccountOther(post.accountId).then((response) => {
+          this.$store.commit("ADD_ACCOUNT", response.data);
         });
-      }
+      });
     });
 
     this.$store.commit("CHANGE_CURRENT_VIEW", "home");

@@ -1,50 +1,46 @@
 <template>
   <div class="post-header-bar">
-    <div>{{ this.$store.state.account.displayName }}</div>
     <router-link
       class="display-name"
-      v-bind:to="{ name: 'profile', params: { id: account.accountId } }"
+      v-bind:to="{ name: 'profile', params: { id: post.accountId } }"
     >
-      <p class="display-name">{{ this.$store.state.account.displayName }}</p>
+      <p class="display-name">{{ getDisplayName() }}{{ displayName }}</p>
     </router-link>
   </div>
 </template>
 
 <script>
-import AccountService from "../services/AccountService";
 export default {
   name: "post-header",
   props: {
-    accountId: {
-      type: Number,
+    post: {
+      postId: 0,
+      accountId: 0,
+      img: "",
+      caption: "",
+      postDate: "",
+      privated: false,
+      comments: [],
+      liked: false,
+      favorited: false,
+      likesCount: 0,
     },
   },
   data() {
     return {
-      account: {
-        accountId: 0,
-        displayName: "",
-        isFetching: true,
-      },
+      displayName: "",
     };
   },
-  mounted() {
-    console.log("before id" + this.accountId);
-    AccountService.getAccountOther(this.accountId).then((response) => {
-      this.account = response.data;
-      console.log("this is the problem:");
 
-      console.log(response.data);
-    });
+  methods: {
+    getDisplayName() {
+      this.$store.state.accounts.find((stateAccount) => {
+        if (stateAccount.accountId == this.post.accountId) {
+          this.displayName = stateAccount.displayName;
+        }
+      });
+    },
   },
-  // methods: {
-  //   getAccount() {
-  //     AccountService.getAccountOther(this.accountId).then((response) => {
-  //       this.account = response.data;
-  //       console.log("acc:" + this.account.displayName);
-  //     });
-  //   },
-  // },
 };
 </script>
 

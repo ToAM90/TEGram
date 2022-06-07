@@ -10,7 +10,7 @@
         <post-header
           id="username-header"
           v-if="post.accountId"
-          v-bind:accountId="post.accountId"
+          v-bind:post="post"
         />
 
         <img class="image" v-bind:src="post.img" alt="" />

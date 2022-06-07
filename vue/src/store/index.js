@@ -92,8 +92,11 @@ export default new Vuex.Store({
     SET_CURRENT_POST(state, post) {
       state.currentPost = post
     },
-    ADD_ACCOUNT(state, account) {
-      state.accounts.push(account)
+    CLEAR_ACCOUNTS(state) {
+      state.accounts = []
+    },
+    ADD_ACCOUNT(state, newAccount) {
+      state.accounts.push(newAccount)
     }
   }
 })

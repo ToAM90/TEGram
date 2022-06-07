@@ -58,7 +58,6 @@ export default {
 
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  /* white-space: nowrap; */
 
   word-break: break-all;
 
