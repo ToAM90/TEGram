@@ -38,8 +38,6 @@ export default {
         });
       }
     });
-
-    this.$store.commit("CHANGE_CURRENT_VIEW", "home");
   },
 };
 </script>

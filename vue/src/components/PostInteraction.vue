@@ -11,12 +11,12 @@
         <img
           class="interaction-icon image_on"
           v-else
-          src="@/assets/icons8-heart-24.png"
+          src="@/assets/icons8-heart-50-outline.png"
           alt=""
         />
         <img
           class="interaction-icon image_off"
-          src="@/assets/icons8-heart-24-unscreen.gif"
+          src="@/assets/icons8-heart.gif"
           alt="logo"
         />
       </div>
@@ -24,15 +24,10 @@
     </div>
 
     <img
-      v-if="post.postId !== this.$store.state.currentPost.postId"
       class="view-more interaction-icon"
       src="@/assets/expand_more_FILL0_wght400_GRAD0_opsz48.png"
     />
-    <img
-      v-else
-      class="view-more interaction-icon"
-      src="@/assets/expand_less_FILL0_wght400_GRAD0_opsz48 (1).png"
-    />
+
     <div
       class="favorite-icon"
       @click.stop="toggleFavorite(post.postId, post.favorited)"
@@ -40,18 +35,18 @@
       <img
         class="interaction-icon image_on"
         v-if="post.favorited"
-        src="@/assets/bookmark-filled.png"
+        src="@/assets/icons8-star-50.png"
         alt=""
       />
       <img
         class="interaction-icon image_on"
         v-else
-        src="@/assets/emptyBookmark.png"
+        src="@/assets/icons8-star-50-outline.png"
         alt=""
       />
       <img
         class="interaction-icon image_off"
-        src="@/assets/icons8-bookmark-1--unscreen.gif"
+        src="@/assets/icons8-star.gif"
         alt="logo"
       />
     </div>
@@ -106,8 +101,7 @@ export default {
 
 <style>
 .post-interaction-bar {
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
-  background: #d1d1d3;
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
   display: flex;
   flex-direction: row;
   justify-content: space-between;

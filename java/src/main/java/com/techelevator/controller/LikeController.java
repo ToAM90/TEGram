@@ -2,7 +2,6 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -24,7 +23,6 @@ public class LikeController {
         this.likedDao = likedDao;
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/like/{postId}")
     public void like(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
@@ -32,7 +30,6 @@ public class LikeController {
         likedDao.like(postId, accountId);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/like/{postId}", method = RequestMethod.DELETE)
     public void unlike(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());

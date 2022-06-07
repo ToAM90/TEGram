@@ -20,7 +20,7 @@
         placeholder="Enter caption"
         v-model="createPost.caption"
       ></textarea>
-      <div id="privated">
+       <div id="privated">
         <input id="checkbox" type="checkbox" v-model="createPost.privated" />
         <label for="checkbox">Private {{ privated }}</label> <br />
       </div>
@@ -32,7 +32,7 @@
           Post
         </button>
       </div>
-    </form>
+    </form> 
   </div>
 </template>
 
@@ -140,8 +140,7 @@ export default {
 
 <style lang="css" scoped>
 #upload {
-  width: calc(60% - 20px);
-  margin-left: 20%;
+  width: calc(100% - 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,11 +148,8 @@ export default {
   background-color: white;
   border: 5px rgba(0, 0, 0, 0.308) solid;
   padding: 5px;
-  position: relative;
-  top: 150px;
 
   border-radius: 10px;
-  /* padding-top: 155px; */
 }
 
 .uploaded-photo-diplay {

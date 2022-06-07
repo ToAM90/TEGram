@@ -1,12 +1,14 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
+    <!-- <div class="page-title">{{ this.$store.state.account.displayName }}</div> -->
+    <image-column class="profile-image-column" />
     <create-post
       v-if="
-        $store.state.account.accountId === $store.state.currentAccount.accountId
+        this.$store.state.currentAccount.accountId ==
+        this.$store.state.account.accountId
       "
     />
-    <image-column class="profile-image-column" />
   </div>
 </template>
 
@@ -15,7 +17,7 @@ import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
 import PostService from "@/services/PostService.js";
 import AccountService from "@/services/AccountService.js";
-import CreatePost from "@/components/CreatePost.vue";
+import CreatePost from "../components/CreatePost.vue";
 
 export default {
   name: "profile",
@@ -23,12 +25,6 @@ export default {
     ProfileHeader,
     ImageColumn,
     CreatePost,
-  },
-  data() {
-    return {
-      // hideHeader: false,
-      // scrollDistance: 0,
-    };
   },
   created() {
     AccountService.getAccountOther(this.$route.params.id).then((response) => {
@@ -38,21 +34,6 @@ export default {
     PostService.getAccountPosts(this.$route.params.id).then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
     });
-    this.$store.commit("CHANGE_CURRENT_VIEW", "profile");
-    // window.addEventListener("scroll", this.calcHideHeader);
-  },
-  methods: {
-    // calcHideHeader() {
-    //   console.log(window.scrollY);
-    //   this.hideHeader = true;
-    //   console.log("test");
-    //   if (this.scrollDistance > window.scrollY) {
-    //     this.hideHeader = true;
-    //   } else {
-    //     this.hideHeader = false;
-    //   }
-    //   this.scrollDistance = window.scrollY;
-    // },
   },
 };
 </script>
@@ -62,7 +43,6 @@ export default {
   max-width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 #profile-header {

@@ -48,11 +48,9 @@ export default {
 
 <style lang="css" scoped>
 .caption {
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654569968/TE_GRAM/nchboavjxefno1onx7u7.png");
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654569968/TE_GRAM/nchboavjxefno1onx7u7.png");
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
-  color: rgb(35, 33, 37);
+  -webkit-background-clip: text;
   padding: 8px;
   font-size: 1.2rem;
 
@@ -74,9 +72,8 @@ export default {
 
 .post-detail-bar {
   margin-top: -4px;
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
-  /* background: #e6e6e9; */
-  background: #d1d1d3;
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
+
   border-radius: 0px 0px 4px 4px;
 }
 </style>
