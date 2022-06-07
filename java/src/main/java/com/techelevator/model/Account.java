@@ -7,26 +7,18 @@ public class Account {
     private String displayName;
     private String biography;
     private String profileImg;
-    private int numFollowers;
-    private int numFollowing;
-    private boolean followed;
-
 
 
     public Account(){
 
     }
 
-    public Account(int accountId, int userId, String displayName, String biography, String profileImg, int numFollowers, int numFollowing, boolean followed) {
+    public Account(int accountId, int userId, String displayName, String biography, String profileImg) {
         this.accountId = accountId;
         this.userId = userId;
         this.displayName = displayName;
         this.biography = biography;
         this.profileImg = profileImg;
-        this.numFollowers = numFollowers;
-        this.numFollowing = numFollowing;
-        this.followed = followed;
-
     }
 
     public int getAccountId() {
@@ -68,28 +60,4 @@ public class Account {
     public void setProfileImg(String profileImg) {
         this.profileImg = profileImg;
     }
-    public int getNumFollowers() {
-        return numFollowers;
-    }
-
-    public void setNumFollowers(int numFollowers) {
-        this.numFollowers = numFollowers;
-    }
-
-    public int getNumFollowing() {
-        return numFollowing;
-    }
-
-    public void setNumFollowing(int numFollowing) {
-        this.numFollowing = numFollowing;
-    }
-
-    public boolean isFollowed() {
-        return followed;
-    }
-
-    public void setFollowed(boolean followed) {
-        this.followed = followed;
-    }
-
 }

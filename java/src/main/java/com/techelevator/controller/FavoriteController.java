@@ -4,7 +4,7 @@ import com.techelevator.dao.*;
 import com.techelevator.model.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
+
 import java.security.Principal;
 import java.util.List;
 
@@ -30,14 +30,12 @@ public class FavoriteController {
     }
 
     @RequestMapping(path = "/favorite/{postId}")
-    @ResponseStatus(HttpStatus.CREATED)
     public void favorite(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         favoritedDao.favorite(postId, accountId);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/favorite/{postId}", method = RequestMethod.DELETE)
     public void unfavorite(@PathVariable int postId, Principal principal) {
         long userId = userDao.findIdByUsername(principal.getName());

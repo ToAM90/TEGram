@@ -86,31 +86,6 @@ public class JdbcUserDao implements UserDao {
         return userCreated;
     }
 
-
-    @Override
-    public boolean updateUser(String username, String password, String role) {
-        boolean userUpdated = false;
-
-        String insertUser = "UPDATE users SET username = ?, password_hash = ?, role = ?";
-        String password_hash = new BCryptPasswordEncoder().encode(password);
-        String ssRole = "ROLE_" + role.toUpperCase();
-
-        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-        String id_column = "user_id";
-        userUpdated = jdbcTemplate.update(con -> {
-                    PreparedStatement ps = con.prepareStatement(insertUser, new String[]{id_column});
-                    ps.setString(1, username);
-                    ps.setString(2, password_hash);
-                    ps.setString(3, ssRole);
-                    return ps;
-                }
-                , keyHolder) == 1;
-        int newUserId = (int) keyHolder.getKeys().get(id_column);
-
-        return userUpdated;
-    }
-
-
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();
         user.setId(rs.getLong("user_id"));
