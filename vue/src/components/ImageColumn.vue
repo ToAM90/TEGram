@@ -7,7 +7,7 @@
       v-bind:postId="post.postId">
       <div class="post-card" @click="selectCurrentPost(post)">
 
-        <post-header id="username-header" :accountId="post.accountId" v-if="post.accountId" />
+        <post-header id="username-header" v-if="post.accountId" v-bind:accountId="post.accountId"  />
         
 
         <img class="image" v-bind:src="post.img" alt="" />
