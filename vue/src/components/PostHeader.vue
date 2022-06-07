@@ -1,11 +1,11 @@
 <template>
   <div class="post-header-bar">
-    <div>{{}}</div>
+    <div>{{ this.$store.state.account.displayName }}</div>
     <router-link
       class="display-name"
       v-bind:to="{ name: 'profile', params: { id: account.accountId } }"
     >
-      <p class="display-name">{{ account.displayName }}</p>
+      <p class="display-name">{{ this.$store.state.account.displayName }}</p>
     </router-link>
   </div>
 </template>

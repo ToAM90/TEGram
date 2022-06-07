@@ -70,6 +70,15 @@ CREATE TABLE comments (
 	CONSTRAINT FK_account FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
 
+CREATE TABLE following (
+    account_id_follower int NOT NULL,
+    account_id_following int NOT NULL,
+    CONSTRAINT FK_follower FOREIGN KEY (account_id_follower) REFERENCES accounts (account_id),
+    CONSTRAINT FK_following FOREIGN KEY (account_id_following) REFERENCES accounts (account_id),
+    CONSTRAINT PK_following PRIMARY KEY (account_id_follower, account_id_following)
+    );
+
+
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
