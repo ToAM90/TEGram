@@ -4,13 +4,12 @@
       class="display-name"
       v-bind:to="{ name: 'profile', params: { id: accountId } }"
     >
-      this is displayName: {{ account.displayName }}
+      <p class="display-name">{{ getDisplayName }}</p>
     </router-link>
   </div>
 </template>
 
 <script>
-import AccountService from "../services/AccountService";
 export default {
   name: "post-header",
   props: { accountId: Number },
@@ -22,30 +21,37 @@ export default {
       },
     };
   },
-  created() {
-    AccountService.getAccountOther(this.accountId).then((response) => {
-      this.account = response.data;
-      console.log(response.data);
-      console.log("the display name is: " + this.account.displayName);
-      console.log("the account id is: " + this.account.accountId);
-    });
+  computed: {
+    getDisplayName() {
+      return this.$store.state.accounts.find((stateAccount) => {
+        if (stateAccount.accountId == this.accountId) return stateAccount;
+      }).displayName;
+    },
   },
 };
 </script>
 
 <style>
 .post-header-bar {
-  background: var(--panel-background-color);
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
   box-shadow: 0px 0px 5px rgb(172, 169, 169);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   height: 20px;
-  color: black;
   border-radius: 4px 4px 0px 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .display-name {
   margin: auto;
+  /* padding: 8px; */
+
+  color: #ffd084;
+
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
 </style>

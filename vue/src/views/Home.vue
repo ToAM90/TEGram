@@ -8,7 +8,8 @@
 <script>
 import SideBar from "@/components/SideBar.vue";
 import ImageColumn from "@/components/ImageColumn.vue";
-import PostService from '../services/PostService';
+import PostService from "../services/PostService";
+import AccountService from "../services/AccountService";
 
 export default {
   name: "home",
@@ -25,10 +26,20 @@ export default {
     SideBar,
     ImageColumn,
   },
-  created(){
-    PostService.getAllPosts().then((response) => 
-    this.$store.commit("INITIALIZE_POSTS", response.data))
-}}
+  created() {
+    PostService.getAllPosts().then((response) => {
+      this.$store.commit("INITIALIZE_POSTS", response.data);
+      if (this.$store.state.accounts.length === 0) {
+        this.$store.state.posts.forEach((post) => {
+          AccountService.getAccountOther(post.accountId).then((response) => {
+            this.$store.commit("ADD_ACCOUNT", response.data);
+            console.log(this.$store.state.accounts);
+          });
+        });
+      }
+    });
+  },
+};
 </script>
 
 <style>

@@ -19,16 +19,20 @@
     <div
       v-if="this.$store.state.currentView == 'profile'"
       id="profile-add-new-post feed-post-container"
-    ></div>
+    >
+      <create-post></create-post>
+    </div>
   </div>
 </template>
 
 <script>
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
+import PostDetails from "./PostDetails.vue";
+import CreatePost from "./CreatePost";
 
 export default {
-  components: { PostInteraction, PostHeader },
+  components: { PostInteraction, PostHeader, PostDetails, CreatePost },
   name: "image-column",
   methods: {
     filterPosts(posts) {
@@ -100,7 +104,6 @@ export default {
     -moz-column-gap: 0px;
     column-count: 2;
     column-gap: 10px;
-    /* background: var(--primary-background-color); */
 
     display: block;
 
@@ -112,8 +115,6 @@ export default {
   .my-images {
     display: flex;
     flex-direction: column;
-
-    /* background: var(--primary-background-color); */
   }
 }
 
@@ -124,17 +125,25 @@ export default {
   display: block;
 
   break-inside: avoid;
+
+  margin-top: 10px;
+}
+
+.my-images > :nth-child(1) {
+  margin-top: 0px;
 }
 
 .post-card {
   display: flex;
   flex-direction: column;
-  gap: 0px;
 }
 
 .my-images .feed-post-container .image {
   width: calc(100% - 10px) !important;
-  border: 5px var(--panel-background-color) solid;
+  border: #616161 5px solid;
+  /* 
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-background-clip: border-box; */
   /* border-radius: 5px 5px 0px 0px; */
 }
 </style>
