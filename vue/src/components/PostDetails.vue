@@ -81,7 +81,7 @@ export default {
 
   margin-top: -22px;
 
-  margin-bottom: -22px;
+  margin-bottom: 10px;
 
   /* border-bottom: 5px red solid; */
   border-radius: 0px 0px 4px 4px;

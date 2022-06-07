@@ -4,10 +4,9 @@
       class="feed-post-container"
       v-for="(post, index) in filterPosts(this.$store.state.posts)"
       :key="index"
-      v-bind:postId="post.postId"
-    >
+      v-bind:postId="post.postId">
       <div class="post-card" @click="selectCurrentPost(post)">
-        <post-header id="username-header" v-bind:accountId="post.accountId" />
+        <post-header id="username-header" :accountId="post.accountId" v-if="post.accountId" />
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
       </div>
@@ -26,9 +25,10 @@
 <script>
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
+import PostDetails from "./PostDetails.vue";
 
 export default {
-  components: { PostInteraction, PostHeader },
+  components: { PostInteraction, PostHeader, PostDetails },
   name: "image-column",
   methods: {
     filterPosts(posts) {
@@ -130,6 +130,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0px;
+  margin-bottom: 10px;
 }
 
 .my-images .feed-post-container .image {

@@ -120,12 +120,12 @@ export default {
   max-width: 20px;
   margin-left: 5px;
   margin-right: 5px;
+  cursor: pointer;
 }
 
 .like-icon {
   display: flex;
   justify-content: space-between;
-
   cursor: pointer;
 }
 

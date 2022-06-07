@@ -1,36 +1,47 @@
 <template>
   <div class="post-header-bar">
-    <router-link
-      class="display-name"
-      v-bind:to="{ name: 'profile', params: { id: accountId } }"
-    >
-      this is displayName: {{ account.displayName }}
-    </router-link>
+      <router-link class="display-name" v-bind:to="{name: 'profile', params: {id: accountId}}">
+          {{accountId}}
+          {{account.accountId}}
+      {{account.displayName}}
+        {{username}}
+      </router-link>
   </div>
 </template>
 
 <script>
 import AccountService from "../services/AccountService";
 export default {
-  name: "post-header",
-  props: { accountId: Number },
-  data() {
-    return {
-      account: {
-        accountId: 0,
-        displayName: "",
-      },
-    };
-  },
-  created() {
-    AccountService.getAccountOther(this.accountId).then((response) => {
-      this.account = response.data;
-      console.log(response.data);
-      console.log("the display name is: " + this.account.displayName);
-      console.log("the account id is: " + this.account.accountId);
-    });
-  },
-};
+    name: "post-header",
+    props: {accountId: {
+        type: Number,
+        required: true,
+        default: 0}
+    },
+    data(){
+        return {
+            account: {
+                accountId: 0,
+                displayName: '',
+            }
+        }
+    },
+    computed: {
+        username(){
+            return this.account.displayName.toUpperCase();
+        }
+    },
+    mounted(){
+            console.log( "before" + this.account)
+            console.log( "before id" + this.accountId)
+        AccountService.getAccountOther(this.accountId).then((response) => {
+            this.account = response.data; 
+            console.log( "response" + response.data)}
+            );
+            console.log("after" + this.account)
+            
+    }
+}
 </script>
 
 <style>
