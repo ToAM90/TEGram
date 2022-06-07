@@ -22,6 +22,7 @@ export default {
     this.$store.commit("SET_ACCOUNT", this.defaultAccount);
     accountService.getAccountSelf().then((response) => {
       this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+      console.log(this.$store.state.currentAccount);
     });
   },
 };

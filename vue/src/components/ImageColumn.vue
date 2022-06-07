@@ -79,6 +79,9 @@ export default {
     };
   },
   computed: {},
+  mounted() {
+    console.log(this.$store.state.posts);
+  },
 };
 </script>
 

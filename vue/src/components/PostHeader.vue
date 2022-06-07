@@ -1,6 +1,6 @@
 <template>
   <div class="post-header-bar">
-    <div>{{ getAccount() }}</div>
+    <div>{{}}</div>
     <router-link
       class="display-name"
       v-bind:to="{ name: 'profile', params: { id: account.accountId } }"
@@ -28,19 +28,23 @@ export default {
       },
     };
   },
-  //     mounted(){
-  //         console.log( "before id" + this.accountId)
-  //         AccountService.getAccountOther(this.accountId).then((response) => {
-  //         this.account = response.data;
-  //     });
-  // },
-  methods: {
-    getAccount() {
-      AccountService.getAccountOther(this.accountId).then((response) => {
-        this.account = response.data;
-      });
-    },
+  mounted() {
+    console.log("before id" + this.accountId);
+    AccountService.getAccountOther(this.accountId).then((response) => {
+      this.account = response.data;
+      console.log("this is the problem:");
+
+      console.log(response.data);
+    });
   },
+  // methods: {
+  //   getAccount() {
+  //     AccountService.getAccountOther(this.accountId).then((response) => {
+  //       this.account = response.data;
+  //       console.log("acc:" + this.account.displayName);
+  //     });
+  //   },
+  // },
 };
 </script>
 

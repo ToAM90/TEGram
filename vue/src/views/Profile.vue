@@ -33,6 +33,7 @@ export default {
   created() {
     AccountService.getAccountOther(this.$route.params.id).then((response) => {
       this.$store.commit("SET_ACCOUNT", response.data);
+      console.log(this.$store.state.account);
     });
     PostService.getAccountPosts(this.$route.params.id).then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
