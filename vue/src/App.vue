@@ -54,10 +54,11 @@ export default {
   overflow: auto;
   width: 100vw;
 
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   background-repeat: repeat repeat;
-  background-size: 100%;
+  background-size: 100%; */
 
+  background: rgb(35, 33, 37);
   margin: -8px;
   padding: 0px;
 }
