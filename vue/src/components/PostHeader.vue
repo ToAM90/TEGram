@@ -13,17 +13,18 @@
 export default {
   name: "post-header",
   props: { accountId: Number },
-  data() {
-    return {
-      account: {
-        accountId: 0,
-        displayName: "",
-      },
-    };
-  },
+  // data() {
+  //   return {
+  //     account: {
+  //       accountId: 0,
+  //       displayName: "",
+  //     },
+  //   };
+  // },
   computed: {
     getDisplayName() {
       return this.$store.state.accounts.find((stateAccount) => {
+        console.log("this is a display name:" + stateAccount.displayName);
         if (stateAccount.accountId == this.accountId) return stateAccount;
       }).displayName;
     },
