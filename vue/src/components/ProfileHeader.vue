@@ -10,23 +10,31 @@
         <p class="nav-text">home</p>
       </div>
 
-      <div class="nav-link" id="favorited-link" v-if="windowWidth > 700">
-        <img class="nav-bar-icon" src="@/assets/emptyBookmark.png" alt="" />
+      <div class="nav-link" id="favorited-link">
+        <img
+          class="nav-bar-icon"
+          src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
+          alt=""
+        />
         <router-link v-bind:to="{ name: 'favorites' }">
           <p class="nav-text">favorited</p>
         </router-link>
       </div>
 
-      <div class="nav-link" id="likes-link" v-if="windowWidth > 1400">
-        <img class="nav-bar-icon" src="@/assets/icons8-heart-24.png" alt="" />
+      <div class="nav-link" id="likes-link">
+        <img
+          class="nav-bar-icon"
+          src="@/assets/icons8-star-50-outline.png"
+          alt=""
+        />
         <p class="nav-text">likes</p>
       </div>
 
-      <div id="nav-user" v-if="!isScrolled" @click="uploadPFP">
+      <div id="nav-user" @click="uploadPFP">
         <img :src="getProfilePic" alt="" id="profile-icon" />
       </div>
 
-      <div class="nav-link" id="people-i-follow-link" v-if="windowWidth > 700">
+      <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
@@ -34,7 +42,7 @@
         />
         <p class="nav-text">following</p>
       </div>
-      <div class="nav-link" id="followers-link" v-if="windowWidth > 1400">
+      <div class="nav-link" id="followers-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_2_FILL0_wght400_GRAD0_opsz48.png"
@@ -72,17 +80,8 @@ export default {
       imageUrl: "No image currently selected",
       preview: true,
       creatingPost: false,
-      windowWidth: 0,
-      isScrolled: false,
     };
   },
-  created() {
-    window.addEventListener("resize", this.calcWindowWidth);
-    this.windowWidth = window.innerWidth;
-  },
-  // mounted() {
-  //   this.windowWidth = window.innerWidth;
-  // },
   methods: {
     logout() {
       this.$store.commit("LOGOUT");
@@ -163,13 +162,6 @@ export default {
         )
         .open();
     },
-    calcWindowWidth() {
-      this.windowWidth = window.innerWidth;
-    },
-    calcIsScrolled() {
-      console.log(Window.scrollY);
-      return (this.isScrolled = window.scrollY !== 0);
-    },
   },
   computed: {
     getPosts() {
@@ -190,9 +182,8 @@ export default {
   display: flex;
   width: 100%;
   flex-direction: row;
-  /* background-color: white; */
-  /* background-color: #616161; */
-  background: #d1d1d3;
+  background-color: white;
+  background-color: #616161;
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0px 2px 10px rgb(184, 184, 184);
@@ -211,9 +202,6 @@ export default {
   max-height: 30px;
   max-width: 30px;
   border-radius: 100%;
-
-  background: #d1d1d3;
-  -webkit-background-clip: border-box;
 }
 
 #profile-icon {
@@ -221,13 +209,12 @@ export default {
   max-width: 150px;
   padding: 0px;
   box-shadow: 1px 1px 25px var(--primary-background-color);
-  border-radius: 80%;
-  /* border: 30px white solid; */
+  border-radius: 100%;
 }
 
 #user-stats {
   width: 100%;
-  /* margin-left: -40px; */
+  margin-left: -40px;
   padding: 0px;
 }
 
@@ -255,9 +242,8 @@ li {
 }
 
 .nav-link {
-  /* margin-left: 5vw; */
+  margin-left: 5vw;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: 22px;
   width: 10vw;
@@ -274,12 +260,9 @@ li {
 
   padding: 3px;
   border-radius: 7px;
-  /* opacity: 0.8;
+  opacity: 0.8;
 
   background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-background-clip: border-box; */
-
-  background: #d1d1d3;
   -webkit-background-clip: border-box;
 }
 
@@ -289,12 +272,10 @@ li {
   color: black;
   padding-right: 0px;
   cursor: pointer;
-  /* 
+
   background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
-  color: rgb(35, 33, 37);
+  -webkit-background-clip: text;
 }
 
 .nav-text:after {

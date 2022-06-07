@@ -9,7 +9,6 @@ import Upload from '../views/Upload.vue'
 import Post from '../views/Post.vue'
 import Profile from '../views/Profile.vue'
 import Favorites from '../views/Favorites.vue'
-import Update from '../views/UpdateProfile.vue'
 
 Vue.use(Router)
 
@@ -87,14 +86,6 @@ const router = new Router({
       path: "/favorites",
       name: "favorites",
       component: Favorites,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: "/update",
-      name: "update",
-      component: Update,
       meta: {
         requiresAuth: true
       }

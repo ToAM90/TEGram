@@ -4,14 +4,11 @@
       class="feed-post-container"
       v-for="(post, index) in filterPosts(this.$store.state.posts)"
       :key="index"
-      v-bind:postId="post.postId"
-    >
+      v-bind:postId="post.postId">
       <div class="post-card" @click="selectCurrentPost(post)">
-        <post-header
-          id="username-header"
-          v-if="post.accountId"
-          v-bind:accountId="post.accountId"
-        />
+
+        <post-header id="username-header" v-if="post.accountId" v-bind:accountId="post.accountId"  />
+        
 
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
@@ -21,12 +18,12 @@
       </div>
     </div>
 
-    <!-- <div
+    <div
       v-if="this.$store.state.currentView == 'profile'"
       id="profile-add-new-post feed-post-container"
     >
       <create-post></create-post>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -34,10 +31,10 @@
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
 import PostDetails from "./PostDetails.vue";
-// import CreatePost from "./CreatePost";
+import CreatePost from "./CreatePost";
 
 export default {
-  components: { PostInteraction, PostHeader, PostDetails },
+  components: { PostInteraction, PostHeader, PostDetails, CreatePost },
   name: "image-column",
   methods: {
     filterPosts(posts) {
@@ -145,7 +142,7 @@ export default {
 
 .my-images .feed-post-container .image {
   width: calc(100% - 10px) !important;
-  border: #d1d1d3 5px solid;
+  border: #616161 5px solid;
   /* 
   background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-background-clip: border-box; */

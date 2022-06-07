@@ -46,8 +46,7 @@ export default {
 
 <style>
 .post-header-bar {
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
-  background: #d1d1d3;
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
   box-shadow: 0px 0px 5px rgb(172, 169, 169);
   display: flex;
   flex-direction: row;
@@ -62,7 +61,7 @@ export default {
   margin: auto;
   /* padding: 8px; */
 
-  color: #ff48a3;
+  color: #ffd084;
 
   font-size: 1.3rem;
   font-family: "Montserrat", sans-serif;

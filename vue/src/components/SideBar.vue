@@ -1,13 +1,7 @@
 <template>
   <div class="side-bar">
     <div id="nav-user" @click="routeToProfile">
-
-      <router-link v-bind:to="{name: 'update'}">
-
       <img src="@/assets/icons8-settings-50.png" alt="" class="settings-icon" />
-      
-      </router-link>
-
       <img
         :src="this.$store.state.currentAccount.profileImg"
         alt="@/assets/default-user-image.png"
@@ -15,16 +9,7 @@
       />
     </div>
 
-    <p class="display-name">
-      {{ getDisplayName }}
-      <span
-        ><img
-          src="@/assets/icons8-checkmark-yes-32.png"
-          class="verification-icon"
-          alt=""
-      /></span>
-    </p>
-
+    <p class="display-name">{{ getDisplayName }}</p>
     <!-- <div id="user-stats">
       <ul>
         <li>
@@ -99,21 +84,29 @@
         <p class="nav-text">posts</p>
       </div> -->
       <div class="nav-link" id="favorited-link">
-        <img class="nav-bar-icon" src="@/assets/emptyBookmark.png" alt="" />
+        <img
+          class="nav-bar-icon"
+          src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
+          alt=""
+        />
         <router-link v-bind:to="{ name: 'favorites' }">
           <p class="nav-text">favorited</p>
         </router-link>
       </div>
       <div class="nav-link" id="likes-link">
-        <img class="nav-bar-icon" src="@/assets/icons8-heart-24.png" alt="" />
-        <p class="nav-text">likes</p>
+        <img
+          class="nav-bar-icon"
+          src="@/assets/icons8-star-50-outline.png"
+          alt=""
+        />
+        <!-- <p class="nav-text">likes</p>
       </div>
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
-        />
+        /> -->
         <p class="nav-text">following</p>
       </div>
       <div class="nav-link" id="followers-link">
@@ -273,13 +266,11 @@ export default {
   display: flex;
   width: 100%;
   flex-direction: column;
-  /* background-color: var(--panel-background-color); */
-
-  background: #d1d1d3;
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
+  background-color: var(--panel-background-color);
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
   align-items: center;
   font-family: "Open Sans", sans-serif;
-  box-shadow: 2px 2px 10px rgb(128, 127, 127);
+  box-shadow: 2px 2px 20px rgb(184, 184, 184);
 }
 
 #nav-user {
@@ -298,11 +289,8 @@ export default {
   padding: 3px;
   border-radius: 7px;
   opacity: 0.8;
-  /* 
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-background-clip: border-box; */
 
-  background: #d1d1d3;
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-background-clip: border-box;
 }
 
@@ -310,7 +298,7 @@ export default {
   margin-top: 35px;
   max-width: 150px;
   padding: 0px;
-  box-shadow: 6px 6px 25px rgb(156, 155, 155);
+  box-shadow: 6px 6px 25px var(--primary-background-color);
   border-radius: 100%;
 }
 
@@ -322,12 +310,10 @@ export default {
   font-size: 1.3rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  /* 
+
   background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
-  color: rgb(35, 33, 37);
+  -webkit-background-clip: text;
 }
 
 #user-stats {
@@ -378,22 +364,7 @@ li {
   border-radius: 7px;
   opacity: 0.8;
 
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png"); */
-  background: #d1d1d3;
-  -webkit-background-clip: border-box;
-}
-
-.verification-icon {
-  max-height: 24px;
-  max-width: 24px;
-  margin-right: 5px;
-  margin-bottom: -8px;
-  padding: 3px;
-  border-radius: 7px;
-  opacity: 0.8;
-
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png"); */
-  background: #d1d1d3;
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-background-clip: border-box;
 }
 
@@ -403,11 +374,9 @@ li {
   padding-right: 0px;
   cursor: pointer;
 
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
-  color: rgb(35, 33, 37);
+  -webkit-background-clip: text;
 }
 
 .nav-text:after {
@@ -421,7 +390,7 @@ li {
   background-color: rgb(138, 138, 138);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
-  box-shadow: 0px 5px 3px #979ba5;
+  box-shadow: 0px 5px 3px #b8c9f1;
 }
 
 .nav-text:hover:after {
