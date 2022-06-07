@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user: currentUser || {},
     posts: [],
     account: {},
+    accounts: [],
     currentAccount: {},
     currentView: '',
     currentPost: {
@@ -90,6 +91,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_POST(state, post) {
       state.currentPost = post
+    },
+    ADD_ACCOUNT(state, account) {
+      state.accounts.push(account)
     }
   }
 })

@@ -1,10 +1,14 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <div class="page-title">{{this.$store.state.account.displayName}}</div>
+    <!-- <div class="page-title">{{ this.$store.state.account.displayName }}</div> -->
     <image-column class="profile-image-column" />
-    <create-post v-if="this.$store.state.currentAccount.accountId == this.$store.state.account.accountId"/>
-   
+    <create-post
+      v-if="
+        this.$store.state.currentAccount.accountId ==
+        this.$store.state.account.accountId
+      "
+    />
   </div>
 </template>
 
@@ -13,7 +17,7 @@ import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
 import PostService from "@/services/PostService.js";
 import AccountService from "@/services/AccountService.js";
-import CreatePost from '../components/CreatePost.vue';
+import CreatePost from "../components/CreatePost.vue";
 
 export default {
   name: "profile",
@@ -23,11 +27,12 @@ export default {
     CreatePost,
   },
   created() {
-    AccountService.getAccountOther(this.$route.params.id).then((response) => 
-        {this.$store.commit("SET_ACCOUNT", response.data)});
-    PostService.getAccountPosts(this.$route.params.id)
-      .then((response) => {
-        this.$store.commit("INITIALIZE_POSTS", response.data);});
+    AccountService.getAccountOther(this.$route.params.id).then((response) => {
+      this.$store.commit("SET_ACCOUNT", response.data);
+    });
+    PostService.getAccountPosts(this.$route.params.id).then((response) => {
+      this.$store.commit("INITIALIZE_POSTS", response.data);
+    });
   },
 };
 </script>
@@ -44,14 +49,14 @@ export default {
   position: fixed;
 }
 
-.page-title{
-    padding-top: 200px;
-     text-align:center;
-     color: black;
+.page-title {
+  padding-top: 175px;
+  text-align: center;
+  color: black;
 }
 
 .profile-image-column {
-  padding-top: 50px;
+  padding-top: 200px;
   margin-left: 20px;
   margin-right: 20px;
 }

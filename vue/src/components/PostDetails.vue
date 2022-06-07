@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="post-detail-bar">
-      <textarea
-        class="caption-text-area caption"
-        v-model="$store.state.currentPost.caption"
-      ></textarea>
-      <!-- <p class="caption">{{ $store.state.currentPost.caption }}</p> -->
+      <div class="caption">{{ $store.state.currentPost.caption }}</div>
       <comment></comment>
     </div>
   </div>
@@ -14,7 +10,7 @@
 <script>
 import Comment from "@/components/Comment.vue";
 export default {
-  name: "post-interaction",
+  name: "post-details",
   components: {
     Comment,
   },
@@ -52,38 +48,32 @@ export default {
 
 <style lang="css" scoped>
 .caption {
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654569968/TE_GRAM/nchboavjxefno1onx7u7.png");
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  padding: 16px;
+  padding: 8px;
   font-size: 1.2rem;
 
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-}
+  /* white-space: nowrap; */
 
-.caption-text-area {
-  margin: 5px;
-  margin-bottom: 0px;
-  min-width: calc(100% - 42px);
+  word-break: break-all;
 
-  min-height: calc(captionLength/20 * 26px);
-  border: 0px;
-  padding-bottom: 16px;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+  max-height: 96px;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 .post-detail-bar {
-  background: var(--panel-background-color);
-  /* box-shadow: 0px 0px 5px rgb(172, 169, 169); */
+  margin-top: -4px;
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
 
-  padding-bottom: auto;
-
-  margin-top: -22px;
-
-  margin-bottom: 10px;
-
-  /* border-bottom: 5px red solid; */
   border-radius: 0px 0px 4px 4px;
 }
 </style>

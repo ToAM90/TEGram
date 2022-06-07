@@ -16,8 +16,8 @@
           src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <router-link v-bind:to="{name:'favorites'}">
-        <p class="nav-text">favorited</p>
+        <router-link v-bind:to="{ name: 'favorites' }">
+          <p class="nav-text">favorited</p>
         </router-link>
       </div>
 
@@ -29,13 +29,11 @@
         />
         <p class="nav-text">likes</p>
       </div>
-    </div>
 
-    <div id="nav-user" @click="uploadPFP">
-      <img :src="getProfilePic" alt="" id="profile-icon" />
-    </div>
+      <div id="nav-user" @click="uploadPFP">
+        <img :src="getProfilePic" alt="" id="profile-icon" />
+      </div>
 
-    <div class="nav-list">
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
@@ -185,10 +183,11 @@ export default {
   width: 100%;
   flex-direction: row;
   background-color: white;
+  background-color: #616161;
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 0px 2px 10px rgb(184, 184, 184);
-  justify-content: space-around;
+  justify-content: space-between;
   height: 100px;
 }
 #nav-user {
@@ -236,7 +235,6 @@ li {
 }
 
 .nav-list {
-  margin-right: 60px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -244,10 +242,11 @@ li {
 }
 
 .nav-link {
-  padding-right: 10px;
+  margin-left: 5vw;
   display: flex;
   align-items: center;
   font-size: 22px;
+  width: 10vw;
 }
 .nav-link:hover .nav-bar-icon {
   opacity: 1;
@@ -258,6 +257,13 @@ li {
   max-width: 20px;
   margin-right: 5px;
   opacity: 0.8;
+
+  padding: 3px;
+  border-radius: 7px;
+  opacity: 0.8;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-background-clip: border-box;
 }
 
 .nav-text {
@@ -266,6 +272,10 @@ li {
   color: black;
   padding-right: 0px;
   cursor: pointer;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .nav-text:after {
@@ -279,7 +289,7 @@ li {
   background-color: rgb(138, 138, 138);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
-  box-shadow: 0px 5px 3px var(--sign-up-blue);
+  box-shadow: 0px 5px 3px #b8c9f1;
 }
 
 .nav-text:hover:after {

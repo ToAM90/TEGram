@@ -267,9 +267,10 @@ export default {
   width: 100%;
   flex-direction: column;
   background-color: var(--panel-background-color);
+  background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png");
   align-items: center;
   font-family: "Open Sans", sans-serif;
-  box-shadow: 0px 2px 10px rgb(184, 184, 184);
+  box-shadow: 2px 2px 20px rgb(184, 184, 184);
 }
 
 #nav-user {
@@ -284,18 +285,35 @@ export default {
   max-height: 30px;
   max-width: 30px;
   border-radius: 100%;
+
+  padding: 3px;
+  border-radius: 7px;
+  opacity: 0.8;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-background-clip: border-box;
 }
 
 #profile-icon {
   margin-top: 35px;
   max-width: 150px;
   padding: 0px;
-  box-shadow: 1px 1px 25px var(--primary-background-color);
+  box-shadow: 6px 6px 25px var(--primary-background-color);
   border-radius: 100%;
 }
 
 .display-name {
   color: black;
+
+  margin-top: 30px;
+
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 #user-stats {
@@ -342,15 +360,23 @@ li {
   max-height: 20px;
   max-width: 20px;
   margin-right: 5px;
+  padding: 3px;
+  border-radius: 7px;
   opacity: 0.8;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-background-clip: border-box;
 }
 
 .nav-text {
   display: inline-block;
   position: relative;
-  color: black;
   padding-right: 0px;
   cursor: pointer;
+
+  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .nav-text:after {
@@ -364,7 +390,7 @@ li {
   background-color: rgb(138, 138, 138);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
-  box-shadow: 0px 5px 3px var(--sign-up-blue);
+  box-shadow: 0px 5px 3px #b8c9f1;
 }
 
 .nav-text:hover:after {
