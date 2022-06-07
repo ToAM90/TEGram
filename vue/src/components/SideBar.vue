@@ -99,14 +99,14 @@
           src="@/assets/icons8-star-50-outline.png"
           alt=""
         />
-        <p class="nav-text">likes</p>
+        <!-- <p class="nav-text">likes</p>
       </div>
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
-        />
+        /> -->
         <p class="nav-text">following</p>
       </div>
       <div class="nav-link" id="followers-link">
