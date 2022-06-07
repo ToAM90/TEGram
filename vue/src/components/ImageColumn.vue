@@ -4,10 +4,12 @@
       class="feed-post-container"
       v-for="(post, index) in filterPosts(this.$store.state.posts)"
       :key="index"
-      v-bind:postId="post.postId"
-    >
+      v-bind:postId="post.postId">
       <div class="post-card" @click="selectCurrentPost(post)">
-        <post-header id="username-header" v-bind:accountId="post.accountId" />
+
+        <post-header id="username-header" v-if="post.accountId" v-bind:accountId="post.accountId"  />
+        
+
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
       </div>

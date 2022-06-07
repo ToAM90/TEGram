@@ -1,32 +1,44 @@
 <template>
   <div class="post-header-bar">
+    <div>{{ getAccount() }}</div>
     <router-link
       class="display-name"
-      v-bind:to="{ name: 'profile', params: { id: accountId } }"
+      v-bind:to="{ name: 'profile', params: { id: account.accountId } }"
     >
-      <p class="display-name">{{ getDisplayName }}</p>
+      <p class="display-name">{{ account.displayName }}</p>
     </router-link>
   </div>
 </template>
 
 <script>
+import AccountService from "../services/AccountService";
 export default {
   name: "post-header",
-  props: { accountId: Number },
-  // data() {
-  //   return {
-  //     account: {
-  //       accountId: 0,
-  //       displayName: "",
-  //     },
-  //   };
+  props: {
+    accountId: {
+      type: Number,
+    },
+  },
+  data() {
+    return {
+      account: {
+        accountId: 0,
+        displayName: "",
+        isFetching: true,
+      },
+    };
+  },
+  //     mounted(){
+  //         console.log( "before id" + this.accountId)
+  //         AccountService.getAccountOther(this.accountId).then((response) => {
+  //         this.account = response.data;
+  //     });
   // },
-  computed: {
-    getDisplayName() {
-      return this.$store.state.accounts.find((stateAccount) => {
-        console.log("this is a display name:" + stateAccount.displayName);
-        if (stateAccount.accountId == this.accountId) return stateAccount;
-      }).displayName;
+  methods: {
+    getAccount() {
+      AccountService.getAccountOther(this.accountId).then((response) => {
+        this.account = response.data;
+      });
     },
   },
 };

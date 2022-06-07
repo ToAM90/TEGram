@@ -21,7 +21,7 @@
         v-model="createPost.caption"
       ></textarea>
        <div id="privated">
-        <input id="checkbox" type="checkbox" v-model="post.privated" />
+        <input id="checkbox" type="checkbox" v-model="createPost.privated" />
         <label for="checkbox">Private {{ privated }}</label> <br />
       </div>
       <div id="form-submit-buttons">
