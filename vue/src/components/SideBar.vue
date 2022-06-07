@@ -89,8 +89,8 @@
           src="@/assets/label_important_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <router-link v-bind:to="{name:'favorites'}">
-        <p class="nav-text">favorited</p>
+        <router-link v-bind:to="{ name: 'favorites' }">
+          <p class="nav-text">favorited</p>
         </router-link>
       </div>
       <div class="nav-link" id="likes-link">
@@ -258,7 +258,7 @@ export default {
 <style lang="css" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-.make-a-post-link p {
+.make-a-post-link > p {
   margin: 6px;
 }
 

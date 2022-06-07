@@ -1,114 +1,56 @@
 <template>
-  <div class="overall-bar" @click="toggleMoreDetails">
-    <div class="post-interaction-bar" v-if="moreDetails === false">
-      <div class="like-icon" @click.stop="toggleLike(post.postId, post.liked)">
-        <div>
-          <img
-            class="interaction-icon image_on"
-            v-if="post.liked"
-            src="@/assets/icons8-heart-50.png"
-            alt=""
-          />
-          <img
-            class="interaction-icon image_on"
-            v-else
-            src="@/assets/icons8-heart-50-outline.png"
-            alt=""
-          />
-          <img
-            class="interaction-icon image_off"
-            src="@/assets/icons8-heart.gif"
-            alt="logo"
-          />
-        </div>
-        <div class="likes-count">{{ post.likesCount }}</div>
-      </div>
-
-      <div id="expand-details">
-        <img
-          class="view-more interaction-icon"
-          src="@/assets/expand_more_FILL0_wght400_GRAD0_opsz48.png"
-        />
-      </div>
-
-      <div
-        class="favorite-icon"
-        @click.stop="toggleFavorite(post.postId, post.favorited)"
-      >
+  <div class="post-interaction-bar">
+    <div class="like-icon" @click.stop="toggleLike(post.postId, post.liked)">
+      <div>
         <img
           class="interaction-icon image_on"
-          v-if="post.favorited"
-          src="@/assets/icons8-star-50.png"
+          v-if="post.liked"
+          src="@/assets/icons8-heart-50.png"
           alt=""
         />
         <img
           class="interaction-icon image_on"
           v-else
-          src="@/assets/icons8-star-50-outline.png"
+          src="@/assets/icons8-heart-50-outline.png"
           alt=""
         />
         <img
           class="interaction-icon image_off"
-          src="@/assets/icons8-star.gif"
+          src="@/assets/icons8-heart.gif"
           alt="logo"
         />
       </div>
+      <div class="likes-count">{{ post.likesCount }}</div>
     </div>
-    <div class="post-interaction-bar" v-else>
-      <div class="like-icon" @click.stop="toggleLike(post.postId, post.liked)">
-        <div>
-          <img
-            class="interaction-icon image_on"
-            v-if="post.liked"
-            src="@/assets/icons8-heart-50.png"
-            alt=""
-          />
-          <img
-            class="interaction-icon image_on"
-            v-else
-            src="@/assets/icons8-heart-50-outline.png"
-            alt=""
-          />
-          <img
-            class="interaction-icon image_off"
-            src="@/assets/icons8-heart.gif"
-            alt="logo"
-          />
-        </div>
-        <div class="likes-count">{{ post.likesCount }}</div>
-      </div>
 
-      <div id="expand-details" @click="toggleMoreDetails">
-        <div>
-          <img
-            class="view-more interaction-icon"
-            src="@/assets/expand_more_FILL0_wght400_GRAD0_opsz48.png"
-          />
-        </div>
-      </div>
+    <div id="expand-details">
+      <img
+        class="view-more interaction-icon"
+        src="@/assets/expand_more_FILL0_wght400_GRAD0_opsz48.png"
+      />
+    </div>
 
-      <div
-        class="favorite-icon"
-        @click.stop="toggleFavorite(post.postId, post.favorited)"
-      >
-        <img
-          class="interaction-icon image_on"
-          v-if="post.favorited"
-          src="@/assets/icons8-star-50.png"
-          alt=""
-        />
-        <img
-          class="interaction-icon image_on"
-          v-else
-          src="@/assets/icons8-star-50-outline.png"
-          alt=""
-        />
-        <img
-          class="interaction-icon image_off"
-          src="@/assets/icons8-star.gif"
-          alt="logo"
-        />
-      </div>
+    <div
+      class="favorite-icon"
+      @click.stop="toggleFavorite(post.postId, post.favorited)"
+    >
+      <img
+        class="interaction-icon image_on"
+        v-if="post.favorited"
+        src="@/assets/icons8-star-50.png"
+        alt=""
+      />
+      <img
+        class="interaction-icon image_on"
+        v-else
+        src="@/assets/icons8-star-50-outline.png"
+        alt=""
+      />
+      <img
+        class="interaction-icon image_off"
+        src="@/assets/icons8-star.gif"
+        alt="logo"
+      />
     </div>
   </div>
 </template>
@@ -133,9 +75,7 @@ export default {
       likesCount: 0,
     },
     data() {
-      return {
-        moreDetails: false,
-      };
+      return {};
     },
   },
   methods: {
@@ -157,9 +97,6 @@ export default {
         this.$store.commit("TOGGLE_FAVORITE", postId);
       }
     },
-    toggleMoreDetails() {
-      this.moreDetails = !this.moreDetails;
-    },
   },
 };
 </script>
@@ -174,10 +111,12 @@ export default {
   /* height: 20px; */
   color: black;
   border-radius: 0px 0px 4px 4px;
+  height: 30px;
 }
 
 .interaction-icon {
   max-height: auto;
+  padding-top: 5px;
   max-width: 20px;
   margin-left: 5px;
   margin-right: 5px;

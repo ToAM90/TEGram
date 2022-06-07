@@ -58,7 +58,7 @@
 
 <script>
 import authService from "../services/AuthService";
-import accountService from '../services/AccountService';
+import accountService from "../services/AccountService";
 
 export default {
   name: "login",
@@ -80,7 +80,8 @@ export default {
             this.$store.commit("SET_AUTH_TOKEN", response.data.token);
             this.$store.commit("SET_USER", response.data.user);
             accountService.getAccountSelf().then((response) => {
-              this.$store.commit("SET_CURRENT_ACCOUNT", response.data)});
+              this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
+            });
             this.$router.push("/");
           }
           // this.$router.push("/");
@@ -107,6 +108,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Passion+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@300&family=Passion+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap");
 .login {
   height: 100vh;
   padding-top: auto;

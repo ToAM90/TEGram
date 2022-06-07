@@ -6,13 +6,13 @@
       :key="index"
       v-bind:postId="post.postId"
     >
-      <div @click="selectCurrentPost(post)">
+      <div class="post-card" @click="selectCurrentPost(post)">
         <post-header id="username-header" v-bind:accountId="post.accountId" />
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
-        <div v-if="$store.state.currentPost.postId == post.postId">
-          <post-details />
-        </div>
+      </div>
+      <div v-if="$store.state.currentPost.postId == post.postId">
+        <post-details />
       </div>
     </div>
 
@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import PostInteraction from './PostInteraction.vue';
-import PostHeader from './PostHeader.vue';
+import PostInteraction from "./PostInteraction.vue";
+import PostHeader from "./PostHeader.vue";
 
 export default {
   components: { PostInteraction, PostHeader },
@@ -42,8 +42,13 @@ export default {
     selectCurrentPost(post) {
       if (this.$store.state.currentPost.postId === 0) {
         this.$store.commit("SET_CURRENT_POST", post);
-      } else {
+      } else if (
+        this.$store.state.currentPost.postId !== 0 &&
+        post.postId === this.$store.state.currentPost.postId
+      ) {
         this.$store.commit("SET_CURRENT_POST", this.defaultPost);
+      } else {
+        this.$store.commit("SET_CURRENT_POST", post);
       }
     },
   },
@@ -65,9 +70,7 @@ export default {
     };
   },
   computed: {},
-
-     }
-
+};
 </script>
 
 <style>
@@ -121,6 +124,12 @@ export default {
   display: block;
 
   break-inside: avoid;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .my-images .feed-post-container .image {
