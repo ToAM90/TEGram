@@ -26,7 +26,7 @@ public class FollowController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path="/follow/{followingId}", method = RequestMethod.POST)
-        public void follow(@PathVariable int followingId, Principal principal){
+    public void follow(@PathVariable int followingId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
         followDao.follow(accountId, followingId);

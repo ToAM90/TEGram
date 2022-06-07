@@ -1,8 +1,14 @@
 <template>
   <div class="side-bar">
-    <div id="nav-user" @click="routeToProfile">
+    <div id="nav-user" >
+
+      <router-link v-bind:to="{name: 'update'}">
+
       <img src="@/assets/icons8-settings-50.png" alt="" class="settings-icon" />
-      <img
+      
+      </router-link>
+
+      <img @click="routeToProfile"
         :src="this.$store.state.currentAccount.profileImg"
         alt="@/assets/default-user-image.png"
         id="profile-icon"

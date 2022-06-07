@@ -1,28 +1,30 @@
 <template>
-  <div>
+  <div id="register" class="register">
     <div class="profile-update">
-      <form v-on:submit.prevent="updateAccount">
-        <label for="displayName">
-          Display Name: {{ newAccount.displayName }}</label
-        >
+      <form class="form-register" v-on:submit.prevent="updateAccount">
+          <div class="inputs">
+          <h1 id="create-account-banner" class="h3 mb-3 font-weight-normal">
+              UPDATE PROFILE
+              </h1>
+        <label for="displayName" class="sr-only">
+          Display Name:</label>
         <input id="displayName" type="text" v-model="newAccount.displayName" />
-
-        <label for="biography"> About Me: {{ newAccount.biography }}</label>
+        <label for="biography" class="sr-only"> About Me:</label>
         <input id="biography" type="text" v-model="newAccount.biography" />
-
+          </div>
         <div class="update-buttons">
           <button
             id="upload_widget"
-            class="cloudinary-button"
+            class="button"
             @click.prevent="uploadPhoto">
             Upload Profile Image
           </button>
-          <button v-on:click.prevent="resetForm" type="cancel">Cancel</button>
-          <button>Submit</button>
+          <button v-on:click.prevent="resetForm" type="cancel" class="button">Cancel</button>
+          <button class="button">Submit</button>
         </div>
       </form>
     </div>
-<!-- 
+<!--
     <div class="password-update">
       <form v-on:submit.prevent="updatePassword">
         <div
@@ -32,7 +34,6 @@
         >
           {{ passwordChangeErrorMsg }}
         </div>
-
         <label for="password" class="sr-only"></label>
         <input
           type="password"
@@ -43,7 +44,6 @@
           required
         />
         <password-meter :password="newUser.password" />
-
         <label for="confirmPassword"></label>
         <input
           type="password"
@@ -53,7 +53,6 @@
           v-model="newUser.confirmPassword"
           required
         />
-
         <div class="update-buttons">
           <button v-on:click.prevent="resetForm" type="cancel">Cancel</button>
           <button type="submit">Submit</button>
@@ -62,19 +61,16 @@
     </div> -->
   </div>
 </template>
-
 <script>
 import AccountService from "../services/AccountService";
 import AuthService from "../services/AuthService";
 // import PasswordMeter from "vue-simple-password-meter";
-
 export default {
   name: "update",
 //   components: { PasswordMeter },
   data() {
     return {
       newAccount: {},
-
       newUser: {
         username: "",
         password: "",
@@ -156,6 +152,5 @@ export default {
   },
 };
 </script>
-
 <style>
 </style>
