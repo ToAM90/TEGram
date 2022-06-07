@@ -2,7 +2,10 @@
 
   <div class="post-header-bar">
       <router-link class="display-name" v-bind:to="{name: 'profile', params: {id: accountId}}">
-      this is displayName: {{account.displayName}}
+          {{accountId}}
+          {{account.accountId}}
+      {{account.displayName}}
+        {{username}}
       </router-link>
   </div>
 </template>
@@ -11,27 +14,25 @@
 import AccountService from "../services/AccountService";
 export default {
     name: "post-header",
-    props: {accountId: Number},
+    props: {'accountId': Number },
     data(){
         return {
             account: {
                 accountId: 0,
-                displayName: ""
-            }
-          
+                displayName: '',
+            },
+        }
+    },
+    computed: {
+        username(){
+            return this.account.displayName.toUpperCase();
         }
     },
     created(){
         AccountService.getAccountOther(this.accountId).then((response) => {
-            this.account = response.data;
-            console.log(response.data)
-            console.log("the display name is: " + this.account.displayName)
-            console.log("the account id is: " + this.account.accountId)
-        } )
-      
-       
-    }    
+            this.account = response.data; })
     }
+}
 </script>
 
 <style>
