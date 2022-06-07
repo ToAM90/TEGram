@@ -1,7 +1,13 @@
 <template>
   <div class="side-bar">
     <div id="nav-user" @click="routeToProfile">
+
+      <router-link v-bind:to="{name: 'update'}">
+
       <img src="@/assets/icons8-settings-50.png" alt="" class="settings-icon" />
+      
+      </router-link>
+
       <img
         :src="this.$store.state.currentAccount.profileImg"
         alt="@/assets/default-user-image.png"
@@ -99,14 +105,14 @@
           src="@/assets/icons8-star-50-outline.png"
           alt=""
         />
-        <!-- <p class="nav-text">likes</p>
+        <p class="nav-text">likes</p>
       </div>
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
-        /> -->
+        />
         <p class="nav-text">following</p>
       </div>
       <div class="nav-link" id="followers-link">

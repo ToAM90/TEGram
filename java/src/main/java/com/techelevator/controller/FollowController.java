@@ -1,6 +1,8 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.*;
+import com.techelevator.dao.AccountDao;
+import com.techelevator.dao.FollowDao;
+import com.techelevator.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -9,36 +11,37 @@ import java.security.Principal;
 
 @RestController
 @CrossOrigin
-public class LikeController {
+public class FollowController {
 
-    private PostDao postDao;
+    private FollowDao followDao;
     private UserDao userDao;
     private AccountDao accountDao;
-    private LikedDao likedDao;
 
     @Autowired
-    public LikeController(PostDao postDao, UserDao userDao, AccountDao accountDao, LikedDao likedDao) {
-        this.postDao = postDao;
+    public FollowController(FollowDao followDao, UserDao userDao, AccountDao accountDao) {
+        this.followDao = followDao;
         this.userDao = userDao;
         this.accountDao = accountDao;
-        this.likedDao = likedDao;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/like/{postId}")
-    public void like(@PathVariable int postId, Principal principal) {
+    @RequestMapping(path="/follow/{followingId}", method = RequestMethod.POST)
+        public void follow(@PathVariable int followingId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        likedDao.like(postId, accountId);
+        followDao.follow(accountId, followingId);
+
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @RequestMapping(path = "/like/{postId}", method = RequestMethod.DELETE)
-    public void unlike(@PathVariable int postId, Principal principal) {
+    @RequestMapping(path="/follow/{followingId}", method = RequestMethod.DELETE)
+    public void unfollow(@PathVariable int followingId, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        likedDao.unlike(postId, accountId);
+        followDao.unFollow(accountId, followingId);
     }
+
+
 
 
 }
