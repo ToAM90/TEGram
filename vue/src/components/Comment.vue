@@ -1,13 +1,13 @@
 <template>
   <div id="comments">
-    <div v-for="comment in comments" v-bind:key="comment.id">
-      <p>{{ comment.username }}</p>
-      <p>{{ comment.commentText }}</p>
-      <i
-        id="delete-comment-btn"
-        v-on:click="deleteComment(commentId)"
-        v-if="comment.accountId == this.$store.state.currentAccount.accountId"
-      />
+    <div v-for="comment in comments" v-bind:key="comment.id" class="comment">
+      <span class="comment-username">{{ comment.username }}: </span>
+      <span class="comment-text">{{ comment.commentText }}</span>
+      <button
+        class="delete-comment-btn"
+        v-on:click="deleteComment(comment.commentId)"
+        v-if="comment.accountId == $store.state.currentAccount.accountId"
+      >Delete</button>
     </div>
 
     <form v-on:submit.prevent="addComment">
@@ -53,9 +53,11 @@ export default {
     addComment() {
       this.newComment.postId = this.$store.state.currentPost.postId;
       CommentService.addComment(this.newComment);
+      this.$router.go(0)
     },
     deleteComment(commentId) {
       CommentService.removeComment(commentId);
+      this.$router.go(0)
     },
   },
 };
@@ -103,5 +105,33 @@ export default {
   box-shadow: 0px 0px 5px rgba(136, 47, 177, 0.568) !important;
   border-radius: 5px;
   color: white;
+}
+
+.comment {
+  margin: 10px;
+  display: flex;
+  width: 100%;
+}
+.comment-username{
+  font-style: italic;
+  color: black;
+}
+
+.comment-text{
+  color: black;
+  width: 68%;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 16px;
+  max-height: 96px;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+.delete-comment-btn{
+  max-height: 20px;
+ align-items: flex-end;
 }
 </style>

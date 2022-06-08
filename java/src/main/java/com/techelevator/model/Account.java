@@ -13,7 +13,7 @@ public class Account {
 
 
     public Account(){
-
+        System.out.println();
     }
 
     public Account(int accountId, int userId, String displayName, String biography, String profileImg, int numFollowers, int numFollowing, boolean followed) {

@@ -21,7 +21,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment getComment(int commentId) {
         Comment comment = new Comment();
-        String sql = "SELECT comment_id, c.account_id, post_id, comment_text, display_name FROM comments c JOIN accounts ON c.account_id = a.account_id a  WHERE comment_id = ?";
+        String sql = "SELECT comment_id, c.account_id, post_id, comment_text, display_name FROM comments c JOIN accounts a ON c.account_id = a.account_id  WHERE comment_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, commentId);
         if(results.next()){
             comment = MapRowToComment(results);

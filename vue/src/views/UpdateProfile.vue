@@ -309,10 +309,11 @@ export default {
   color: var(--panel-background-color);
   width: 60%;
   border-radius: 5px;
+  margin-left: 20%;
+  margin-top: 5px;
 }
 .update-message{
   margin-top: -30px;
-
   padding-bottom: 10px;
   color: salmon;
 }
