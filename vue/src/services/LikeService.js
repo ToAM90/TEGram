@@ -8,6 +8,10 @@ export default {
 
     unlikePost(postId) {
         return axios.delete(`/like/${postId}`)
+    },
+
+    getLikedPosts(){
+        return axios.get('/liked')
     }
 
 }

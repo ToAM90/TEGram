@@ -19,7 +19,9 @@
 
       <div class="nav-link" id="likes-link" v-if="windowWidth > 1400">
         <img class="nav-bar-icon" src="@/assets/icons8-heart-24.png" alt="" />
+        <router-link v-bind:to="{ name: 'liked' }">
         <p class="nav-text">likes</p>
+        </router-link>
       </div>
 
       <div id="nav-user" v-if="!isScrolled" @click="uploadPFP">
