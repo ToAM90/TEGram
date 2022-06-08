@@ -16,7 +16,7 @@
               <img class="edit-button" src="@/assets/edit-97.png" />
             </div>
             <div class="update-message" v-if="successful">
-                Successfully Updated
+              Successfully Updated
             </div>
             <label for="display-name" class="sr-only"> Display Name:</label>
             <input
@@ -35,57 +35,56 @@
 
           <div class="update-buttons">
             <button
-              class="button update-button"
+              class="button update-button cancel-button"
               v-on:click.prevent="cancelForm"
               type="cancel"
             >
               Cancel
             </button>
-            <button class="button update-button">Submit</button>
+            <button class="button update-button submit-button">Submit</button>
           </div>
         </form>
       </div>
 
       <div class="password-update" v-if="!showUpdateProfileForm">
         <form v-on:submit.prevent="updatePassword">
-           <div class="inputs">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            v-if="passwordChangeErrors"
-          >
-            {{ passwordChangeErrorMsg }}
+          <div class="inputs">
+            <div
+              class="alert alert-danger"
+              role="alert"
+              v-if="passwordChangeErrors"
+            >
+              {{ passwordChangeErrorMsg }}
+            </div>
+            <label for="password" class="sr-only">Change Password:</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              v-model="newUser.password"
+              class="form-control register-form"
+              required
+            />
+            <password-meter :password="newUser.password" />
+            <label for="confirmPassword"></label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              v-model="newUser.confirmPassword"
+              class="form-control register-form"
+              required
+            />
           </div>
-          <label for="password" class="sr-only">Change Password:</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Password"
-            v-model="newUser.password"
-            class="form-control register-form"
-            required
-          />
-          <password-meter :password="newUser.password" />
-          <label for="confirmPassword"></label>
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            v-model="newUser.confirmPassword"
-            class="form-control register-form"
-            required
-          /> </div>
           <div class="update-buttons">
             <button
               class="button update-button"
-              v-on:click.prevent="cancelForm"
+              v-on:click="cancelForm"
               type="cancel"
             >
               Cancel
             </button>
-            <button class="button update-button" type="submit">
-              Submit
-            </button>
+            <button class="button update-button" type="submit">Submit</button>
           </div>
         </form>
       </div>
@@ -94,7 +93,7 @@
         class="button"
         v-on:click="showUpdateProfileForm = !showUpdateProfileForm"
       >
-        Click to
+        <!-- Click to -->
         {{
           showUpdateProfileForm
             ? "Change Password"
@@ -131,10 +130,11 @@ export default {
   methods: {
     updateAccount() {
       AccountService.updateAccount(this.newAccount);
+      this.$store.commit("SET_CURRENT_ACCOUNT", this.newAccount);
       AccountService.getAccountSelf().then((response) => {
-        this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-        if(response.status == 200){
-            this.successful = true;
+        if (response.status == 200) {
+          this.successful = true;
+          this.$router.push("/");
         }
       });
     },
@@ -150,11 +150,12 @@ export default {
         this.passwordChangeErrors = true;
         this.passwordChangeErrorMsg = "Password is not strong enough.";
       } else {
-        this.newUser.role="user"
+        this.newUser.role = "user";
         AuthService.update(this.newUser)
           .then((response) => {
             if (response.status == 200) {
-              this.$router.push({ name: "home" });
+              // this.$router.push({ name: "home" });
+              this.$router.push("/");
             }
           })
           .catch((error) => {
@@ -191,6 +192,9 @@ export default {
           }
         )
         .open();
+    },
+    routeToHome() {
+      this.$router.push("/");
     },
   },
   created() {
@@ -265,7 +269,7 @@ export default {
   font-weight: 500;
   width: 100%;
   max-height: 200px;
-  background-color: var(--sign-up-blue);
+  /* background-color: var(--sign-up-blue); */
   border-radius: 5px;
   color: var(--panel-background-color);
   display: flex;
@@ -278,11 +282,29 @@ export default {
 }
 
 .update-button {
-  margin: auto;
+  /* margin: auto; */
   display: inline-block;
-  background-color: var(--sign-up-blue);
   border-radius: 5px;
   color: var(--panel-background-color);
+  flex-grow: 1;
+  margin-left: 5%;
+
+  margin-right: 5%;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  background-color: var(--sign-up-blue);
+  box-shadow: 0px 0px 5px rgba(47, 108, 177, 0.568);
+  border-radius: 5px;
+}
+
+.cancel-button {
+  background-color: rgb(212, 87, 87);
+  box-shadow: 0px 0px 5px rgb(177, 47, 47);
+  border-radius: 5px;
 }
 
 #update-profile-icon {
@@ -312,7 +334,8 @@ export default {
   margin-left: 20%;
   margin-top: 5px;
 }
-.update-message{
+
+.update-message {
   margin-top: -30px;
   padding-bottom: 10px;
   color: salmon;

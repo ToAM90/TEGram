@@ -57,7 +57,7 @@ export default {
   font-size: 1.2rem;
 
   font-family: "Montserrat", sans-serif;
-  font-weight: 800;
+  font-weight: 300;
 
   word-break: break-all;
 

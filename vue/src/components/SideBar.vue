@@ -9,20 +9,17 @@
         />
       </router-link>
 
-
-<div @click="routeToProfile">
-      <img
-        :src="this.$store.state.currentAccount.profileImg"
-        alt="@/assets/default-user-image.png"
-        id="profile-icon"
-      />
+      <div @click="routeToProfile">
+        <img
+          :src="this.$store.state.currentAccount.profileImg"
+          alt="@/assets/default-user-image.png"
+          id="profile-icon"
+        />
       </div>
-
     </div>
 
-
-    <p class="display-name"  >
-      {{ getDisplayName }}
+    <p class="display-name">
+      {{ $store.state.currentAccount.displayName }}
       <span
         ><img
           src="@/assets/icons8-checkmark-yes-32.png"
@@ -95,14 +92,14 @@
         <p @click="toggleCreatingPost" class="nav-text">create a post</p>
       </div>
 
-       <div class="nav-link" id="home-link" @click="routeToHome">
-      <img
-        class="nav-bar-icon"
-        src="@/assets/home_FILL0_wght400_GRAD0_opsz48.png"
-        alt=""
-      />
-      <p class="nav-text">home</p>
-    </div>
+      <div class="nav-link" id="home-link" @click="routeToHome">
+        <img
+          class="nav-bar-icon"
+          src="@/assets/home_FILL0_wght400_GRAD0_opsz48.png"
+          alt=""
+        />
+        <p class="nav-text">home</p>
+      </div>
 
       <!-- <div class="nav-link" id="posts-link">
         <img
@@ -354,7 +351,6 @@ export default {
   -webkit-background-clip: text; */
 
   color: rgb(35, 33, 37);
-
 }
 
 #user-stats {

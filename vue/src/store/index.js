@@ -70,8 +70,8 @@ export default new Vuex.Store({
         }
       })
     },
-    SET_FOLLOWVIEW(state, num){
-      if(num == 1){
+    SET_FOLLOWVIEW(state, num) {
+      if (num == 1) {
         state.followView = true
       } else {
         state.followView = false
@@ -94,6 +94,6 @@ export default new Vuex.Store({
     },
     ADD_ACCOUNT(state, newAccount) {
       state.accounts.push(newAccount)
-    }
+    },
   }
 })

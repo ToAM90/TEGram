@@ -1,11 +1,18 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <create-post
-      v-if="
-        $store.state.account.accountId === $store.state.currentAccount.accountId
-      "
-    />
+    <!-- <div id="profile-header-2">
+      <create-post
+        v-if="
+          $store.state.account.accountId ===
+          $store.state.currentAccount.accountId
+        "
+        id="profile-create-post"
+      />
+      <div class="profile-bio">
+        <p>{{ $store.state.account.biography }}</p>
+      </div>
+    </div> -->
     <image-column class="profile-image-column" />
   </div>
 </template>
@@ -15,14 +22,14 @@ import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
 import PostService from "@/services/PostService.js";
 import AccountService from "@/services/AccountService.js";
-import CreatePost from "@/components/CreatePost.vue";
+// import CreatePost from "@/components/CreatePost.vue";
 
 export default {
   name: "profile",
   components: {
     ProfileHeader,
     ImageColumn,
-    CreatePost,
+    // CreatePost,
   },
   data() {
     return {
@@ -68,6 +75,36 @@ export default {
 #profile-header {
   /* width: 100vw; */
   position: fixed;
+}
+
+#profile-header-2 {
+  position: relative;
+  top: 150px;
+  display: flex;
+  flex-direction: row;
+  height: 205px;
+}
+
+#profile-create-post {
+  height: 200px;
+  padding-bottom: 30px;
+  /* padding-top: 20px; */
+
+  background-color: #d1d1d3;
+  border: 5px rgba(0, 0, 0, 0.308) solid;
+
+  border-radius: 10px;
+}
+
+#profile-bio {
+  height: 175px;
+  padding: 10px;
+  /* padding-top: 20px; */
+
+  background-color: #d1d1d3;
+  border: 5px rgba(0, 0, 0, 0.308) solid;
+
+  border-radius: 10px;
 }
 
 .page-title {

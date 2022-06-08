@@ -20,10 +20,10 @@
         placeholder="Enter caption"
         v-model="createPost.caption"
       ></textarea>
-      <div id="privated">
+      <!-- <div id="privated">
         <input id="checkbox" type="checkbox" v-model="createPost.privated" />
         <label for="checkbox">Private {{ privated }}</label> <br />
-      </div>
+      </div> -->
       <div id="form-submit-buttons">
         <button id="cancel-upload" @click.prevent="toggleCreatingPost">
           Cancel
@@ -140,19 +140,12 @@ export default {
 
 <style lang="css" scoped>
 #upload {
-  width: calc(60% - 20px);
-  margin-left: 20%;
+  /* width: calc(60% - 20px); */
+  /* margin-left: 20%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  border: 5px rgba(0, 0, 0, 0.308) solid;
-  padding: 5px;
-  position: relative;
-  top: 150px;
-
-  border-radius: 10px;
   /* padding-top: 155px; */
 }
 
@@ -218,6 +211,7 @@ export default {
 
   height: 100% !important;
   font-family: "Open Sans", sans-serif;
+  background-color: #d1d1d3;
 }
 
 #privated {

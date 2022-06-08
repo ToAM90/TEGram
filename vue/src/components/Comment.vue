@@ -7,7 +7,9 @@
         class="delete-comment-btn"
         v-on:click="deleteComment(comment.commentId)"
         v-if="comment.accountId == $store.state.currentAccount.accountId"
-      >Delete</button>
+      >
+        Delete
+      </button>
     </div>
 
     <form v-on:submit.prevent="addComment">
@@ -47,17 +49,17 @@ export default {
     };
   },
   created() {
-      this.comments = this.$store.state.currentPost.comments;
-    },
+    this.comments = this.$store.state.currentPost.comments;
+  },
   methods: {
     addComment() {
       this.newComment.postId = this.$store.state.currentPost.postId;
       CommentService.addComment(this.newComment);
-      this.$router.go(0)
+      this.$router.go(0);
     },
     deleteComment(commentId) {
       CommentService.removeComment(commentId);
-      this.$router.go(0)
+      this.$router.go(0);
     },
   },
 };
@@ -68,6 +70,9 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 #comment-input {
   margin: 4px;
@@ -77,7 +82,7 @@ export default {
 }
 
 .comment-form-button {
-  width: 45%;
+  width: 42.5%;
   height: 25px;
   margin: 8px;
 }
@@ -110,16 +115,22 @@ export default {
 .comment {
   margin: 10px;
   display: flex;
-  width: 100%;
+  width: calc(100% - 18px);
+  flex-direction: column;
 }
-.comment-username{
-  font-style: italic;
-  color: black;
+.comment-username {
+  /* font-style: italic; */
+  /* color: black; */
+  text-decoration-line: underline;
+  color: #ff48a3;
+
+  line-height: 16px;
+  padding-right: 10px;
 }
 
-.comment-text{
+.comment-text {
   color: black;
-  width: 68%;
+  width: 100%;
   word-break: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -128,10 +139,18 @@ export default {
   max-height: 96px;
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
+  padding: 10px;
 }
 
-.delete-comment-btn{
-  max-height: 20px;
- align-items: flex-end;
+.delete-comment-btn {
+  color: white;
+  height: 25px;
+
+  width: 70%;
+  margin-left: 15%;
+  border-radius: 4px;
+  background-color: rgb(212, 87, 87) !important;
+  box-shadow: 0px 0px 5px rgb(177, 47, 47) !important;
+  /* align-items: flex-end; */
 }
 </style>
