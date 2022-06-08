@@ -32,7 +32,7 @@
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p class="nav-text">following</p>
+        <p class="nav-text" @click="routeToFollowing">following</p>
       </div>
       <div class="nav-link" id="followers-link" v-if="windowWidth > 1400">
         <img
@@ -40,7 +40,7 @@
           src="@/assets/groups_2_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p class="nav-text">followers</p>
+        <p class="nav-text" @click="routeToFollowers">followers</p>
       </div>
       <div class="nav-link" id="logout-link">
         <img
@@ -90,6 +90,14 @@ export default {
     },
     routeToHome() {
       this.$router.push("/");
+    },
+     routeToFollowing() {
+      this.$store.commit("SET_FOLLOWVIEW", 1);
+      this.$router.push("/following");
+    },
+    routeToFollowers() {
+      this.$store.commit("SET_FOLLOWVIEW", 2);
+      this.$router.push("/followers");
     },
     toggleCreatingPost() {
       this.creatingPost = !this.creatingPost;

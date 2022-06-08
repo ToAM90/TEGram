@@ -16,5 +16,9 @@ export default {
 
     getAccountPosts(accountId){
         return axios.get(`/${accountId}/posts`)
+    },
+
+    deletePost(postId){
+        return axios.delete(`/post/${postId}`)
     }
 }

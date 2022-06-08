@@ -1,15 +1,27 @@
 <template>
   <div class="side-bar">
-    <div id="nav-user" @click="routeToProfile">
-      <img src="@/assets/icons8-settings-50.png" alt="" class="settings-icon" />
+    <div id="nav-user">
+      <router-link v-bind:to="{ name: 'update' }">
+        <img
+          src="@/assets/icons8-settings-50.png"
+          alt=""
+          class="settings-icon"
+        />
+      </router-link>
+
+
+<div @click="routeToProfile">
       <img
         :src="this.$store.state.currentAccount.profileImg"
         alt="@/assets/default-user-image.png"
         id="profile-icon"
       />
+      </div>
+
     </div>
 
-    <p class="display-name">
+
+    <p class="display-name"  >
       {{ getDisplayName }}
       <span
         ><img
@@ -19,23 +31,22 @@
       /></span>
     </p>
 
-    <!-- <div id="user-stats">
+    <div id="user-stats">
       <ul>
-        <li>
-          10 <br />
+        <!-- <li>
+          {{}} <br />
           posts
-        </li>
+        </li> -->
         <li>
-          22 <br />
+          {{ this.$store.state.currentAccount.numFollowers }} <br />
           followers
         </li>
         <li>
-          25 <br />
-          likes
+          {{ this.$store.state.currentAccount.numFollowing }} <br />
+          following
         </li>
       </ul>
-    </div> -->
-
+    </div>
     <div v-if="creatingPost === true" id="upload">
       <button
         id="upload_widget"
@@ -84,6 +95,15 @@
         <p @click="toggleCreatingPost" class="nav-text">create a post</p>
       </div>
 
+       <div class="nav-link" id="home-link" @click="routeToHome">
+      <img
+        class="nav-bar-icon"
+        src="@/assets/home_FILL0_wght400_GRAD0_opsz48.png"
+        alt=""
+      />
+      <p class="nav-text">home</p>
+    </div>
+
       <!-- <div class="nav-link" id="posts-link">
         <img
           class="nav-bar-icon"
@@ -98,17 +118,17 @@
           <p class="nav-text">favorited</p>
         </router-link>
       </div>
-      <div class="nav-link" id="likes-link">
+      <!-- <div class="nav-link" id="likes-link">
         <img class="nav-bar-icon" src="@/assets/icons8-heart-24.png" alt="" />
         <p class="nav-text">likes</p>
-      </div>
+      </div> -->
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
           src="@/assets/groups_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p class="nav-text">following</p>
+        <p class="nav-text" @click="routeToFollowing">following</p>
       </div>
       <div class="nav-link" id="followers-link">
         <img
@@ -116,7 +136,7 @@
           src="@/assets/groups_2_FILL0_wght400_GRAD0_opsz48.png"
           alt=""
         />
-        <p class="nav-text">followers</p>
+        <p class="nav-text" @click="routeToFollowers">followers</p>
       </div>
       <div class="nav-link" id="logout-link">
         <img
@@ -151,11 +171,22 @@ export default {
     };
   },
   methods: {
+    routeToHome() {
+      this.$router.push("/");
+    },
     routeToProfile() {
       accountService.getAccountSelf().then((response) => {
         this.$store.commit("SET_ACCOUNT", response.data);
         this.$router.push(`/profile/${this.$store.state.account.accountId}`);
       });
+    },
+    routeToFollowing() {
+      this.$store.commit("SET_FOLLOWVIEW", 1);
+      this.$router.push("/following");
+    },
+    routeToFollowers() {
+      this.$store.commit("SET_FOLLOWVIEW", 2);
+      this.$router.push("/followers");
     },
     logout() {
       this.$store.commit("LOGOUT");
@@ -306,6 +337,7 @@ export default {
   padding: 0px;
   box-shadow: 6px 6px 25px rgb(156, 155, 155);
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .display-name {
@@ -322,6 +354,7 @@ export default {
   -webkit-background-clip: text; */
 
   color: rgb(35, 33, 37);
+
 }
 
 #user-stats {

@@ -10,6 +10,8 @@ import Post from '../views/Post.vue'
 import Profile from '../views/Profile.vue'
 import Favorites from '../views/Favorites.vue'
 import Update from '../views/UpdateProfile.vue'
+import Followers from '../views/Follower.vue'
+import Following from '../views/Following.vue'
 
 Vue.use(Router)
 
@@ -95,6 +97,22 @@ const router = new Router({
       path: "/update",
       name: "update",
       component: Update,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/followers",
+      name: "followers",
+      component: Followers,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/following",
+      name: "following",
+      component: Following,
       meta: {
         requiresAuth: true
       }

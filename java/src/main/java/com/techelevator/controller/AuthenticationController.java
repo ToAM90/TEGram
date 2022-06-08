@@ -22,6 +22,8 @@ import com.techelevator.model.UserAlreadyExistsException;
 import com.techelevator.security.jwt.JWTFilter;
 import com.techelevator.security.jwt.TokenProvider;
 
+import java.security.Principal;
+
 @RestController
 @CrossOrigin
 public class AuthenticationController {
@@ -68,6 +70,27 @@ public class AuthenticationController {
             accountDao.createAccount(userId, newUser.getUsername());
         }
     }
+
+    @RequestMapping(value="/user", method = RequestMethod.GET)
+    public User getUser(Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        return userDao.getUserById(userId);
+
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public void update(@Valid @RequestBody RegisterUserDTO newUser) {
+        try {
+            User user = userDao.findByUsername(newUser.getUsername());
+            throw new UserAlreadyExistsException();
+        } catch (UsernameNotFoundException e) {
+            System.out.println(newUser.getUsername() + newUser.getRole());
+            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            int userId = userDao.findIdByUsername(newUser.getUsername());
+            accountDao.createAccount(userId, newUser.getUsername());
+        }
+    }
+
 
     /**
      * Object to return as body in JWT Authentication.

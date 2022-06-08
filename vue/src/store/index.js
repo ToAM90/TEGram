@@ -21,22 +21,12 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     posts: [],
+    followView: true,
     account: {},
     accounts: [],
     currentAccount: {},
     currentView: '',
-    currentPost: {
-      postId: 0,
-      accountId: 0,
-      img: "",
-      caption: "",
-      postDate: "",
-      privated: false,
-      comments: [],
-      liked: false,
-      favorited: false,
-      likesCount: 0,
-    }
+    currentPost: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -79,6 +69,13 @@ export default new Vuex.Store({
           post.favorited = !post.favorited
         }
       })
+    },
+    SET_FOLLOWVIEW(state, num){
+      if(num == 1){
+        state.followView = true
+      } else {
+        state.followView = false
+      }
     },
     SET_ACCOUNT(state, newAccount) {
       state.account = newAccount;
