@@ -78,13 +78,15 @@
           </div>
           <div class="update-buttons">
             <button
-              class="button update-button"
+              class="button update-button cancel-button"
               v-on:click="cancelForm"
               type="cancel"
             >
               Cancel
             </button>
-            <button class="button update-button" type="submit">Submit</button>
+            <button class="button update-button submit-button" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>
@@ -285,6 +287,7 @@ export default {
   /* margin: auto; */
   display: inline-block;
   border-radius: 5px;
+  background-color: rgb(35, 33, 37);
   color: var(--panel-background-color);
   flex-grow: 1;
   margin-left: 5%;

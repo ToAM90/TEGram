@@ -9,7 +9,7 @@
         />
       </router-link>
 
-      <div @click="routeToProfile">
+      <div class="profile-icon-parent" @click="routeToProfile">
         <img
           :src="this.$store.state.currentAccount.profileImg"
           alt="@/assets/default-user-image.png"
@@ -331,6 +331,7 @@ export default {
 #profile-icon {
   margin-top: 35px;
   max-width: 150px;
+  height: auto;
   padding: 0px;
   box-shadow: 6px 6px 25px rgb(156, 155, 155);
   border-radius: 100%;

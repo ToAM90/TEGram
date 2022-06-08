@@ -91,7 +91,7 @@ export default {
     routeToHome() {
       this.$router.push("/");
     },
-     routeToFollowing() {
+    routeToFollowing() {
       this.$store.commit("SET_FOLLOWVIEW", 1);
       this.$router.push("/following");
     },
@@ -184,8 +184,8 @@ export default {
       return this.$store.state.posts;
     },
     getProfilePic() {
-      console.log(this.$store.state.currentAccount.profileImg);
-      return this.$store.state.currentAccount.profileImg;
+      console.log(this.$store.state.account.profileImg);
+      return this.$store.state.account.profileImg;
     },
   },
 };
