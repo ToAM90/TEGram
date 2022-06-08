@@ -12,6 +12,7 @@ import Favorites from '../views/Favorites.vue'
 import Update from '../views/UpdateProfile.vue'
 import Followers from '../views/Follower.vue'
 import Following from '../views/Following.vue'
+import Liked from '../views/Liked.vue'
 
 Vue.use(Router)
 
@@ -113,6 +114,14 @@ const router = new Router({
       path: "/following",
       name: "following",
       component: Following,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: "/liked",
+      name: "liked",
+      component: Liked,
       meta: {
         requiresAuth: true
       }
