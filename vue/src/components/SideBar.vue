@@ -9,7 +9,7 @@
         />
       </router-link>
 
-      <div @click="routeToProfile">
+      <div class="profile-icon-parent" @click="routeToProfile">
         <img
           :src="this.$store.state.currentAccount.profileImg"
           alt="@/assets/default-user-image.png"
@@ -115,10 +115,12 @@
           <p class="nav-text">favorited</p>
         </router-link>
       </div>
-      <!-- <div class="nav-link" id="likes-link">
+      <div class="nav-link" id="likes-link">
         <img class="nav-bar-icon" src="@/assets/icons8-heart-24.png" alt="" />
-        <p class="nav-text">likes</p>
-      </div> -->
+        <router-link v-bind:to="{ name: 'liked' }">
+          <p class="nav-text">likes</p>
+        </router-link>
+      </div>
       <div class="nav-link" id="people-i-follow-link">
         <img
           class="nav-bar-icon"
@@ -329,6 +331,7 @@ export default {
 #profile-icon {
   margin-top: 35px;
   max-width: 150px;
+  height: auto;
   padding: 0px;
   box-shadow: 6px 6px 25px rgb(156, 155, 155);
   border-radius: 100%;

@@ -1,15 +1,26 @@
 <template>
   <div id="comments">
     <div v-for="comment in comments" v-bind:key="comment.id" class="comment">
-      <span class="comment-username">{{ comment.username }}: </span>
-      <span class="comment-text">{{ comment.commentText }}</span>
-      <button
-        class="delete-comment-btn"
-        v-on:click="deleteComment(comment.commentId)"
-        v-if="comment.accountId == $store.state.currentAccount.accountId"
-      >
-        Delete
-      </button>
+      <div id="indiv-comment">
+        <router-link
+          v-bind:to="{ name: 'profile', params: { id: comment.accountId } }"
+        >
+          <span class="comment-username">{{ comment.username }}: </span>
+        </router-link>
+
+        <div class="comment-with-icon">
+          <span class="comment-text">{{ comment.commentText }}</span>
+          <img
+            id="delete-icon"
+            v-on:click="deleteComment(comment.commentId)"
+            v-if="comment.accountId == $store.state.currentAccount.accountId"
+            src="../assets/icons8-delete-24.png"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <!-- <button>Delete</button> -->
     </div>
 
     <form v-on:submit.prevent="addComment">
@@ -111,6 +122,22 @@ export default {
   border-radius: 5px;
   color: white;
 }
+#indiv-comment:after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 75%;
+  padding-bottom: 5px;
+  border-bottom: 2px rgb(35, 33, 37) solid;
+}
+/* #indiv-comment:before {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 20px;
+  border-top: 2px rgb(35, 33, 37) solid;
+} */
 
 .comment {
   margin: 10px;
@@ -140,6 +167,15 @@ export default {
   -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   padding: 10px;
+}
+#delete-icon {
+  max-width: 17px;
+  max-height: 17px;
+}
+.comment-with-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 .delete-comment-btn {
