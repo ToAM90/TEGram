@@ -6,29 +6,22 @@
     >
       <p class="display-name">{{ getDisplayName() }}{{ displayName }}</p>
     </router-link>
+    <button v-if="post.accountId != $store.state.currentAccount.accountId" class="follow-btn" v-on:click="toggleFollow()">{{getFollow()}} {{follow? 'Unfollow' : 'Follow'}}</button>
   </div>
 </template>
 
 <script>
+import FollowService from '../services/FollowService';
+
 export default {
   name: "post-header",
   props: {
-    post: {
-      postId: 0,
-      accountId: 0,
-      img: "",
-      caption: "",
-      postDate: "",
-      privated: false,
-      comments: [],
-      liked: false,
-      favorited: false,
-      likesCount: 0,
-    },
+    post: {},
   },
   data() {
     return {
       displayName: "",
+      follow: ""
     };
   },
 
@@ -40,6 +33,22 @@ export default {
         }
       });
     },
+    getFollow(){
+      this.$store.state.accounts.find((stateAccount) => {
+        if (stateAccount.accountId == this.post.accountId) {
+          this.follow = stateAccount.followed;
+        }
+      });
+    },
+    toggleFollow(){
+      if(this.follow){
+          FollowService.unfollow(this.post.accountId)
+          this.$router.go(0)
+      } else {
+        FollowService.follow(this.post.accountId)
+        this.$router.go(0)
+      }
+    }
   },
 };
 </script>
@@ -67,5 +76,8 @@ export default {
   font-size: 1.3rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
+}
+.follow-btn{
+  width: 10000px;
 }
 </style>

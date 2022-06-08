@@ -55,7 +55,7 @@ public class JdbcFollowDao implements FollowDao {
     @Override
     public List<Account> listFollowing(int accountId) {
         List<Account> accountList = new ArrayList<>();
-        String sql = "SELECT account_id, profile_img, display_name, biography FROM accounts JOIN following ON account_id_follower = account_id WHERE account_id = ?";
+        String sql = "SELECT * FROM following JOIN accounts ON account_id_following = account_id WHERE account_id_follower = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
         while(results.next()){
@@ -68,7 +68,7 @@ public class JdbcFollowDao implements FollowDao {
     @Override
     public List<Account> listFollowers(int accountId) {
         List<Account> accountList = new ArrayList<>();
-        String sql = "SELECT account_id, user_id, profile_img, display_name, biography FROM accounts JOIN following ON account_id_following = account_id WHERE account_id = ?";
+        String sql = "SELECT * FROM following JOIN accounts ON account_id_follower = account_id WHERE account_id_following = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
         while(results.next()){

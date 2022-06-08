@@ -35,10 +35,14 @@ public class AccountController {
     }
 
     @RequestMapping("/profile/{accountId}")
-    public Account getAccountByAccountId(@PathVariable int accountId){
+    public Account getAccountByAccountId(@PathVariable int accountId, Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int selfId = accountDao.getAccountByUserId(userId).getAccountId();
         Account account = accountDao.getAccountByAccountId(accountId);
         account.setNumFollowers(followDao.countFollowers(accountId));
         account.setNumFollowing(followDao.countFollowing(accountId));
+        account.setFollowed(followDao.isFollowed(selfId, accountId));
+
 
         return account;
 

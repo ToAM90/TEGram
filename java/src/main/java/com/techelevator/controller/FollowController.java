@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,15 +48,26 @@ public class FollowController {
     public List<Account> following(Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        return followDao.listFollowing(accountId);
+        List<Account> listAccounts = followDao.listFollowing(accountId);
+        for(Account account : listAccounts){
+            account.setNumFollowers(followDao.countFollowers(account.getAccountId()));
+            account.setNumFollowing(followDao.countFollowing(account.getAccountId()));
+            account.setFollowed(followDao.isFollowed(accountId, account.getAccountId()));
+        }
+        return listAccounts;
     }
 
     @RequestMapping(path="/followers", method = RequestMethod.GET)
     public List<Account> followers(Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        return followDao.listFollowers(accountId);
-    }
+        List<Account> listAccounts = followDao.listFollowers(accountId);
+        for(Account account : listAccounts){
+            account.setNumFollowers(followDao.countFollowers(account.getAccountId()));
+            account.setNumFollowing(followDao.countFollowing(account.getAccountId()));
+            account.setFollowed(followDao.isFollowed(accountId, account.getAccountId()));
+        }
+        return listAccounts;}
 
 
 }

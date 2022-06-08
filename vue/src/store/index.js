@@ -21,7 +21,7 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     posts: [],
-    followView: true,
+    followAccounts: [],
     account: {},
     accounts: [],
     currentAccount: {},
@@ -70,12 +70,8 @@ export default new Vuex.Store({
         }
       })
     },
-    SET_FOLLOWVIEW(state, num) {
-      if (num == 1) {
-        state.followView = true
-      } else {
-        state.followView = false
-      }
+    SET_FOLLOW_ACCOUNTS(state, accounts){
+      state.followAccounts = accounts
     },
     SET_ACCOUNT(state, newAccount) {
       state.account = newAccount;

@@ -178,11 +178,9 @@ export default {
       });
     },
     routeToFollowing() {
-      this.$store.commit("SET_FOLLOWVIEW", 1);
       this.$router.push("/following");
     },
     routeToFollowers() {
-      this.$store.commit("SET_FOLLOWVIEW", 2);
       this.$router.push("/followers");
     },
     logout() {
