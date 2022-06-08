@@ -51,7 +51,7 @@ public class JdbcLikedDao implements LikedDao{
         String sql = "SELECT posts.post_id, posts.account_id, posts.img, posts.caption, posts.post_date, posts.privated FROM likes\n" +
                 "INNER JOIN posts ON likes.post_id = posts.post_id\n" +
                 "INNER JOIN accounts ON likes.account_id = accounts.account_id\n" +
-                "WHERE accounts.account_id = 1\n" +
+                "WHERE accounts.account_id = ?\n" +
                 "ORDER BY posts.post_date DESC;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, accountId);
 
