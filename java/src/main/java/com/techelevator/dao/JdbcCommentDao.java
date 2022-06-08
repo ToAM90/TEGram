@@ -21,7 +21,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public Comment getComment(int commentId) {
         Comment comment = new Comment();
-        String sql = "SELECT comment_id, c.account_id, post_id, comment_text a.display_name FROM comments c ON c.account_id = a.account_id JOIN accounts a WHERE comment_id = ?";
+        String sql = "SELECT comment_id, c.account_id, post_id, comment_text, display_name FROM comments c JOIN accounts ON c.account_id = a.account_id a  WHERE comment_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, commentId);
         if(results.next()){
             comment = MapRowToComment(results);
@@ -32,7 +32,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public List<Comment> listComments(int postId) {
         List<Comment> commentsList = new ArrayList<>();
-        String sql = "SELECT comment_id, account_id, post_id, comment_text FROM comments WHERE post_id = ?";
+        String sql = "SELECT comment_id, c.account_id, post_id, comment_text, display_name FROM comments c JOIN accounts a ON c.account_id = a.account_id WHERE post_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, postId);
 
         while(results.next()){
@@ -46,7 +46,7 @@ public class JdbcCommentDao implements CommentDao{
     @Override
     public void submitComment(Comment comment) {
 
-        String sql = "INSERT INTO comments (account_id, post_id, comment_text VALUES (?, ?, ?)";
+        String sql = "INSERT INTO comments (account_id, post_id, comment_text) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, comment.getAccountId(), comment.getPostId(), comment.getCommentText());
 
     }
@@ -63,9 +63,9 @@ public class JdbcCommentDao implements CommentDao{
 
         comment.setPostId(results.getInt("post_id"));
         comment.setCommentId(results.getInt("comment_id"));
-        comment.setAccountId(results.getInt("c.account_id"));
+        comment.setAccountId(results.getInt("account_id"));
         comment.setCommentText(results.getString("comment_text"));
-        comment.setUsername(results.getString("a.display_name"));
+        comment.setUsername(results.getString("display_name"));
 
         return comment;
     }

@@ -150,12 +150,11 @@ export default {
         this.passwordChangeErrors = true;
         this.passwordChangeErrorMsg = "Password is not strong enough.";
       } else {
+        this.newUser.role="user"
         AuthService.update(this.newUser)
           .then((response) => {
-            if (response.status == 201) {
-              this.$router.push({
-                path: `{/}`,
-              });
+            if (response.status == 200) {
+              this.$router.push({ name: "home" });
             }
           })
           .catch((error) => {

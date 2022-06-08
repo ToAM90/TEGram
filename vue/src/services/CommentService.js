@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default {
 
-    addComment(comment, postId) {
-        return axios.post('/comments', comment, postId)
+    addComment(comment) {
+        return axios.post(`/comments`, comment)
     },
 
     removeComment(commentId) {

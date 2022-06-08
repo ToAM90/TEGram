@@ -30,10 +30,9 @@ public class CommentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path="/comments", method = RequestMethod.POST)
-        public void submitComment(@RequestBody Comment comment, Principal principal, int postId){
+        public void submitComment(@RequestBody Comment comment, Principal principal){
         long userId = userDao.findIdByUsername(principal.getName());
         int accountId = accountDao.getAccountByUserId(userId).getAccountId();
-        comment.setPostId(postId);
         comment.setAccountId(accountId);
         commentDao.submitComment(comment);
     }

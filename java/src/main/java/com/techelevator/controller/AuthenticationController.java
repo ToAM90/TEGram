@@ -80,16 +80,10 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public void update(@Valid @RequestBody RegisterUserDTO newUser) {
-        try {
-            User user = userDao.findByUsername(newUser.getUsername());
-            throw new UserAlreadyExistsException();
-        } catch (UsernameNotFoundException e) {
             System.out.println(newUser.getUsername() + newUser.getRole());
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
-            int userId = userDao.findIdByUsername(newUser.getUsername());
-            accountDao.createAccount(userId, newUser.getUsername());
+            userDao.updateUser(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
         }
-    }
+
 
 
     /**

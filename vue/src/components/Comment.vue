@@ -1,12 +1,12 @@
 <template>
   <div id="comments">
-    <div v-for="comment in commentList" v-bind:key="comment.commentId">
+    <div v-for="comment in comments" v-bind:key="comment.id">
       <p>{{ comment.username }}</p>
       <p>{{ comment.commentText }}</p>
       <i
         id="delete-comment-btn"
-        v-on:click="comment.commentId"
-        v-if="comment.accountId == this.$store.currentAccount.accountId"
+        v-on:click="deleteComment(commentId)"
+        v-if="comment.accountId == this.$store.state.currentAccount.accountId"
       />
     </div>
 
@@ -15,21 +15,21 @@
         id="comment-input"
         type="text"
         placeholder="Make A Comment :"
-        v-model="comment"
+        v-model="newComment.commentText"
       />
-      
+
+      <div class="comment-form-buttons">
+        <button
+          class="comment-form-button cancel-comment"
+          v-on:click="newComment.commentText = ''"
+        >
+          Cancel
+        </button>
+        <button class="comment-form-button send-comment" type="submit">
+          Send
+        </button>
+      </div>
     </form>
-    <div class="comment-form-buttons">
-      <button
-        class="comment-form-button cancel-comment"
-        v-on:click="comment = ''"
-      >
-        Cancel
-      </button>
-      <button class="comment-form-button send-comment" @click="addComment">
-        Send
-      </button>
-    </div>
   </div>
 </template>
 
@@ -39,17 +39,20 @@ export default {
   name: "comment",
   data() {
     return {
-      comment: "",
+      comments: [],
+      newComment: {
+        postId: -1,
+        commentText: "",
+      },
     };
   },
-  computed: {
-    commentList() {
-      return this.$store.state.currentPost.comments;
+  created() {
+      this.comments = this.$store.state.currentPost.comments;
     },
-  },
   methods: {
     addComment() {
-      CommentService.addComment(this.comment);
+      this.newComment.postId = this.$store.state.currentPost.postId;
+      CommentService.addComment(this.newComment);
     },
     deleteComment(commentId) {
       CommentService.removeComment(commentId);

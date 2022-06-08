@@ -92,7 +92,7 @@ public class JdbcUserDao implements UserDao {
     public boolean updateUser(String username, String password, String role) {
         boolean userUpdated = false;
 
-        String insertUser = "UPDATE users SET username = ?, password_hash = ?, role = ?";
+        String insertUser = "UPDATE users SET password_hash = ? WHERE username = ?";
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
 
@@ -100,9 +100,8 @@ public class JdbcUserDao implements UserDao {
         String id_column = "user_id";
         userUpdated = jdbcTemplate.update(con -> {
                     PreparedStatement ps = con.prepareStatement(insertUser, new String[]{id_column});
-                    ps.setString(1, username);
-                    ps.setString(2, password_hash);
-                    ps.setString(3, ssRole);
+                    ps.setString(2, username);
+                    ps.setString(1, password_hash);
                     return ps;
                 }
                 , keyHolder) == 1;
