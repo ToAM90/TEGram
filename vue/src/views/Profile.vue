@@ -1,14 +1,13 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <div id="profile-header-2">
-      <create-post
-        v-if="
-          $store.state.account.accountId ===
-          $store.state.currentAccount.accountId
-        "
-        id="profile-create-post"
-      />
+    <div
+      id="profile-header-2"
+      v-if="
+        $store.state.account.accountId === $store.state.currentAccount.accountId
+      "
+    >
+      <create-post id="profile-create-post" />
       <div class="profile-bio">
         <p>{{ $store.state.account.biography }}</p>
       </div>
@@ -88,18 +87,6 @@ export default {
   height: 205px;
 }
 
-#profile-create-post {
-  height: 200px;
-  /* padding-bottom: 30px;*/
-  padding-top: 20px;
-  left: 75%;
-  bottom: 75%;
-  /* background-color: #d1d1d3; */
-  /* border-top: 2px #d1d1d3 solid;
-  border-bottom: 2px #d1d1d3 solid; */
-
-  /* border-radius: 10px; */
-}
 #profile-create-post:after {
   content: "";
   display: block;

@@ -140,7 +140,7 @@ export default {
 
 <style lang="css" scoped>
 #upload {
-  width: calc(60% - 20px);
+  max-width: 400px;
   /* margin-left: 20%; */
   display: flex;
   flex-direction: column;
