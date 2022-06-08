@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <!-- <div id="profile-header-2">
+    <div id="profile-header-2">
       <create-post
         v-if="
           $store.state.account.accountId ===
@@ -12,7 +12,7 @@
       <div class="profile-bio">
         <p>{{ $store.state.account.biography }}</p>
       </div>
-    </div> -->
+    </div>
     <image-column class="profile-image-column" />
   </div>
 </template>
@@ -22,14 +22,14 @@ import ProfileHeader from "@/components/ProfileHeader.vue";
 import ImageColumn from "../components/ImageColumn.vue";
 import PostService from "@/services/PostService.js";
 import AccountService from "@/services/AccountService.js";
-// import CreatePost from "@/components/CreatePost.vue";
+import CreatePost from "@/components/CreatePost.vue";
 
 export default {
   name: "profile",
   components: {
     ProfileHeader,
     ImageColumn,
-    // CreatePost,
+    CreatePost,
   },
   data() {
     return {
@@ -75,25 +75,46 @@ export default {
 #profile-header {
   /* width: 100vw; */
   position: fixed;
+  z-index: 9;
 }
 
 #profile-header-2 {
-  position: relative;
   top: 150px;
+  position: relative;
   display: flex;
   flex-direction: row;
+  align-content: center;
+  justify-content: center;
   height: 205px;
 }
 
 #profile-create-post {
   height: 200px;
-  padding-bottom: 30px;
-  /* padding-top: 20px; */
+  /* padding-bottom: 30px;*/
+  padding-top: 20px;
+  left: 75%;
+  bottom: 75%;
+  /* background-color: #d1d1d3; */
+  /* border-top: 2px #d1d1d3 solid;
+  border-bottom: 2px #d1d1d3 solid; */
 
-  background-color: #d1d1d3;
-  border: 5px rgba(0, 0, 0, 0.308) solid;
-
-  border-radius: 10px;
+  /* border-radius: 10px; */
+}
+#profile-create-post:after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 20px;
+  border-bottom: 2px #d1d1d3 solid;
+}
+#profile-create-post:before {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+  padding-top: 20px;
+  border-top: 2px #d1d1d3 solid;
 }
 
 #profile-bio {

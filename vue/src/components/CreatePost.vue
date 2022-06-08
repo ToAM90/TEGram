@@ -16,7 +16,7 @@
         name=""
         id="upload-caption-input"
         cols="30"
-        rows="4"
+        rows="2"
         placeholder="Enter caption"
         v-model="createPost.caption"
       ></textarea>
@@ -140,7 +140,7 @@ export default {
 
 <style lang="css" scoped>
 #upload {
-  /* width: calc(60% - 20px); */
+  width: calc(60% - 20px);
   /* margin-left: 20%; */
   display: flex;
   flex-direction: column;
@@ -156,14 +156,15 @@ export default {
   color: green;
 }
 
-#upload-widget {
+/* #upload-widget {
   width: 200px !important;
-}
+} */
 
 .cloudinary-button {
   width: 100% !important;
   padding: 0px !important;
   height: 30px !important;
+  background-color: rgb(96, 165, 107);
 }
 
 #upload-form {
