@@ -85,6 +85,11 @@ export default new Vuex.Store({
       state.followAccounts.forEach(account => {
         if (account.accountId == accountId) {
             account.followed = !account.followed
+            if(account.followed){
+              state.currentAccount.numFollowing++
+            } else {
+              state.currentAccount.numFollowing--
+            }
       }})
     },
     SET_FOLLOW_ACCOUNTS(state, accounts){
