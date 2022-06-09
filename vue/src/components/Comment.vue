@@ -96,6 +96,7 @@ export default {
   font-weight: 300;
 }
 #comment-input {
+  font-family: "Montserrat", sans-serif;
   margin: 4px;
   margin-bottom: 0px;
   min-width: calc(100% - 15px);
