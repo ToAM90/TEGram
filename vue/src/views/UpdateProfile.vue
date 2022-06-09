@@ -152,7 +152,10 @@ export default {
         this.passwordChangeErrors = true;
         this.passwordChangeErrorMsg = "Password is not strong enough.";
       } else {
-        this.newUser.role = "user";
+
+        if (confirm('Are you sure you want to change your password?')) {
+  // Save it!
+  this.newUser.role = "user";
         AuthService.update(this.newUser)
           .then((response) => {
             if (response.status == 200) {
@@ -168,6 +171,13 @@ export default {
                 "There were problems with changing your password";
             }
           });
+  console.log('Password Changed.');
+
+} else {
+  // Do nothing!
+  console.log('Password Not Changed.');
+}
+        
       }
     },
     onScore({ score, strength }) {
