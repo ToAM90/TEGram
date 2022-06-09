@@ -69,6 +69,23 @@ export default new Vuex.Store({
           post.favorited = !post.favorited
         }
       })
+    }, 
+    TOGGLE_FOLLOW(state, accountId) {
+      state.accounts.forEach(account => {
+        if (account.accountId == accountId) {
+            account.followed = !account.followed
+            if(account.followed){
+              state.currentAccount.numFollowing++
+            } else {
+              state.currentAccount.numFollowing--
+            }
+      }})
+    },
+    TOGGLE_FOLLOW_FOLLOW(state, accountId) {
+      state.followAccounts.forEach(account => {
+        if (account.accountId == accountId) {
+            account.followed = !account.followed
+      }})
     },
     SET_FOLLOW_ACCOUNTS(state, accounts){
       state.followAccounts = accounts
@@ -91,5 +108,13 @@ export default new Vuex.Store({
     ADD_ACCOUNT(state, newAccount) {
       state.accounts.push(newAccount)
     },
+    ADD_COMMENT(state, comment){
+      state.currentPost.comments.push(comment)
+    },
+    REMOVE_COMMENT(state, id){
+      state.currentPost.comments.splice(
+        (state.currentPost.comments.findIndex((comment) => comment.commentId === id), 1)
+      )
+    }
   }
 })

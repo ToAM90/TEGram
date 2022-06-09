@@ -1,25 +1,35 @@
 <template>
-<div>
-   <side-bar id="side-bar-home"/>
-  <div id="follow-list">
-    <h1 class="follow-header">Following</h1>
-    <div
-      id="list-accounts"
-      v-for="account in $store.state.followAccounts"
-      v-bind:key="account.accountId"
-    >
-    <div id="account-item">
-      <img class="account-image" :src="account.profileImg" />
-      <span class="account-name" v-on:click="$router.push(`/profile/${account.accountId}`)">
-        {{ account.displayName }}
-      </span>
+  <main id="following-page">
+    <side-bar id="side-bar-home" />
+    <header class="follow-header">
+      <h1 class="page-title-text">Following</h1>
+      <img
+        class="page-title-icon"
+        src="@/assets/groups_2_FILL0_wght400_GRAD0_opsz48.png"
+        alt=""
+      />
+    </header>
 
-      <button v-on:click="toggleFollow(account.followed, account.accountId)"> {{account.followed ? "Unfollow" : "Follow"}} </button>
-      <span class="account-biography">{{account.biography}}</span>
+    <div id="follow-list">
+      <div
+        id="list-accounts"
+        v-for="account in $store.state.followAccounts"
+        v-bind:key="account.accountId">
+       
+          <img class="account-image" :src="account.profileImg" />
+          <p
+            class="account-name"
+            v-on:click="$router.push(`/profile/${account.accountId}`)">
+            {{ account.displayName }}</p>
+
+          <button
+            v-on:click="toggleFollow(account.followed, account.accountId)">
+            {{ account.followed ? "Unfollow" : "Follow" }}
+          </button>
+      </div>
     </div>
-    </div>
-  </div>
-  </div>
+
+  </main>
 </template>
 
 <script>
@@ -28,60 +38,28 @@ import SideBar from "../components/SideBar.vue";
 
 export default {
   name: "following",
-    components: {
+  components: {
     SideBar,
   },
   methods: {
-    toggleFollow(followed, accountId){
-      if(followed){
+    toggleFollow(followed, accountId) {
+      if (followed) {
         FollowService.unfollow(accountId);
         this.$router.go(0);
-        } else {
-          FollowService.follow(accountId);
-          this.$router.go(0);
-        }
-    }
+      } else {
+        FollowService.follow(accountId);
+        this.$router.go(0);
+      }
+    },
   },
   created() {
-
-        FollowService.listFollowing().then((response) => {
-             this.$store.commit("SET_FOLLOW_ACCOUNTS", response.data)
-        })
-
-    }
+    FollowService.listFollowing().then((response) => {
+      this.$store.commit("SET_FOLLOW_ACCOUNTS", response.data);
+    });
+  },
 };
 </script>
 
 <style>
 
-#follow-list{
-  width: calc(100% - 315px);
-  margin-left: 35%;
-  margin-right: auto;
-  padding-top: 20px;
-}
-
-.follow-header{
-}
-
-#list-accounts{
-display: flex;
-align-items: center;
-}
-
-#list-accounts p:nth-of-type(even){
-color: salmon;
-}
-
-#list-accounts p:nth-of-type(odd){
-  background-color: salmon;
-}
-
-.account-image{
-  margin-top: 35px;
-  width: 150px;
-  height: 150px;
-  padding: 0px;
-  border-radius: 100%;
-}
 </style>

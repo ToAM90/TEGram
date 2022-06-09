@@ -6,12 +6,19 @@
     >
       <p class="display-name">{{ getDisplayName() }}{{ displayName }}</p>
     </router-link>
-    <button v-if="post.accountId != $store.state.currentAccount.accountId" class="follow-btn" v-on:click="toggleFollow()">{{getFollow()}} {{follow? 'Unfollow' : 'Follow'}}</button>
+    <div
+      v-if="post.accountId != $store.state.currentAccount.accountId"
+      v-on:click="toggleFollow()"
+    >
+    {{getFollow()}}
+      <img class="follow-icon" v-if="follow" src="@/assets/delete-friend.png" />
+      <img class="follow-icon" v-else src="@/assets/add-friend.png" />
+    </div>
   </div>
 </template>
 
 <script>
-import FollowService from '../services/FollowService';
+import FollowService from "../services/FollowService";
 
 export default {
   name: "post-header",
@@ -21,10 +28,9 @@ export default {
   data() {
     return {
       displayName: "",
-      follow: ""
+      follow: "",
     };
   },
-
   methods: {
     getDisplayName() {
       this.$store.state.accounts.find((stateAccount) => {
@@ -33,22 +39,22 @@ export default {
         }
       });
     },
-    getFollow(){
+    getFollow() {
       this.$store.state.accounts.find((stateAccount) => {
         if (stateAccount.accountId == this.post.accountId) {
           this.follow = stateAccount.followed;
         }
       });
     },
-    toggleFollow(){
-      if(this.follow){
-          FollowService.unfollow(this.post.accountId)
-          this.$router.go(0)
+    toggleFollow() {
+      if (this.follow) {
+        FollowService.unfollow(this.post.accountId);
+        this.$store.commit("TOGGLE_FOLLOW", this.post.accountId);
       } else {
-        FollowService.follow(this.post.accountId)
-        this.$router.go(0)
+        FollowService.follow(this.post.accountId);
+        this.$store.commit("TOGGLE_FOLLOW", this.post.accountId);
       }
-    }
+    },
   },
 };
 </script>
@@ -77,7 +83,9 @@ export default {
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
-.follow-btn{
-  width: 10000px;
+
+.follow-icon {
+  max-width: 20px;
+  cursor: pointer;
 }
 </style>

@@ -19,17 +19,16 @@
           />
         </div>
       </div>
-
-      <!-- <button>Delete</button> -->
     </div>
 
     <form v-on:submit.prevent="addComment">
       <textarea
         id="comment-input"
         type="text"
-        placeholder="Make A Comment :"
+        placeholder="Make A Comment"
         v-model="newComment.commentText"
       />
+
 
       <div class="comment-form-buttons">
         <button
@@ -57,6 +56,7 @@ export default {
         postId: -1,
         commentText: "",
       },
+      storeComment: {}
     };
   },
   created() {
@@ -65,12 +65,23 @@ export default {
   methods: {
     addComment() {
       this.newComment.postId = this.$store.state.currentPost.postId;
-      CommentService.addComment(this.newComment);
-      this.$router.go(0);
+      CommentService.addComment(this.newComment).then((response) =>{
+        if(response.status == 201){
+            this.newComment.accountId = this.$store.state.currentAccount.accountId;
+            this.storeComment = this.newComment
+      this.$store.commit("ADD_COMMENT", this.storeComment)
+      // this.newComment.commentText = ""
+        }
+      })
+    
     },
     deleteComment(commentId) {
-      CommentService.removeComment(commentId);
-      this.$router.go(0);
+      CommentService.removeComment(commentId).then((response) => {
+        if(response.status === 204){
+           this.$store.commit("REMOVE_COMMENT", commentId)
+        }
+      })
+     
     },
   },
 };
@@ -178,15 +189,7 @@ export default {
   align-items: flex-end;
 }
 
-.delete-comment-btn {
-  color: white;
-  height: 25px;
-
-  width: 70%;
-  margin-left: 15%;
-  border-radius: 4px;
-  background-color: rgb(212, 87, 87) !important;
-  box-shadow: 0px 0px 5px rgb(177, 47, 47) !important;
-  /* align-items: flex-end; */
+#delete-icon{
+  cursor: pointer;
 }
 </style>
