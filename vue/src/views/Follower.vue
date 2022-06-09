@@ -101,7 +101,7 @@ export default {
     -moz-column-gap: 0px;
     column-count: 3;
     column-gap: 10px;
-  margin-left: 10%;
+  margin-left: 295px;
   margin-right: auto;
 
   max-width: 100%;
@@ -109,7 +109,7 @@ export default {
 }
 
 .follow-header {
-  margin-left: 15%;
+   margin-left: 295px;
   margin-right: auto;
   display: flex;
   flex-direction: row;
