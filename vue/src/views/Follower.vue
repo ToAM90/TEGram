@@ -150,7 +150,8 @@ export default {
 }
 
 #list-accounts .follow-icon{
-  background: beige;
-  margin-left: -10px
+  margin-left: -10px;
+    -webkit-filter: invert(100%);
+    filter: invert(80%);
 }
 </style>
