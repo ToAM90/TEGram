@@ -55,6 +55,9 @@
       <div class="uploaded-photo-diplay">
         <p v-if="!imageUrl.includes('$$$$$$')">Successfully Uploaded</p>
       </div>
+       <div class="alert alert-danger" role="alert" v-if="uploadError">
+        {{ uploadErrorMsg }}
+      </div>
       <form id="upload-form">
         <textarea
           name=""
@@ -76,7 +79,7 @@
           <button id="cancel-upload" @click.prevent="toggleCreatingPost">
             Cancel
           </button>
-          <button id="submit-upload" @click="uploadPost" type="submit">
+          <button id="submit-upload" @click.prevent="uploadPost" type="submit">
             Post
           </button>
         </div>
@@ -167,6 +170,8 @@ export default {
       preview: true,
       creatingPost: false,
       displayName: "",
+        uploadError: false,
+      uploadErrorMsg: "There were problems making a post.",
     };
   },
   methods: {
@@ -242,7 +247,15 @@ export default {
           console.log("placeholder event");
         }
         this.creatingPost = !this.creatingPost;
-      });
+      })
+       .catch((error) => {
+          const response = error.response;
+            this.uploadError = true;
+            if (response.status === 400) {
+              this.uploadErrorMsg =
+                "Please add a photo.";
+            }
+          });
     },
 
     uploadPhoto() {
