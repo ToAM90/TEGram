@@ -60,7 +60,7 @@ export default {
     },
   },
   created() {
-    FollowService.listFollowers().then((response) => {
+    FollowService.listFollowing().then((response) => {
       this.$store.commit("SET_FOLLOW_ACCOUNTS", response.data);
     });
   },
