@@ -371,9 +371,9 @@ li {
   color: black;
   list-style: none !important;
   text-align: center;
-  font-size: 15px;
+  font-size: 18px;
   font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 .nav-list {

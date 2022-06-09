@@ -1,15 +1,22 @@
 <template>
   <div id="home">
     <profile-header id="profile-header"></profile-header>
-    <div
-      id="profile-header-2"
-      v-if="
-        $store.state.account.accountId === $store.state.currentAccount.accountId
-      "
-    >
-      <create-post id="profile-create-post" />
-      <div class="profile-bio">
-        <p>{{ $store.state.account.biography }}</p>
+
+    <div id="profile-header-2">
+      <div id="bio-create-box">
+        <div
+          class="profile-bio"
+          v-if="$store.state.account.biography !== null && showBio === true"
+        >
+          <p>{{ $store.state.account.biography }}</p>
+        </div>
+        <create-post
+          id="profile-create-post"
+          v-if="
+            $store.state.account.accountId ===
+              $store.state.currentAccount.accountId && showBio === true
+          "
+        />
       </div>
     </div>
     <image-column class="profile-image-column" />
@@ -32,7 +39,7 @@ export default {
   },
   data() {
     return {
-      // hideHeader: false,
+      showBio: false,
       // scrollDistance: 0,
     };
   },
@@ -40,6 +47,7 @@ export default {
     AccountService.getAccountOther(this.$route.params.id).then((response) => {
       this.$store.commit("SET_ACCOUNT", response.data);
       console.log(this.$store.state.account);
+      this.showBio = true;
     });
     PostService.getAccountPosts(this.$route.params.id).then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
@@ -76,6 +84,11 @@ export default {
   position: fixed;
   z-index: 9;
 }
+#bio-create-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
 
 #profile-header-2 {
   top: 150px;
@@ -104,15 +117,16 @@ export default {
   border-top: 2px #d1d1d3 solid;
 }
 
-#profile-bio {
-  height: 175px;
-  padding: 10px;
-  /* padding-top: 20px; */
-
-  background-color: #d1d1d3;
-  border: 5px rgba(0, 0, 0, 0.308) solid;
-
+.profile-bio {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  max-width: 300px;
   border-radius: 10px;
+  /* padding-top: 20px; */
+  border-left: 2px #d1d1d3 solid;
+  border-right: 2px #d1d1d3 solid;
 }
 
 .page-title {
