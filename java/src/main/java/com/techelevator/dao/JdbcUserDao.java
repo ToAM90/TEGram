@@ -110,6 +110,11 @@ public class JdbcUserDao implements UserDao {
         return userUpdated;
     }
 
+    @Override
+    public boolean deleteUser(String username) {
+        return false;
+    }
+
 
     private User mapRowToUser(SqlRowSet rs) {
         User user = new User();

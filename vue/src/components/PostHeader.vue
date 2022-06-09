@@ -8,7 +8,7 @@
     </router-link>
     <div
       v-if="post.accountId != $store.state.currentAccount.accountId"
-      v-on:click="toggleFollow()"
+      v-on:click.stop="toggleFollow()"
     >
     {{getFollow()}}
       <img class="follow-icon" v-if="follow" src="@/assets/delete-friend.png" />

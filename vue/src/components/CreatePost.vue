@@ -9,6 +9,9 @@
     </button>
 
     <form id="upload-form">
+        <div class="alert alert-danger" role="alert" v-if="uploadError">
+        {{ uploadErrorMsg }}
+      </div>
       <div class="uploaded-photo-diplay">
         <p v-if="!imageUrl.includes('$$$$$$')">Successfully Uploaded</p>
       </div>
@@ -54,7 +57,10 @@ export default {
       preview: true,
       creatingPost: false,
       privated: false,
+      uploadError: false,
+      uploadErrorMsg: "There were problems making a post.",
     };
+
   },
   methods: {
     toggleCreatingPost() {
@@ -107,11 +113,17 @@ export default {
           this.createPost.caption = " ";
           this.createPost.img = "";
           this.privated = false;
-        } else {
-          console.log("placeholder event");
         }
         this.creatingPost = !this.creatingPost;
-      });
+      })
+      .catch((error) => {
+          const response = error.response;
+            this.uploadError = true;
+            if (response.status === 400) {
+              this.uploadErrorMsg =
+                "Please add a photo.";
+            }
+          });
     },
 
     uploadPhoto() {

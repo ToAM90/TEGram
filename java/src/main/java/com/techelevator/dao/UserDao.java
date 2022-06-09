@@ -18,4 +18,6 @@ public interface UserDao {
 
     boolean updateUser(String username, String password, String role);
 
+    boolean deleteUser(String username);
+
 }

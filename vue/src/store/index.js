@@ -118,7 +118,7 @@ export default new Vuex.Store({
     },
     REMOVE_COMMENT(state, id){
       state.currentPost.comments.splice(
-        (state.currentPost.comments.findIndex((comment) => comment.commentId === id), 1)
+        (state.currentPost.comments.findIndex((comment) => comment.commentId === id)), 1
       )
     }
   }

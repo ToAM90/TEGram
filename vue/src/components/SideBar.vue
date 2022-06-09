@@ -330,8 +330,8 @@ export default {
 
 #profile-icon {
   margin-top: 35px;
-  max-width: 150px;
-  height: auto;
+  width: 150px;
+  height: 150px;
   padding: 0px;
   box-shadow: 6px 6px 25px rgb(156, 155, 155);
   border-radius: 100%;

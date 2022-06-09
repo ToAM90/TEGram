@@ -33,8 +33,7 @@
       <div class="comment-form-buttons">
         <button
           class="comment-form-button cancel-comment"
-          v-on:click="newComment.commentText = ''"
-        >
+          v-on:click="newComment.commentText = ''">
           Cancel
         </button>
         <button class="comment-form-button send-comment" type="submit">
@@ -56,7 +55,6 @@ export default {
         postId: -1,
         commentText: "",
       },
-      storeComment: {}
     };
   },
   created() {
@@ -67,10 +65,11 @@ export default {
       this.newComment.postId = this.$store.state.currentPost.postId;
       CommentService.addComment(this.newComment).then((response) =>{
         if(response.status == 201){
-            this.newComment.accountId = this.$store.state.currentAccount.accountId;
-            this.storeComment = this.newComment
-      this.$store.commit("ADD_COMMENT", this.storeComment)
+      //       this.newComment.accountId = this.$store.state.currentAccount.accountId;
+      //       this.newComment.username = this.$store.state.currentAccount.displayName;
+      // this.$store.commit("ADD_COMMENT", this.newComment)
       // this.newComment.commentText = ""
+      this.$router.go(0);
         }
       })
     

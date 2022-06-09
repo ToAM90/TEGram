@@ -24,7 +24,7 @@
         </router-link>
       </div>
 
-      <div id="nav-user" v-if="!isScrolled" @click="uploadPFP">
+      <div id="nav-user" v-if="!isScrolled">
         <img :src="getProfilePic" alt="" id="profile-icon" />
       </div>
 
@@ -59,8 +59,6 @@
 <script>
 import postService from "../services/PostService";
 
-import accountService from "../services/AccountService";
-
 export default {
   name: "profile-header",
   components: {},
@@ -82,9 +80,6 @@ export default {
     window.addEventListener("resize", this.calcWindowWidth);
     this.windowWidth = window.innerWidth;
   },
-  // mounted() {
-  //   this.windowWidth = window.innerWidth;
-  // },
   methods: {
     logout() {
       this.$store.commit("LOGOUT");
@@ -128,42 +123,6 @@ export default {
               console.log(result.info.url);
               this.post.img = result.info.url;
               this.imageUrl = result.info.url;
-            } else {
-              console.log(error);
-            }
-          }
-        )
-        .open();
-    },
-    uploadPFP() {
-      window.cloudinary
-        .openUploadWidget(
-          {
-            cloud_name: "dcipg5scy",
-            upload_preset: "TE-GRAM",
-            maxFiles: 1,
-          },
-          (error, result) => {
-            //add verify clause for correct user
-            if (!error && result && result.event === "success") {
-              console.log(result.info.url);
-
-              accountService
-                .updateAccount({
-                  accountId: this.$store.state.currentAccount.accountId,
-                  userId: this.$store.state.currentAccount.userId,
-                  displayName: this.$store.state.currentAccount.displayName,
-                  profileImg: result.info.url,
-                })
-                .then((response) => {
-                  console.log(response.status);
-                  this.$store.commit("SET_CURRENT_ACCOUNT", {
-                    accountId: this.$store.state.currentAccount.accountId,
-                    userId: this.$store.state.currentAccount.userId,
-                    displayName: this.$store.state.currentAccount.displayName,
-                    profileImg: result.info.url,
-                  });
-                });
             } else {
               console.log(error);
             }
@@ -226,7 +185,8 @@ export default {
 
 #profile-icon {
   margin-top: 45px;
-  max-width: 150px;
+  width: 150px;
+  height: 150px;
   padding: 0px;
   box-shadow: 1px 1px 25px var(--primary-background-color);
   border-radius: 80%;

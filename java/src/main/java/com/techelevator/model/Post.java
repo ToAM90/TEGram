@@ -1,5 +1,6 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ public class Post {
 
     private int postId;
     private int accountId;
+    @NotEmpty (message = "Please upload an image.")
     private String img;
     private String caption;
     private LocalDateTime postDate;
