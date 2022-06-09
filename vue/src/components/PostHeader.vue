@@ -14,11 +14,15 @@
       <img class="follow-icon" v-if="follow" src="@/assets/delete-friend.png" />
       <img class="follow-icon" v-else src="@/assets/add-friend.png" />
     </div>
+    <div v-if="post.accountId == $store.state.currentAccount.accountId" v-on:click.stop="deletePost(post.postId)">
+       <img class="delete-icon" src="../assets/icons8-delete-24.png" />
+    </div>
   </div>
 </template>
 
 <script>
 import FollowService from "../services/FollowService";
+import PostService from "../services/PostService"
 
 export default {
   name: "post-header",
@@ -55,8 +59,14 @@ export default {
         this.$store.commit("TOGGLE_FOLLOW", this.post.accountId);
       }
     },
-  },
-};
+    deletePost(postId){
+      PostService.deletePost(postId).then((response) => {
+        if(response.status === 204){
+           this.$store.commit("REMOVE_POST", postId)
+    }
+      })
+  }},
+}
 </script>
 
 <style>
@@ -85,6 +95,10 @@ export default {
 }
 
 .follow-icon {
+  max-width: 20px;
+  cursor: pointer;
+}
+.delete-icon{
   max-width: 20px;
   cursor: pointer;
 }

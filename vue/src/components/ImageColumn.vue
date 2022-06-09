@@ -15,10 +15,13 @@
 
         <img class="image" v-bind:src="post.img" alt="" />
         <post-interaction v-bind:post="post" />
+       
       </div>
       <div v-if="$store.state.currentPost.postId == post.postId">
         <post-details />
+        <button v-if="post.accountId == $store.state.currentAccount.accountId" v-on:click.stop="deletePost(post.postId)">Delete</button>
       </div>
+       
     </div>
 
     <!-- <div
@@ -34,7 +37,7 @@
 import PostInteraction from "./PostInteraction.vue";
 import PostHeader from "./PostHeader.vue";
 import PostDetails from "./PostDetails.vue";
-// import CreatePost from "./CreatePost";
+
 
 export default {
   components: { PostInteraction, PostHeader, PostDetails },
@@ -59,8 +62,7 @@ export default {
       } else {
         this.$store.commit("SET_CURRENT_POST", post);
       }
-    },
-  },
+    }},
   data() {
     return {
       showDetails: false,
