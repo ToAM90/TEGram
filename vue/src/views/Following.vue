@@ -14,21 +14,28 @@
       <div
         id="list-accounts"
         v-for="account in $store.state.followAccounts"
-        v-bind:key="account.accountId">
-       
+        v-bind:key="account.accountId"
+      >
+        <router-link
+          v-bind:to="{ name: 'profile', params: { id: account.accountId } }"
+        >
           <img class="account-image" :src="account.profileImg" />
-          <p
-            class="account-name"
-            v-on:click="$router.push(`/profile/${account.accountId}`)">
-            {{ account.displayName }}</p>
+        </router-link>
+        <span v-on:click="toggleFollow(account.followed, account.accountId)">
+        <img class="follow-icon" v-if="account.followed" src="@/assets/delete-friend.png" />
+      <img class="follow-icon" v-else src="@/assets/add-friend.png" />
+        <p
+          class="account-name"
+          v-on:click="$router.push(`/profile/${account.accountId}`)"
+        >
+          {{ account.displayName }}
+          
+        </p>
 
-          <button
-            v-on:click="toggleFollow(account.followed, account.accountId)">
-            {{ account.followed ? "Unfollow" : "Follow" }}
-          </button>
+      
+</span>
       </div>
     </div>
-
   </main>
 </template>
 
@@ -45,15 +52,15 @@ export default {
     toggleFollow(followed, accountId) {
       if (followed) {
         FollowService.unfollow(accountId);
-        this.$router.go(0);
+        this.$store.commit("TOGGLE_FOLLOW_FOLLOW", accountId);
       } else {
         FollowService.follow(accountId);
-        this.$router.go(0);
+        this.$store.commit("TOGGLE_FOLLOW_FOLLOW", accountId);
       }
     },
   },
   created() {
-    FollowService.listFollowing().then((response) => {
+    FollowService.listFollowers().then((response) => {
       this.$store.commit("SET_FOLLOW_ACCOUNTS", response.data);
     });
   },
