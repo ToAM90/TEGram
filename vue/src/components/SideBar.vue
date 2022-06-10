@@ -79,7 +79,7 @@
           <button id="cancel-upload" @click.prevent="toggleCreatingPost">
             Cancel
           </button>
-          <button id="submit-upload" @click.prevent="uploadPost" type="submit">
+          <button id="submit-upload" @click="uploadPost" type="submit">
             Post
           </button>
         </div>
