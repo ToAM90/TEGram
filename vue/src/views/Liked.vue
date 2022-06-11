@@ -28,10 +28,8 @@ export default {
 
 <style>
 main > .page-title {
-  /* width: calc(100% - 315px); */
   margin-left: 295px;
   margin-right: auto;
-  /* padding-top: 20px; */
   padding-top: 0px;
   display: flex;
   flex-direction: row;

@@ -46,7 +46,7 @@ export default {
   created() {
     AccountService.getAccountOther(this.$route.params.id).then((response) => {
       this.$store.commit("SET_ACCOUNT", response.data);
-      console.log(this.$store.state.account);
+      // console.log(this.$store.state.account);
       this.showBio = true;
     });
     PostService.getAccountPosts(this.$route.params.id).then((response) => {

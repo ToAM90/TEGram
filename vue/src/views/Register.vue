@@ -116,8 +116,8 @@ export default {
       this.$router.push("/login");
     },
     onScore({ score, strength }) {
-      console.log(score); // from 0 to 4
-      console.log(strength); // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
+      alert(score, strength); // from 0 to 4
+      // one of : 'risky', 'guessable', 'weak', 'safe' , 'secure'
       this.score = score;
     },
   },

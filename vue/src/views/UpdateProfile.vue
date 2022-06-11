@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     getProfilePic() {
-      console.log(this.$store.state.currentAccount.profileImg);
+      // console.log(this.$store.state.currentAccount.profileImg);
       return this.$store.state.currentAccount.profileImg;
     },
   },
@@ -161,6 +161,7 @@ export default {
             if (response.status == 200) {
               // this.$router.push({ name: "home" });
               this.$router.push("/");
+              window.alert("Password has been changed.")
             }
           })
           .catch((error) => {
@@ -171,11 +172,11 @@ export default {
                 "There were problems with changing your password";
             }
           });
-  console.log('Password Changed.');
+  // console.log('Password Changed.');
 
 } else {
   // Do nothing!
-  console.log('Password Not Changed.');
+  // console.log('Password Not Changed.');
 }
         
       }
@@ -194,12 +195,12 @@ export default {
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result.info.url);
+              // console.log(result.info.url);
               this.newAccount.profileImg = result.info.url;
               AccountService.updateAccount(this.newAccount);
               this.$router.go(0);
             } else {
-              console.log(error);
+              // alert(error);
             }
           }
         )

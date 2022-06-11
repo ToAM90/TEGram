@@ -12,6 +12,10 @@ export default {
 
     updateAccount(account){
         return axios.put('/profile', account)
+    },
+
+    getAllAccounts(){
+        return axios.get('/accounts')
     }
 
 }

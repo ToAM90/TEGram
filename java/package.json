@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "all": "^0.0.0",
     "heroku": "^7.60.2"
   }
 }

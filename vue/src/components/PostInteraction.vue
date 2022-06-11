@@ -106,7 +106,6 @@ export default {
 
 <style>
 .post-interaction-bar {
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
   background: #d1d1d3;
   display: flex;
   flex-direction: row;

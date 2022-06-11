@@ -105,7 +105,7 @@ export default {
           this.post.img = "";
           this.privated = false;
         } else {
-          console.log("placeholder event");
+          // console.log("placeholder event");
         }
         this.creatingPost = !this.creatingPost;
       });
@@ -120,11 +120,11 @@ export default {
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result.info.url);
+              // console.log(result.info.url);
               this.post.img = result.info.url;
               this.imageUrl = result.info.url;
             } else {
-              console.log(error);
+              alert(error);
             }
           }
         )
@@ -134,7 +134,7 @@ export default {
       this.windowWidth = window.innerWidth;
     },
     calcIsScrolled() {
-      console.log(Window.scrollY);
+      // console.log(Window.scrollY);
       return (this.isScrolled = window.scrollY !== 0);
     },
   },
@@ -143,7 +143,7 @@ export default {
       return this.$store.state.posts;
     },
     getProfilePic() {
-      console.log(this.$store.state.account.profileImg);
+      // console.log(this.$store.state.account.profileImg);
       return this.$store.state.account.profileImg;
     },
   },

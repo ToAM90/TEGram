@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -47,6 +48,18 @@ public class AccountController {
         return account;
 
     }
+
+    @RequestMapping("/accounts")
+    public List<Account> listAllAccounts (Principal principal){
+        long userId = userDao.findIdByUsername(principal.getName());
+        int accountId = accountDao.getAccountByUserId(userId).getAccountId();
+        List<Account> listAccounts = accountDao.listAccounts();
+        for(Account account : listAccounts){
+            account.setNumFollowers(followDao.countFollowers(account.getAccountId()));
+            account.setNumFollowing(followDao.countFollowing(account.getAccountId()));
+            account.setFollowed(followDao.isFollowed(accountId, account.getAccountId()));
+        }
+        return listAccounts;}
 
     @PutMapping("/profile")
     public void updateAccount(@RequestBody Account account, Principal principal){

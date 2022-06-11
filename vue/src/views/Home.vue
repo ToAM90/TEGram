@@ -27,14 +27,13 @@ export default {
     ImageColumn,
   },
   created() {
+        AccountService.getAllAccounts().then((response) => {
+          this.$store.commit("ADD_ACCOUNT", response.data);
+          console.log(this.$store.state.accounts)
+      });
     PostService.getAllPosts().then((response) => {
       this.$store.commit("INITIALIZE_POSTS", response.data);
-      this.$store.commit("CLEAR_ACCOUNTS");
-      this.$store.state.posts.forEach((post) => {
-        AccountService.getAccountOther(post.accountId).then((response) => {
-          this.$store.commit("ADD_ACCOUNT", response.data);
-        });
-      });
+      
     });
 
     this.$store.commit("CHANGE_CURRENT_VIEW", "home");

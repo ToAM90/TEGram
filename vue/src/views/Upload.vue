@@ -59,13 +59,13 @@ export default {
           showCompletedButton: true,},
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result);
+              // console.log(result);
               this.post.img = result.info.public_id;
-              console.log(this.post.img);
+              // console.log(this.post.img);
               // this.viewPhoto();
               
             } else {
-              console.log(error);
+              // console.log(error);
             }
           }
         )

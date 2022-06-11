@@ -62,7 +62,7 @@ export default {
     deletePost(postId){
       if (confirm('Are you sure you want to delete this post?')) {
   // Save it!
-  console.log('Post has been deleted.');
+  // console.log('Post has been deleted.');
   PostService.deletePost(postId).then((response) => {
         if(response.status === 204){
            this.$store.commit("REMOVE_POST", postId)
@@ -70,7 +70,7 @@ export default {
       })
 } else {
   // Do nothing!
-  console.log('Delete request canceled.');
+  // console.log('Delete request canceled.');
 }
       
   }},

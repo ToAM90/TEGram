@@ -30,10 +30,6 @@
 
     <div id="user-stats">
       <ul>
-        <!-- <li>
-          {{}} <br />
-          posts
-        </li> -->
         <li>
           {{ this.$store.state.currentAccount.numFollowers }} <br />
           followers
@@ -221,7 +217,7 @@ export default {
         seconds +
         "." +
         milliseconds;
-      console.log(this.$store.state.currentAccount);
+      // console.log(this.$store.state.currentAccount);
       return {
         accountId: this.$store.state.currentAccount.accountId,
         caption: post.caption,
@@ -244,7 +240,7 @@ export default {
           this.post.img = "";
           this.privated = false;
         } else {
-          console.log("placeholder event");
+          // console.log("placeholder event");
         }
         this.creatingPost = !this.creatingPost;
       })
@@ -268,11 +264,11 @@ export default {
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result.info.url);
+              // console.log(result.info.url);
               this.post.img = result.info.url;
               this.imageUrl = result.info.url;
             } else {
-              console.log(error);
+              // alert(error);
             }
           }
         )
@@ -308,10 +304,7 @@ export default {
   display: flex;
   width: 100%;
   flex-direction: column;
-  /* background-color: var(--panel-background-color); */
-
   background: #d1d1d3;
-  /* background-image: url("https://res.cloudinary.com/dcipg5scy/image/upload/v1654570644/TE_GRAM/u7k1krgvbdjhnfujrwhy.png"); */
   align-items: center;
   font-family: "Open Sans", sans-serif;
   box-shadow: 2px 2px 10px rgb(128, 127, 127);
@@ -329,14 +322,9 @@ export default {
   max-height: 30px;
   max-width: 30px;
   border-radius: 100%;
-
   padding: 3px;
   border-radius: 7px;
   opacity: 0.8;
-  /* 
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-background-clip: border-box; */
-
   background: #d1d1d3;
   -webkit-background-clip: border-box;
 }
@@ -353,17 +341,10 @@ export default {
 
 .display-name {
   color: black;
-
   margin-top: 30px;
-
   font-size: 1.3rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  /* 
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
   color: rgb(35, 33, 37);
 }
 
@@ -374,7 +355,6 @@ export default {
 }
 
 ul {
-  /* margin-top: 10px; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -386,7 +366,6 @@ li {
   text-align: center;
   font-size: 18px;
   font-family: "Open Sans", sans-serif;
-  /* text-transform: uppercase; */
 }
 
 .nav-list {
@@ -414,8 +393,6 @@ li {
   padding: 3px;
   border-radius: 7px;
   opacity: 0.8;
-
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png"); */
   background: #d1d1d3;
   -webkit-background-clip: border-box;
 }
@@ -428,8 +405,6 @@ li {
   padding: 3px;
   border-radius: 7px;
   opacity: 0.8;
-
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png"); */
   background: #d1d1d3;
   -webkit-background-clip: border-box;
 }
@@ -439,11 +414,6 @@ li {
   position: relative;
   padding-right: 0px;
   cursor: pointer;
-
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text; */
-
   color: rgb(35, 33, 37);
 }
 

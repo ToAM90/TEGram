@@ -19,7 +19,7 @@
       </div>
       <div v-if="$store.state.currentPost.postId == post.postId">
         <post-details />
-        <button v-if="post.accountId == $store.state.currentAccount.accountId" v-on:click.stop="deletePost(post.postId)">Delete</button>
+       
       </div>
        
     </div>

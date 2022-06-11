@@ -5,6 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class JdbcAccountDao implements AccountDao{
 
@@ -49,6 +52,19 @@ public class JdbcAccountDao implements AccountDao{
     public void updateAccount(Account account, long userId) {
         String sql = "UPDATE accounts SET biography = ?, profile_img = ?, display_name = ? WHERE user_id = ?";
         jdbcTemplate.update(sql, account.getBiography(), account.getProfileImg(), account.getDisplayName(), userId);
+    }
+
+    @Override
+    public List<Account> listAccounts() {
+        List<Account> accountList = new ArrayList<>();
+        String sql = "SELECT * FROM accounts";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while(results.next()){
+            Account account = MapRowToAccount(results);
+            accountList.add(account);}
+
+        return accountList;
     }
 
     private Account MapRowToAccount(SqlRowSet results){

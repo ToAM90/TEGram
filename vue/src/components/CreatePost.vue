@@ -91,7 +91,7 @@ export default {
         seconds +
         "." +
         milliseconds;
-      console.log(this.$store.state.currentAccount);
+      // console.log(this.$store.state.currentAccount);
       return {
         accountId: this.$store.state.currentAccount.accountId,
         caption: post.caption,
@@ -136,11 +136,11 @@ export default {
           },
           (error, result) => {
             if (!error && result && result.event === "success") {
-              console.log(result.info.url);
+              // console.log(result.info.url);
               this.createPost.img = result.info.url;
               this.imageUrl = result.info.url;
             } else {
-              console.log(error);
+              // alert.console.log(error);
             }
           }
         )

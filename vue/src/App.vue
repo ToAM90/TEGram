@@ -22,7 +22,7 @@ export default {
     this.$store.commit("SET_ACCOUNT", this.defaultAccount);
     accountService.getAccountSelf().then((response) => {
       this.$store.commit("SET_CURRENT_ACCOUNT", response.data);
-      console.log(this.$store.state.currentAccount);
+      // console.log(this.$store.state.currentAccount);
     });
   },
 };
@@ -47,17 +47,10 @@ export default {
   max-width: 100vw;
 }
 #app {
-  /* background-color: var(--primary-background-color); */
 
-  /* height: 100vh; */
   min-height: 100vh;
   overflow: auto;
   width: 100vw;
-
-  /* background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  background-repeat: repeat repeat;
-  background-size: 100%; */
-
   background: rgb(35, 33, 37);
   margin: -8px;
   padding: 0px;

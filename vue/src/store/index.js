@@ -71,14 +71,15 @@ export default new Vuex.Store({
       })
     }, 
     TOGGLE_FOLLOW(state, accountId) {
-      state.accounts.forEach(account => {
+      state.accounts.find(account => {
         if (account.accountId == accountId) {
-            account.followed = !account.followed
-            if(account.followed){
-              state.currentAccount.numFollowing++
-            } else {
-              state.currentAccount.numFollowing--
-            }
+          account.followed = !account.followed
+          if(account.followed){
+            state.currentAccount.numFollowing++
+          } else {
+            state.currentAccount.numFollowing--
+          
+          }
       }})
     },
     TOGGLE_FOLLOW_FOLLOW(state, accountId) {
@@ -89,6 +90,7 @@ export default new Vuex.Store({
               state.currentAccount.numFollowing++
             } else {
               state.currentAccount.numFollowing--
+            
             }
       }})
     },
@@ -110,8 +112,9 @@ export default new Vuex.Store({
     CLEAR_ACCOUNTS(state) {
       state.accounts = []
     },
-    ADD_ACCOUNT(state, newAccount) {
-      state.accounts.push(newAccount)
+    ADD_ACCOUNT(state, accounts) {
+      state.accounts = accounts
+      
     },
     ADD_COMMENT(state, comment){
       state.currentPost.comments.push(comment)
