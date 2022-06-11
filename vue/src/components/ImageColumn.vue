@@ -81,8 +81,8 @@ export default {
     };
   },
   computed: {},
-  mounted() {
-    console.log(this.$store.state.posts);
+  // mounted() {
+  //   console.log(this.$store.state.posts);
   },
 };
 </script>
@@ -99,7 +99,6 @@ export default {
     -moz-column-gap: 0px;
     column-count: 3;
     column-gap: 10px;
-    /* background: var(--primary-background-color);s */
   }
 }
 
@@ -133,9 +132,7 @@ export default {
   border-radius: 5%;
   border-top: 0px;
   display: block;
-
   break-inside: avoid;
-
   margin-top: 10px;
 }
 
@@ -151,9 +148,5 @@ export default {
 .my-images .feed-post-container .image {
   width: calc(100% - 10px) !important;
   border: #d1d1d3 5px solid;
-  /* 
-  background-image: url("http://res.cloudinary.com/dcipg5scy/image/upload/v1654357142/TE_GRAM/zelphyniwd4mjons4g3o.png");
-  -webkit-background-clip: border-box; */
-  /* border-radius: 5px 5px 0px 0px; */
 }
 </style>
